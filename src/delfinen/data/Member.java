@@ -51,6 +51,11 @@ public class Member
         
     }
 
+    public int getBirthyear()
+    {
+        return birthyear;
+    }
+
     public void setAddress(String address)
     {
         this.address = address;
