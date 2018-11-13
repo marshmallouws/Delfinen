@@ -8,10 +8,10 @@ public class Team
     private String teamname;
     private ArrayList<Member> members;
 
-    public Team(String teamname)
+    public Team(String teamname, ArrayList<Member> members)
     {
         this.teamname = teamname;
-        this.members = new ArrayList<>();
+        this.members = members;
     }
 
     public String getTeamname()

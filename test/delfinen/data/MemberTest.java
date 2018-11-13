@@ -271,7 +271,7 @@ public class MemberTest {
         System.out.println("getMembertype");
         Member instance = null;
         MemberType expResult = null;
-        MemberType result = instance.getMembertype();
+        MemberType result = instance.getMemberType();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
