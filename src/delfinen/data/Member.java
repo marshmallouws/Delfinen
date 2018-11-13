@@ -23,9 +23,9 @@ public class Member
     private ArrayList <Integer> yearsPaid;
     private MemberStatus memberstatus;
     private Membership membership;
-    private Membertype membertype;
+    private MemberType membertype;
 
-    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, Membership membership, Membertype membertype)
+    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, Membership membership, MemberType membertype)
     {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -81,7 +81,7 @@ public class Member
         this.membership = membership;
     }
 
-    public void setMembertype(Membertype membertype)
+    public void setMembertype(MemberType membertype)
     {
         this.membertype = membertype;
     }
@@ -131,7 +131,7 @@ public class Member
         return membership;
     }
 
-    public Membertype getMembertype()
+    public MemberType getMembertype()
     {
         return membertype;
     }

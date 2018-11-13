@@ -9,7 +9,7 @@ package delfinen.data;
  *
  * @author aamandajuhl
  */
-public enum Membertype
+public enum MemberType
 {
     COMPETITIVE, NONCOMPETITIVE
 }
