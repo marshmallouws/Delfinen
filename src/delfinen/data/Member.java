@@ -52,6 +52,16 @@ public class Member
         
     }
 
+    public void setFirstname(String firstname)
+    {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname)
+    {
+        this.lastname = lastname;
+    }
+
     public int getBirthyear()
     {
         return birthyear;
