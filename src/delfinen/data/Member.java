@@ -131,7 +131,7 @@ public class Member
         return membership;
     }
 
-    public MemberType getMembertype()
+    public MemberType getMemberType()
     {
         return membertype;
     }
