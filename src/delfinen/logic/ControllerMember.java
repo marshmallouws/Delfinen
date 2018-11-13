@@ -18,8 +18,10 @@ public class ControllerMember implements Controller
     @Override
     public Member getMember(String ssn)
     {
-        Member member = data.getMember();
+
+        Member member = data.getMember(ssn);
         return member;
+
     }
 
     @Override
@@ -28,7 +30,5 @@ public class ControllerMember implements Controller
         CompetitionSwimmer swimmer = data.getComptitionSwimmer();
         return swimmer;
     }
-
-    
 
 }
