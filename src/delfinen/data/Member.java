@@ -38,6 +38,7 @@ public class Member
         this.membership = membership;
         this.membertype = membertype;
         this.yearsPaid = new ArrayList<>();
+        
     }
 
     public int getAge(int year)
