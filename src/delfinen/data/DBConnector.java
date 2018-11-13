@@ -12,9 +12,9 @@ public class DBConnector {
 	//Constants
 	private static final String IP	     = "localhost";
 	private static final String PORT     = "3306";
-	public  static final String DATABASE = "glarmester";
+	public  static final String DATABASE = "delfinen";
 	private static final String USERNAME = "root"; 
-	private static final String PASSWORD = "Sveske8654";	     	
+	private static final String PASSWORD = "xbq47vzw";	     	
 	
 	public DBConnector() throws SQLException {
             try {
