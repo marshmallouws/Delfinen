@@ -1,15 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package delfinen.logic;
 
-/**
- *
- * @author aamandajuhl
- */
+import delfinen.data.CompetitionSwimmer;
+import delfinen.data.DataAccessor;
+import delfinen.data.Member;
+
+
 public class ControllerMember implements Controller
 {
+
+    private DataAccessor data;
+
+    public ControllerMember(DataAccessor data)
+    {
+        this.data = data;
+    }
+
+    @Override
+    public Member getMember(String ssn)
+    {
+        Member member = data.getMember();
+        return member;
+    }
+
+    @Override
+    public CompetitionSwimmer getCompetitionSwimmer(String ssn)
+    {
+        CompetitionSwimmer swimmer = data.getComptitionSwimmer();
+        return swimmer;
+    }
+
     
+
 }

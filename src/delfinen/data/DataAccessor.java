@@ -1,6 +1,8 @@
    
 package delfinen.data;
 
+import java.util.List;
+
 /**
  *
  * @author sofieamalielandt
@@ -13,6 +15,21 @@ public class DataAccessor
     public DataAccessor(DBConnector connector)
     {
         this.connector = connector;
+    }
+    
+    public List<Member> getMembers()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Member getMember()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public CompetitionSwimmer getComptitionSwimmer()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
