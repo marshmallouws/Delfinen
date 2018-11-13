@@ -1,15 +1,18 @@
 
 package delfinen.data;
 
+import java.sql.Date;
+import java.sql.Time;
+
 
 public class TrainingResult
 {
     private Member m;
     private Disciplin d;
-    private String date;
-    private int time;
+    private Date date;
+    private Time time;
 
-    public TrainingResult(Member m, Disciplin d, String date, int time)
+    public TrainingResult(Member m, Disciplin d, Date date, Time time)
     {
         this.m = m;
         this.d = d;
@@ -27,19 +30,13 @@ public class TrainingResult
         return d;
     }
 
-    public String getDate()
+    public Date getDate()
     {
         return date;
     }
 
-    public int getTime()
+    public Time getTime()
     {
         return time;
     }
-    
-    
-    
-    
-    
-    
 }

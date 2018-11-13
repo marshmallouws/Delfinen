@@ -7,7 +7,9 @@ package delfinen;
 
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessor;
+import delfinen.data.Disciplin;
 import delfinen.data.Member;
+import delfinen.data.Membership;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -40,6 +42,8 @@ public class Main {
         System.out.println(dao.getMember("1012021670").getAddress());
 
         System.out.println(dao.getMember("Annika", "Elhers"));
+        
+        System.out.println(dao.getTop5(Disciplin.CRAWL, Membership.JUNIOR));
 
     }
 
