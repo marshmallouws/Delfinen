@@ -130,7 +130,7 @@ public class MemberTest {
     @Test
     public void testSetMembertype() {
         System.out.println("setMembertype");
-        Membertype membertype = null;
+        MemberType membertype = null;
         Member instance = null;
         instance.setMembertype(membertype);
         // TODO review the generated test code and remove the default call to fail.
@@ -270,8 +270,8 @@ public class MemberTest {
     public void testGetMembertype() {
         System.out.println("getMembertype");
         Member instance = null;
-        Membertype expResult = null;
-        Membertype result = instance.getMembertype();
+        MemberType expResult = null;
+        MemberType result = instance.getMembertype();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
