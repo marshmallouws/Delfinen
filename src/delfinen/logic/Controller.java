@@ -9,7 +9,7 @@ package delfinen.logic;
  *
  * @author sofieamalielandt
  */
-public class Controller
+public interface Controller
 {
     
 }
