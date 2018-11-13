@@ -39,7 +39,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
         {
             ex.printStackTrace();
         }
-        Member m = c.getMember("0804950338");
+        Member m = c.getMember("0912951530");
         
         FirstName.setText(m.getFirstname());
         LastName.setText(m.getLastname());
@@ -250,7 +250,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
         if(this.jButton2.getText().equals("Save"))
         {
             this.jButton2.setText("Edit");
-            Member m = c.getMember("0804950338");
+            Member m = c.getMember("0912951530");
             m.setFirstname(FirstName.getText());
             m.setLastname(LastName.getText());
             m.setAddress(address.getText());

@@ -112,18 +112,15 @@ public class DataAccessor
                 MemberType ty = MemberType.valueOf(type);
                 
                 member = new Member(firstname, lastname, ssn2, birthyear, address, zipcode, phone, stat, mem, ty);
+                return member;
             }
                 
         }catch (SQLException ex){
             
+            System.out.println("Member not found");
             }
-        if(member == null){
-            //throw new DataException();
-            Member m = new Member("a", "b", "1", 1990, "a","e", "e", MemberStatus.ACTIVE, Membership.JUNIOR, MemberType.COMPETITIVE);
-            return m;
-        }
         
-        return member;
+        return null;
     }
         
 
