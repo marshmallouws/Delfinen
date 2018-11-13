@@ -6,12 +6,12 @@ public class Team
 {
 
     private String teamname;
-    private ArrayList<Member> members;
+    private ArrayList<CompetitionSwimmer> swimmers;
 
     public Team(String teamname)
     {
         this.teamname = teamname;
-        this.members = new ArrayList<>();
+        this.swimmers = new ArrayList<>();
     }
 
     public String getTeamname()
@@ -19,25 +19,25 @@ public class Team
         return teamname;
     }
 
-    public ArrayList<Member> getMembers()
+    public ArrayList<CompetitionSwimmer> getSwimmers()
     {
-        return members;
+        return swimmers;
     }
 
-    public void addMember(Member m)
+    public void addSwimmer(CompetitionSwimmer s)
     {
-        members.add(m);
+        swimmers.add(s);
     }
 
-    public void removeMember(String membername)
+    public void removeSwimmer(String swimmername)
     {
-
-        for (Member m : members)
+        for (CompetitionSwimmer s : swimmers)
         {
-            String name = m.getFirstname() + m.getLastname();
-            if (membername == name)
+            String name = s.getMember().getFirstname() + s.getMember().getLastname();
+            
+            if (swimmername == name)
             {
-                members.remove(m);
+                swimmers.remove(s);
             }
         }
     }
