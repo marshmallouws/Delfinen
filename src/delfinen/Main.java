@@ -18,31 +18,29 @@ import java.util.logging.Logger;
  * @author Annika Ehlers
  */
 public class Main {
-    
+
     public static void main(String[] args) {
-        
+
         DataAccessor dao = null;
-        
+
         try {
             DBConnector DB = new DBConnector();
             dao = new DataAccessor(DB);
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //System.out.println(dao.getMember("0912951530"));
         ArrayList<Member> members = dao.getMembers();
-        
-        for(Member m: members){
+
+        for (Member m : members) {
             System.out.println(m.getFirstname());
         }
-        
-        System.out.println(dao.getMember("1012021670").getFirstname());
-        
-        
-        
-        
-        
+
+        System.out.println(dao.getMember("1012021670").getAddress());
+
+        System.out.println(dao.getMember("Annika", "Elhers"));
+
     }
-    
+
 }
