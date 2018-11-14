@@ -9,15 +9,15 @@ import delfinen.data.Member;
 
 /**
  *
- * @author aamandajuhl
+ * @author sofieamalielandt
  */
-public class GUIMemberMenu extends javax.swing.JFrame
+public class GUICompetitiveMenu extends javax.swing.JFrame
 {
     private final Member ml;
     /**
-     * Creates new form GUIMemberMenu
+     * Creates new form GUICompetitiveMenu
      */
-    public GUIMemberMenu(Member ml)
+    public GUICompetitiveMenu(Member ml)
     {
         this.ml = ml;
         initComponents();
@@ -35,6 +35,8 @@ public class GUIMemberMenu extends javax.swing.JFrame
 
         jLabel1 = new javax.swing.JLabel();
         memberinfo = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,6 +52,10 @@ public class GUIMemberMenu extends javax.swing.JFrame
                 memberinfoActionPerformed(evt);
             }
         });
+
+        jButton2.setText("Training results");
+
+        jButton3.setText("Competition result");
 
         back.setText("Go back");
         back.addActionListener(new java.awt.event.ActionListener()
@@ -70,6 +76,8 @@ public class GUIMemberMenu extends javax.swing.JFrame
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(memberinfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -83,7 +91,11 @@ public class GUIMemberMenu extends javax.swing.JFrame
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
                 .addComponent(memberinfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(20, 20, 20))
         );
@@ -93,7 +105,7 @@ public class GUIMemberMenu extends javax.swing.JFrame
 
     private void memberinfoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_memberinfoActionPerformed
     {//GEN-HEADEREND:event_memberinfoActionPerformed
- 
+
         this.setVisible(false);
         new GUIMemberInformation(ml).setVisible(true);
     }//GEN-LAST:event_memberinfoActionPerformed
@@ -126,16 +138,16 @@ public class GUIMemberMenu extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(GUIMemberMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUICompetitiveMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(GUIMemberMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUICompetitiveMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(GUIMemberMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUICompetitiveMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(GUIMemberMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUICompetitiveMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -144,13 +156,15 @@ public class GUIMemberMenu extends javax.swing.JFrame
         {
             public void run()
             {
-                
+           
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton memberinfo;
     // End of variables declaration//GEN-END:variables

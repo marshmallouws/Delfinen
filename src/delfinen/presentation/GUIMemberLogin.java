@@ -6,6 +6,7 @@
 package delfinen.presentation;
 
 import delfinen.data.Member;
+import delfinen.data.MemberType;
 import java.util.ArrayList;
 
 /**
@@ -143,7 +144,12 @@ public class GUIMemberLogin extends javax.swing.JFrame
         }
 
         this.setVisible(false);
-        new GUIMemberMenu(ml).setVisible(true);
+        if(ml.getMemberType().equals(MemberType.COMPETITIVE)){
+            new GUICompetitiveMenu(ml).setVisible(true);
+        }
+        else{
+            new GUIMemberMenu(ml).setVisible(true);
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
