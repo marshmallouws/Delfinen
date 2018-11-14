@@ -27,11 +27,7 @@ public class ControllerTrainer implements Controller
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public CompetitionSwimmer getCompetitionSwimmer(String ssn)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
    
 
