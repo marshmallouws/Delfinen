@@ -72,7 +72,8 @@ public class DataAccessorDataBase implements DataAccessor {
         return members;
     }
 
-    public ArrayList<Member> getMembers() {
+    @Override
+    public ArrayList<Member> getMembers() throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, address,"
                 + "zipcode, phone, memberstatus, membership, membertype FROM member;";
 
@@ -81,7 +82,8 @@ public class DataAccessorDataBase implements DataAccessor {
         return members;
     }
 
-    public Member getMember(String ssn) {
+    @Override
+    public Member getMember(String ssn) throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
                 + "address, zipcode, phone, memberstatus, membership, membertype FROM member WHERE ssn ='" + ssn + "';";
         ResultSet r = query(query);
