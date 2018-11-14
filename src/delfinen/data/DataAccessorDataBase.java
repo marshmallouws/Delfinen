@@ -128,7 +128,8 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "GROUP BY firstname) top_time "
                 + "ON member.firstname = top_time.firstname "
                 + "AND training_result.sw_time = top_time.time "
-                + "WHERE discipline = '" + disciplin.toString() + "';";
+                + "WHERE discipline = '" + disciplin.toString() + "' "
+                + "ORDER BY sw_time;";
 
         ResultSet r = query(query);
 

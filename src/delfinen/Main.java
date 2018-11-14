@@ -25,13 +25,7 @@ import java.util.logging.Logger;
 public class Main {
 
     public static void main(String[] args) {
-        
-        
-
         try {
-            
-            
-            
             DataAccessorDataBase dao = null;
             
             try {
@@ -43,7 +37,7 @@ public class Main {
             
             
             try {
-                System.out.println(dao.getMember("0912951530").getFirstname());
+                System.out.println(dao.getMember("1506952222").getFirstname());
             } catch (DataException ex) {
                 ex.getMessage();
             }
@@ -65,13 +59,13 @@ public class Main {
             
             System.out.println("_________________________________________");
             System.out.println("GetMember(name)");
-            System.out.println(dao.getMember("Annika", "Elhers").getFirstname());
+            System.out.println(dao.getMember("Annika", "Ehlers").getFirstname());
             
             //System.out.println(dao.getTop5(Disciplin.CRAWL, Membership.JUNIOR));
             
             System.out.println("__________________________________________");
             System.out.println("GetTrainingresult(name, dis)");
-            ArrayList<TrainingResult> result = dao.getTrainingResult("Annika", "Elhers", Disciplin.CRAWL);
+            ArrayList<TrainingResult> result = dao.getTrainingResult("Annika", "Ehlers", Disciplin.CRAWL);
             for(TrainingResult r: result ){
                 System.out.println(r.getTime());
             }
@@ -93,7 +87,7 @@ public class Main {
             
             System.out.println("____________________________________________");
             System.out.println("Get competitionresult");
-            ArrayList <CompetitionResult> resul = dao.getCompetitionResult("Fred", "Nilsson", Disciplin.CRAWL);
+            ArrayList <CompetitionResult> resul = dao.getCompetitionResult("Peter", "Jakobsen", Disciplin.CRAWL);
             for(CompetitionResult er : resul){
                 System.out.println(er.getCompetition());
             }
@@ -105,6 +99,14 @@ public class Main {
             for(Member m: r){
             System.out.println(m.getFirstname());
             } */
+            
+            System.out.println("____________________________________________");
+            System.out.println("Get top 5");
+            ArrayList<TrainingResult> top5 = dao.getTop5(Disciplin.CRAWL, Membership.SENIOR);
+            
+            for(TrainingResult t: top5){
+                System.out.println(t.getMember().getFirstname() + " - " +  t.getTime());
+            }
             
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
