@@ -89,9 +89,17 @@ public class DataAccessorDataBase implements DataAccessor {
         return members.get(0);
     }
 
-    public CompetitionSwimmer getComptitionSwimmer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    /*
+    @Override
+    public ArrayList<Member> getComptitionSwimmers() {
+        String query = "SELECT ssn, firstname, lastname, birthyear, "
+                + "address, zipcode, phone, memberstatus, membership, membertype FROM member "
+                + "WHERE membertype = competitive ";
+        
+        ResultSet r = query(query);
+        ArrayList<Member> members = membersData(r);
+        return members;
+    } */
 
     @Override
     public Member getMember(String firstname, String lastname) {
@@ -311,6 +319,11 @@ public class DataAccessorDataBase implements DataAccessor {
 
         return res;
         }
+
+    @Override
+    public ArrayList<Member> getComptitionSwimmers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
 }

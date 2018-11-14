@@ -20,6 +20,5 @@ public interface DataAccessor {
     ArrayList<TrainingResult> getTrainingResult(Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(Disciplin d);
-
-    public CompetitionSwimmer getComptitionSwimmer();
+    ArrayList<Member> getComptitionSwimmers();
 }

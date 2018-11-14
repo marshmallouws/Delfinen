@@ -54,7 +54,7 @@ public class DataAccesorFile implements DataAccessor {
     }
 
     @Override
-    public CompetitionSwimmer getComptitionSwimmer()
+    public ArrayList<Member> getComptitionSwimmers()
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
