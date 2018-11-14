@@ -1,16 +1,18 @@
 
 package delfinen.data;
 
+import java.sql.Time;
+
 
 public class CompetitionResult
 {
     private Member m;
     private String competition;
     private int rank;
-    private int time;
+    private Time time;
     private Disciplin disciplin;
 
-    public CompetitionResult(Member m, String competition, int rank, int time, Disciplin disciplin)
+    public CompetitionResult(Member m, String competition, int rank, Time time, Disciplin disciplin)
     {
         this.m = m;
         this.competition = competition;
@@ -34,7 +36,7 @@ public class CompetitionResult
         return rank;
     }
 
-    public int getTime()
+    public Time getTime()
     {
         return time;
     }

@@ -194,20 +194,123 @@ public class DataAccessorDataBase implements DataAccessor {
         return res;
     }
 
-    @Override
+   @Override
     public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
+                + "memberstatus, membership, membertype, sw_time, sw_date, discipline "
+                + "FROM member "
+                + "JOIN training_result ON member_id = member.id "
+                + "WHERE discipline = '" + d + "' "
+                + "ORDER BY sw_time ASC;";
+        ResultSet r = query(query);
+
+        ArrayList<TrainingResult> res = new ArrayList<>();
+        ArrayList<Member> members = membersData(r);
+
+        Time time = null;
+        Date date = null;
+        int i = 0;
+
+        try {
+            r.beforeFirst();
+            while (r.next()) {
+                if (i > members.size()) {
+                    break;
+                }
+
+                time = r.getTime("sw_time");
+                date = r.getDate("sw_date");
+
+                res.add(new TrainingResult(members.get(i), d, date, time));
+
+                i++;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return res;
     }
 
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
+                + "memberstatus, membership, membertype, competition, sw_rank, sw_time, discipline "
+                + "FROM member "
+                + "JOIN comp_result ON member_id = member.id "
+                + "WHERE firstname = '" + firstname + "' AND lastname = '" + lastname + "' "
+                + "AND discipline = '" + d +  "';";
+        
+        ResultSet r = query(query);
+
+        ArrayList<CompetitionResult> res = new ArrayList<>();
+        ArrayList<Member> members = membersData(r);
+        
+        Time time = null;
+        String name = "";
+        int rank = 0;
+        int i = 0;
+        
+
+        try {
+            r.beforeFirst();
+            while (r.next()) {
+                if (i > members.size()) {
+                    break;
+                }
+
+                time = r.getTime("sw_time");
+                name = r.getString("competition");
+
+                res.add(new CompetitionResult(members.get(i), name, rank, time, d));
+
+                i++;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return res;
     }
 
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
+                + "memberstatus, membership, membertype, competition, sw_rank, sw_time, discipline "
+                + "FROM member "
+                + "JOIN comp_result ON member_id = member.id "
+                + "WHERE discipline = '" + d +  "' "
+                + "ORDER BY sw_time ASC; ";
+        
+        ResultSet r = query(query);
+
+        ArrayList<CompetitionResult> res = new ArrayList<>();
+        ArrayList<Member> members = membersData(r);
+        Time time = null;
+        String name = "";
+        int rank = 0;
+        int i = 0;
+        
+        try{
+            r.beforeFirst();
+            while (r.next()) {
+                if (i > members.size()) {
+                    break;
+                }
+
+                time = r.getTime("sw_time");
+                name = r.getString("competition");
+
+                res.add(new CompetitionResult(members.get(i), name, rank, time, d));
+
+                i++;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return res;
+        }
     
 
 }
