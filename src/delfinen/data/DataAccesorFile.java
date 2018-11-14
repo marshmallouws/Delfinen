@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Annika Ehlers
  */
-public class DataAccesorFile implements DataAccessorInterface {
+public class DataAccesorFile implements DataAccessor {
 
     @Override
     public ArrayList<Member> getMembers() {

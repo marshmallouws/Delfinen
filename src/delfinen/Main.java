@@ -6,7 +6,7 @@
 package delfinen;
 
 import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
+import delfinen.data.DataAccessorDataBase;
 import delfinen.data.Disciplin;
 import delfinen.data.Member;
 import delfinen.data.Membership;
@@ -23,11 +23,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DataAccessor dao = null;
+        DataAccessorDataBase dao = null;
 
         try {
             DBConnector DB = new DBConnector();
-            dao = new DataAccessor(DB);
+            dao = new DataAccessorDataBase(DB);
         } catch (SQLException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

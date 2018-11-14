@@ -6,7 +6,7 @@
 package delfinen.presentation;
 
 import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
+import delfinen.data.DataAccessorDataBase;
 import delfinen.data.Member;
 import delfinen.data.MemberStatus;
 import delfinen.logic.Controller;
@@ -32,7 +32,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
 
         try
         {
-            DataAccessor data = new DataAccessor(new DBConnector());
+            DataAccessorDataBase data = new DataAccessorDataBase(new DBConnector());
             c = new ControllerMember(data);
 
         } catch (SQLException ex)

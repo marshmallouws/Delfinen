@@ -1,7 +1,7 @@
 package delfinen.logic;
 
 import delfinen.data.CompetitionSwimmer;
-import delfinen.data.DataAccessor;
+import delfinen.data.DataAccessorDataBase;
 import delfinen.data.Member;
 import delfinen.data.MemberStatus;
 import java.util.Calendar;
@@ -9,9 +9,9 @@ import java.util.Calendar;
 
 public class ControllerMember implements Controller
 {
-    private DataAccessor data;
+    private DataAccessorDataBase data;
 
-    public ControllerMember(DataAccessor data)
+    public ControllerMember(DataAccessorDataBase data)
     {
         this.data = data;
     }
