@@ -105,6 +105,7 @@ public class DataAccessor implements DataAccessorInterface {
     }
 
     @Override
+    //TODO - strip arraylist to size 5
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership) {
         String query = "SELECT training_result.sw_time, training_result.sw_date, discipline, "
                 + "member.firstname, lastname, ssn, birthyear, address, zipcode, "
@@ -145,8 +146,68 @@ public class DataAccessor implements DataAccessorInterface {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        
+        if(res.size() < 5){
+            return (ArrayList<TrainingResult>) res.subList(0, 6);
+        }
 
         return res;
     }
+
+    @Override
+    public ArrayList<TrainingResult> getTrainingResult(String firstname, String lastname, Disciplin d) {
+        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
+                + "memberstatus, membership, membertype, sw_time, sw_date, discipline "
+                + "FROM member "
+                + "JOIN training_result ON member_id = member.id "
+                + "WHERE firstname = '" + firstname + "' AND lastname = '" + lastname + "' "
+                + "AND discipline = '" + d + "' "
+                + "ORDER BY sw_time ASC;";
+        
+        ResultSet r = query(query);
+
+        ArrayList<TrainingResult> res = new ArrayList<>();
+        ArrayList<Member> members = membersData(r);
+
+        Time time = null;
+        Date date = null;
+        int i = 0;
+
+        try {
+            r.beforeFirst();
+            while (r.next()) {
+                if (i > members.size()) {
+                    break;
+                }
+
+                time = r.getTime("sw_time");
+                date = r.getDate("sw_date");
+
+                res.add(new TrainingResult(members.get(i), d, date, time));
+
+                i++;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return res;
+    }
+
+    @Override
+    public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 
 }

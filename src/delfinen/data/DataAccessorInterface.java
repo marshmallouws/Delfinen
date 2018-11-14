@@ -16,4 +16,8 @@ public interface DataAccessorInterface {
     Member getMember(String ssn);
     Member getMember(String firstname, String lastname);
     ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership);
+    ArrayList<TrainingResult> getTrainingResult(String firstname, String lastname, Disciplin d);
+    ArrayList<TrainingResult> getTrainingResult(Disciplin d);
+    ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d);
+    ArrayList<CompetitionResult> getCompetitionResult(Disciplin d);
 }

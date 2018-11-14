@@ -44,6 +44,8 @@ public class Main {
         System.out.println(dao.getMember("Annika", "Elhers"));
         
         System.out.println(dao.getTop5(Disciplin.CRAWL, Membership.JUNIOR));
+        
+        System.out.println(dao.getTrainingResult("Annika", "Elhers", Disciplin.CRAWL));
 
     }
 
