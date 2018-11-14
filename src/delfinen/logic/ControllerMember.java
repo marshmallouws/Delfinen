@@ -4,6 +4,7 @@ import delfinen.data.CompetitionSwimmer;
 import delfinen.data.DataAccessor;
 import delfinen.data.Member;
 import delfinen.data.MemberStatus;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -23,6 +24,13 @@ public class ControllerMember implements Controller
         Member member = data.getMember(ssn);
         return member;
 
+    }
+    
+    @Override
+    public ArrayList<Member> getMembers()
+    {
+        ArrayList<Member> members = data.getMembers();
+        return members;
     }
 
     @Override
@@ -53,4 +61,8 @@ public class ControllerMember implements Controller
             }
         }
     }
+
+    
+
+   
 }

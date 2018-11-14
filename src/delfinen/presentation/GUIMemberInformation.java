@@ -13,8 +13,6 @@ import delfinen.data.MemberStatus;
 import delfinen.logic.ControllerMember;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +21,6 @@ import java.util.logging.Logger;
 public class GUIMemberInformation extends javax.swing.JFrame
 {
 
-    private DBConnector connector;
     private ControllerMember c;
     private final Member m;
 
@@ -32,7 +29,6 @@ public class GUIMemberInformation extends javax.swing.JFrame
      */
     public GUIMemberInformation(Member m)
     {
-        System.out.println("hej");
         initComponents();
 
         try
@@ -119,12 +115,16 @@ public class GUIMemberInformation extends javax.swing.JFrame
         jLabel7.setText("Membership:");
 
         FirstName.setEditable(false);
+        FirstName.setBackground(new java.awt.Color(238, 238, 238));
 
         address.setEditable(false);
+        address.setBackground(new java.awt.Color(238, 238, 238));
 
         zipcode.setEditable(false);
+        zipcode.setBackground(new java.awt.Color(238, 238, 238));
 
         phone.setEditable(false);
+        phone.setBackground(new java.awt.Color(238, 238, 238));
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel9.setText("Member information");
@@ -165,6 +165,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
         jLabel11.setText("Last name:");
 
         LastName.setEditable(false);
+        LastName.setBackground(new java.awt.Color(238, 238, 238));
 
         memberstatus.setText("j");
 
@@ -283,7 +284,14 @@ public class GUIMemberInformation extends javax.swing.JFrame
 
         if (this.jButton2.getText().equals("Save"))
         {
+            
             this.jButton2.setText("Edit");
+            this.FirstName.setEditable(false);
+            this.LastName.setEditable(false);
+            this.address.setEditable(false);
+            this.zipcode.setEditable(false);
+            this.phone.setEditable(false);
+
             m.setFirstname(FirstName.getText());
             m.setLastname(LastName.getText());
             m.setAddress(address.getText());
@@ -292,9 +300,14 @@ public class GUIMemberInformation extends javax.swing.JFrame
             this.status.setVisible(false);
             String _ms = (String) status.getSelectedItem();
             MemberStatus ms = m.getMemberstatus();
-            switch(_ms){
-                case "ACTIVE": ms = MemberStatus.ACTIVE; break;
-                case "PASSIVE": ms = MemberStatus.PASSIVE; break; 
+            switch (_ms)
+            {
+                case "ACTIVE":
+                    ms = MemberStatus.ACTIVE;
+                    break;
+                case "PASSIVE":
+                    ms = MemberStatus.PASSIVE;
+                    break;
             }
             m.setMemberstatus(ms);
 
@@ -319,18 +332,15 @@ public class GUIMemberInformation extends javax.swing.JFrame
         } else
         {
             this.jButton2.setText("Save");
-        
 
-        this.FirstName.setEditable(true);
-        this.LastName.setEditable(true);
-        this.address.setEditable(true);
-        this.zipcode.setEditable(true);
-        this.phone.setEditable(true);
-        this.status.setVisible(true);
-        
+            this.FirstName.setEditable(true);
+            this.LastName.setEditable(true);
+            this.address.setEditable(true);
+            this.zipcode.setEditable(true);
+            this.phone.setEditable(true);
+            this.status.setVisible(true);
+
         }
-
-    
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -342,7 +352,8 @@ public class GUIMemberInformation extends javax.swing.JFrame
 
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
     {//GEN-HEADEREND:event_backActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        new GUIMemberMenu(m).setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
     /**
@@ -390,7 +401,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
                 try
                 {
                     DataAccessor data = new DataAccessorDataBase(new DBConnector());
-                    
+
                     ControllerMember c = new ControllerMember(data);
                     Member m = c.getMember("0912951530");
                     new GUIMemberInformation(m).setVisible(true);

@@ -5,7 +5,14 @@
  */
 package delfinen.presentation;
 
-
+import delfinen.data.DBConnector;
+import delfinen.data.DataAccessor;
+import delfinen.data.DataAccessorDataBase;
+import delfinen.data.Member;
+import delfinen.logic.Controller;
+import delfinen.logic.ControllerMember;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,11 +20,25 @@ package delfinen.presentation;
  */
 public class GUIMenu extends javax.swing.JFrame
 {
+    private Controller c;
+    private ArrayList<Member> members;
 
     public GUIMenu()
     {
+        try
+        {
+            DataAccessor data = new DataAccessorDataBase(new DBConnector());
+
+            c = new ControllerMember(data);
+            members = c.getMembers();
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+
         initComponents();
-   
+
     }
 
     /**
@@ -90,7 +111,7 @@ public class GUIMenu extends javax.swing.JFrame
     private void memberActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_memberActionPerformed
     {//GEN-HEADEREND:event_memberActionPerformed
         this.setVisible(false);
-        new GUIMemberLogin().setVisible(true);
+        new GUIMemberLogin(members).setVisible(true);
     }//GEN-LAST:event_memberActionPerformed
 
     /**
@@ -133,8 +154,9 @@ public class GUIMenu extends javax.swing.JFrame
         {
             public void run()
             {
-                
+
                 new GUIMenu().setVisible(true);
+
             }
         });
     }

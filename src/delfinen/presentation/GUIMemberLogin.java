@@ -5,6 +5,9 @@
  */
 package delfinen.presentation;
 
+import delfinen.data.Member;
+import java.util.ArrayList;
+
 /**
  *
  * @author aamandajuhl
@@ -12,16 +15,17 @@ package delfinen.presentation;
 public class GUIMemberLogin extends javax.swing.JFrame
 {
 
+    private ArrayList<Member> members;
 
     /**
      * Creates new form GUIMemberLogin
      */
-    public GUIMemberLogin()
+    public GUIMemberLogin(ArrayList<Member> members)
     {
+        this.members = members;
         initComponents();
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,9 +40,10 @@ public class GUIMemberLogin extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txssn = new javax.swing.JTextField();
         login = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        fail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +70,8 @@ public class GUIMemberLogin extends javax.swing.JFrame
             }
         });
 
+        fail.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,7 +87,11 @@ public class GUIMemberLogin extends javax.swing.JFrame
                             .addComponent(jLabel2)
                             .addComponent(back))
                         .addGap(32, 32, 32)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(fail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txssn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(login)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -99,10 +110,12 @@ public class GUIMemberLogin extends javax.swing.JFrame
                         .addComponent(jLabel1)
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txssn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(login))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(30, 30, 30))
         );
@@ -112,8 +125,25 @@ public class GUIMemberLogin extends javax.swing.JFrame
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loginActionPerformed
     {//GEN-HEADEREND:event_loginActionPerformed
+        Member ml = null;
+
+        for (Member m : members)
+        {
+            if (txssn.getText().equals(m.getSsn()))
+            {
+                ml = m;
+                break;
+            }
+        }
+
+        if (ml == null)
+        {
+            this.fail.setText("Member not found");
+            return;
+        }
+
         this.setVisible(false);
-        new GUIMemberMenu().setVisible(true);
+        new GUIMemberMenu(ml).setVisible(true);
     }//GEN-LAST:event_loginActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
@@ -162,17 +192,18 @@ public class GUIMemberLogin extends javax.swing.JFrame
         {
             public void run()
             {
-                //new GUIMemberLogin().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JLabel fail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton login;
+    private javax.swing.JTextField txssn;
     // End of variables declaration//GEN-END:variables
 }

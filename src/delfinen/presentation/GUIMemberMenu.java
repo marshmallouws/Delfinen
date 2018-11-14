@@ -5,18 +5,21 @@
  */
 package delfinen.presentation;
 
+import delfinen.data.Member;
+
 /**
  *
  * @author aamandajuhl
  */
 public class GUIMemberMenu extends javax.swing.JFrame
 {
-
+    private final Member ml;
     /**
      * Creates new form GUIMemberMenu
      */
-    public GUIMemberMenu()
+    public GUIMemberMenu(Member ml)
     {
+        this.ml = ml;
         initComponents();
     }
 
@@ -102,8 +105,10 @@ public class GUIMemberMenu extends javax.swing.JFrame
 
     private void memberinfoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_memberinfoActionPerformed
     {//GEN-HEADEREND:event_memberinfoActionPerformed
+        
+        
         this.setVisible(false);
-        new GUIMemberInformation().setVisible(true);
+        new GUIMemberInformation(ml).setVisible(true);
     }//GEN-LAST:event_memberinfoActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
@@ -152,7 +157,7 @@ public class GUIMemberMenu extends javax.swing.JFrame
         {
             public void run()
             {
-                new GUIMemberMenu().setVisible(true);
+                
             }
         });
     }
