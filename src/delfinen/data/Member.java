@@ -6,6 +6,7 @@
 package delfinen.data;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.util.ArrayList;
  */
 public class Member
 {
+
     private String firstname;
     private String lastname;
     private int birthyear;
@@ -20,13 +22,15 @@ public class Member
     private String address;
     private String zipcode;
     private String phone;
-    private ArrayList <Integer> yearsPaid;
+    private ArrayList<Integer> yearsPaid;
     private MemberStatus memberstatus;
     private Membership membership;
     private MemberType membertype;
+    private static int year;
 
-    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, Membership membership, MemberType membertype)
+    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, MemberType membertype)
     {
+        this.year = Calendar.getInstance().get(Calendar.YEAR);
         this.firstname = firstname;
         this.lastname = lastname;
         this.ssn = ssn;
@@ -35,21 +39,27 @@ public class Member
         this.zipcode = zipcode;
         this.phone = phone;
         this.memberstatus = memberstatus;
-        this.membership = membership;
         this.membertype = membertype;
         this.yearsPaid = new ArrayList<>();
-        
+
+        if (this.getAge(year) >= 18)
+        {
+            this.membership = Membership.SENIOR;
+        } else
+        {
+            this.membership = Membership.JUNIOR;
+        }
+
     }
 
     public int getAge(int year)
     {
         int age = year - birthyear;
         return age;
-        
+
         /*int day = Integer.parseInt(ssn.substring(0,2));
         int month = Integer.parseInt(ssn.substring(2,4));
         int year = Integer.parseInt(ssn.substring(4,6));*/
-        
     }
 
     public void setFirstname(String firstname)
@@ -152,5 +162,5 @@ public class Member
     {
         return "Member{" + "firstname=" + firstname + ", lastname=" + lastname + ", birthyear=" + birthyear + ", ssn=" + ssn + ", address=" + address + ", zipcode=" + zipcode + ", phone=" + phone + ", yearsPaid=" + yearsPaid + ", memberstatus=" + memberstatus + ", membership=" + membership + ", membertype=" + membertype + '}';
     }
-    
+
 }
