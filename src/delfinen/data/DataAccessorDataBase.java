@@ -40,7 +40,7 @@ public class DataAccessorDataBase implements DataAccessor {
         return rs;
     }
 
-    private ArrayList<Member> membersData(ResultSet rs) {
+    private ArrayList<Member> retrieveMembersData(ResultSet rs) {
         String ssn = "";
         String firstname = "";
         String lastname = "";
@@ -82,7 +82,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "zipcode, phone, memberstatus, membertype FROM member;";
 
         ResultSet r = query(query);
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
         return members;
     }
 
@@ -91,11 +91,11 @@ public class DataAccessorDataBase implements DataAccessor {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
                 + "address, zipcode, phone, memberstatus, membertype FROM member WHERE ssn ='" + ssn + "';";
         ResultSet r = query(query);
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
         return members.get(0);
     }
 
-    /*
+    
     @Override
     public ArrayList<Member> getComptitionSwimmers() {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
@@ -103,9 +103,9 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "WHERE membertype = competitive ";
         
         ResultSet r = query(query);
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
         return members;
-    } */
+    } 
 
     @Override
     public Member getMember(String firstname, String lastname) {
@@ -114,7 +114,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
 
         ResultSet r = query(query);
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
         return members.get(0);
     }
 
@@ -133,7 +133,7 @@ public class DataAccessorDataBase implements DataAccessor {
         ResultSet r = query(query);
 
         ArrayList<TrainingResult> res = new ArrayList<>();
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
 
         Time time = null;
         Date date = null;
@@ -178,7 +178,7 @@ public class DataAccessorDataBase implements DataAccessor {
         ResultSet r = query(query);
 
         ArrayList<TrainingResult> res = new ArrayList<>();
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
 
         Time time = null;
         Date date = null;
@@ -216,7 +216,7 @@ public class DataAccessorDataBase implements DataAccessor {
         ResultSet r = query(query);
 
         ArrayList<TrainingResult> res = new ArrayList<>();
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
 
         Time time = null;
         Date date = null;
@@ -255,7 +255,7 @@ public class DataAccessorDataBase implements DataAccessor {
         ResultSet r = query(query);
 
         ArrayList<CompetitionResult> res = new ArrayList<>();
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
         
         Time time = null;
         String name = "";
@@ -296,7 +296,7 @@ public class DataAccessorDataBase implements DataAccessor {
         ResultSet r = query(query);
 
         ArrayList<CompetitionResult> res = new ArrayList<>();
-        ArrayList<Member> members = membersData(r);
+        ArrayList<Member> members = retrieveMembersData(r);
         Time time = null;
         String name = "";
         int rank = 0;
@@ -322,11 +322,10 @@ public class DataAccessorDataBase implements DataAccessor {
 
         return res;
         }
+    
 
-    @Override
-    public ArrayList<Member> getComptitionSwimmers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
     
 
 }
