@@ -97,11 +97,6 @@ public class Member
         this.memberstatus = memberstatus;
     }
 
-    public void setMembership(Membership membership)
-    {
-        this.membership = membership;
-    }
-
     public void setMembertype(MemberType membertype)
     {
         this.membertype = membertype;
