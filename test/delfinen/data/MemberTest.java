@@ -22,21 +22,6 @@ public class MemberTest {
     public MemberTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void testSomeMethod() {
@@ -107,19 +92,6 @@ public class MemberTest {
         MemberStatus memberstatus = null;
         Member instance = null;
         instance.setMemberstatus(memberstatus);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setMembership method, of class Member.
-     */
-    @Test
-    public void testSetMembership() {
-        System.out.println("setMembership");
-        Membership membership = null;
-        Member instance = null;
-        instance.setMembership(membership);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
