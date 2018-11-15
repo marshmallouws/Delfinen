@@ -26,5 +26,6 @@ public interface DataAccessor {
     ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(Disciplin d);
     ArrayList<Member> getComptitionSwimmers();
+    void updateMember(String ssn, String change, String field);
     
 }

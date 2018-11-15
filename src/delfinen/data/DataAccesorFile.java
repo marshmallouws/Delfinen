@@ -63,5 +63,10 @@ public class DataAccesorFile implements DataAccessor {
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void updateMember(String ssn, String change, String field) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

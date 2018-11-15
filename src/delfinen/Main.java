@@ -108,6 +108,10 @@ public class Main {
                 System.out.println(t.getMember().getFirstname() + " - " +  t.getTime());
             }
             
+            System.out.println("_____________________________________________");
+            System.out.println("Update member");
+            dao.updateMember("1506952222", "Olina", "firstname");
+            
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

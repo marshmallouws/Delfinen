@@ -26,6 +26,19 @@ public class DataAccessorDataBase implements DataAccessor {
     public DataAccessorDataBase(DBConnector connector) {
         this.connector = connector;
     }
+    
+    private int updateDatabase(String query) {
+        int rs = 0;
+        try {
+            Connection connection = connector.getConnection();
+            Statement stmt = connection.createStatement();
+            rs = stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            System.out.println("Query not working");
+            System.out.println(ex.getMessage());
+        }
+        return rs;
+    }
 
     private ResultSet query(String query) {
         ResultSet rs = null;
@@ -330,10 +343,10 @@ public class DataAccessorDataBase implements DataAccessor {
 
         return res;
         }
-    
 
-    
-    
-    
-
+    @Override
+    public void updateMember(String ssn, String change, String field) {
+        String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
+        updateDatabase(query);
+    }
 }
