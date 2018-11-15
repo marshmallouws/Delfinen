@@ -42,7 +42,7 @@ public class DataAccessorTest {
     public void testGetMembers() {
         try {
             assertNotNull(da.getMembers());
-            int expected = 11;
+            int expected = 12;
             int actual = da.getMembers().size();
             assertEquals(expected, actual);
         } catch (DataException ex) {
@@ -108,14 +108,11 @@ public class DataAccessorTest {
     //Doesn't work
     @Test
     public void testGetTop5() {
-        ArrayList<TrainingResult> top5 = da.getTop5(Disciplin.CRAWL, Membership.JUNIOR);
+        ArrayList<TrainingResult> top5 = da.getTop5(Disciplin.CRAWL, Membership.SENIOR);
         
         assertEquals(top5.size(), 5);
-        try {
-            assertEquals(top5.get(0).getMember(), da.getMember("3003919090"));
-        } catch (DataException ex) {
-            ex.getMessage();
-        }
+        assertEquals(top5.get(0).getMember().getFirstname(), "Lisbeth");
+        assertEquals(top5.get(0).getMember().getLastname(), "Knudsen");
     }
 
     /**
@@ -140,7 +137,7 @@ public class DataAccessorTest {
         ArrayList<TrainingResult> res = da.getTrainingResult(Disciplin.CRAWL);
         
         Time time1 = Time.valueOf("00:01:48");
-        assertEquals(res.size(), 20);
+        assertEquals(res.size(), 21);
         assertEquals(res.get(0).getTime(), time1);
     }
 

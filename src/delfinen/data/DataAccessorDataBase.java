@@ -159,7 +159,14 @@ public class DataAccessorDataBase implements DataAccessor {
         
         
         if(res.size() < 5){
-            res = (ArrayList<TrainingResult>) res.subList(0, 5);
+            ArrayList<TrainingResult> res5 = new ArrayList<>();
+            res5.add(res.get(0));
+            res5.add(res.get(1));
+            res5.add(res.get(2));
+            res5.add(res.get(3));
+            res5.add(res.get(4));
+            
+            return res5;
         }
 
         return res;
@@ -316,6 +323,7 @@ public class DataAccessorDataBase implements DataAccessor {
 
                 i++;
             }
+           
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
