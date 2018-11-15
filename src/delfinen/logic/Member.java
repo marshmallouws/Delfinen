@@ -187,7 +187,7 @@ public class Member
     @Override
     public String toString()
     {
-        return "Member{" + "firstname=" + firstname + ", lastname=" + lastname + ", birthyear=" + birthyear + ", ssn=" + ssn + ", address=" + address + ", zipcode=" + zipcode + ", phone=" + phone + ", yearsPaid=" + yearsPaid + ", memberstatus=" + memberstatus + ", membership=" + membership + ", membertype=" + membertype + '}';
+        return "Member: " + "firstname: " + firstname + ", lastname: " + lastname + ", birthyear: " + birthyear + ", ssn: " + ssn + ", address: " + address + ", zipcode: " + zipcode + ", phone: " + phone + ", yearsPaid: " + yearsPaid + ", memberstatus: " + memberstatus + ", membership: " + membership + ", membertype:" + membertype;
     }
 
 }
