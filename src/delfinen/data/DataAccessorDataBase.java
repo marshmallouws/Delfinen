@@ -42,7 +42,6 @@ public class DataAccessorDataBase implements DataAccessor {
         String zipcode = "";
         String phone = "";
         String status = "";
-        String membership = "";
         String type = "";
 
         ArrayList<Member> members = new ArrayList<>();
@@ -57,6 +56,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 zipcode = rs.getString("zipcode");
                 phone = rs.getString("phone");
                 status = rs.getString("memberstatus");
+                type = rs.getString("membertype");
                 
                 MemberStatus stat = MemberStatus.valueOf(status.toUpperCase());
                 MemberType ty = MemberType.valueOf(type.toUpperCase());
@@ -114,20 +114,15 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     //TODO - strip arraylist to size 5
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership) {
-        String query = "SELECT training_result.sw_time, training_result.sw_date, discipline, "
-                + "member.firstname, lastname, ssn, birthyear, address, zipcode, "
-                + "phone, memberstatus, membertype "
-                + "FROM member "
-                + "JOIN training_result ON member_id = member.id "
-                + "INNER JOIN "
-                + "(SELECT firstname, MIN(sw_time) AS time FROM member "
-                + "JOIN training_result ON member_id = member.id "
-                + "GROUP BY firstname) top_time "
-                + "ON member.firstname = top_time.firstname "
-                + "AND training_result.sw_time = top_time.time "
-                + "WHERE discipline = '" + disciplin.toString() + "' "
-                + "ORDER BY sw_time;";
-
+        String query = "SELECT MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
+                + "address, zipcode, phone, memberstatus, membertype "
+                + "FROM training_result "
+                + "JOIN member ON member_id = member.id "
+                + "WHERE discipline = '" + disciplin + "'"
+                + "AND membership = '" + membership + "' "
+                + "GROUP BY member_id "
+                + "ORDER BY MIN(sw_time);";     
+                
         ResultSet r = query(query);
 
         ArrayList<TrainingResult> res = new ArrayList<>();
@@ -144,7 +139,7 @@ public class DataAccessorDataBase implements DataAccessor {
                     break;
                 }
 
-                time = r.getTime("sw_time");
+                time = r.getTime("time");
                 date = r.getDate("sw_date");
 
                 res.add(new TrainingResult(members.get(i), disciplin, date, time));
@@ -155,8 +150,9 @@ public class DataAccessorDataBase implements DataAccessor {
             ex.printStackTrace();
         }
         
+        
         if(res.size() < 5){
-            return (ArrayList<TrainingResult>) res.subList(0, 6);
+            res = (ArrayList<TrainingResult>) res.subList(0, 5);
         }
 
         return res;
