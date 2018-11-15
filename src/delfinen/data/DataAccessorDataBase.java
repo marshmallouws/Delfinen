@@ -1,5 +1,12 @@
 package delfinen.data;
 
+import delfinen.logic.CompetitionResult;
+import delfinen.logic.Disciplin;
+import delfinen.logic.TrainingResult;
+import delfinen.logic.Membership;
+import delfinen.logic.MemberType;
+import delfinen.logic.MemberStatus;
+import delfinen.logic.Member;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;

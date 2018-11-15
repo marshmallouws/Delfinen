@@ -1,8 +1,6 @@
 package delfinen.logic;
 
 import delfinen.data.DataAccessor;
-import delfinen.data.Member;
-import delfinen.data.MemberStatus;
 import java.util.ArrayList;
 import java.util.Calendar;
 

@@ -5,6 +5,11 @@
  */
 package delfinen.data;
 
+import delfinen.logic.CompetitionResult;
+import delfinen.logic.Disciplin;
+import delfinen.logic.TrainingResult;
+import delfinen.logic.Membership;
+import delfinen.logic.Member;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;

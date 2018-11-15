@@ -5,14 +5,14 @@
  */
 package delfinen;
 
-import delfinen.data.CompetitionResult;
+import delfinen.logic.CompetitionResult;
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessorDataBase;
 import delfinen.data.DataException;
-import delfinen.data.Disciplin;
-import delfinen.data.Member;
-import delfinen.data.Membership;
-import delfinen.data.TrainingResult;
+import delfinen.logic.Disciplin;
+import delfinen.logic.Member;
+import delfinen.logic.Membership;
+import delfinen.logic.TrainingResult;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;

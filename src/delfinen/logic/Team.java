@@ -1,4 +1,4 @@
-package delfinen.data;
+package delfinen.logic;
 
 import java.util.ArrayList;
 

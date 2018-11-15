@@ -8,7 +8,7 @@ package delfinen.presentation;
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
-import delfinen.data.Member;
+import delfinen.logic.Member;
 import delfinen.logic.Controller;
 import delfinen.logic.ControllerMember;
 import java.sql.SQLException;

@@ -1,6 +1,8 @@
 
-package delfinen.data;
+package delfinen.logic;
 
+import delfinen.logic.Disciplin;
+import delfinen.logic.Member;
 import java.sql.Time;
 
 

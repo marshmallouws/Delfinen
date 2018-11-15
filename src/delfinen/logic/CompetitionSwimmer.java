@@ -1,6 +1,9 @@
 
-package delfinen.data;
+package delfinen.logic;
 
+import delfinen.logic.CompetitionResult;
+import delfinen.logic.TrainingResult;
+import delfinen.logic.Member;
 import java.util.ArrayList;
 
 public class CompetitionSwimmer

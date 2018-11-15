@@ -1,8 +1,6 @@
 package delfinen.logic;
 
-import delfinen.data.CompetitionSwimmer;
 import delfinen.data.DataAccessorDataBase;
-import delfinen.data.Member;
 import java.util.ArrayList;
 
 public class ControllerTrainer implements Controller

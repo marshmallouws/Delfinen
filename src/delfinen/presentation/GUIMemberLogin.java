@@ -5,8 +5,8 @@
  */
 package delfinen.presentation;
 
-import delfinen.data.Member;
-import delfinen.data.MemberType;
+import delfinen.logic.Member;
+import delfinen.logic.MemberType;
 import java.util.ArrayList;
 
 /**

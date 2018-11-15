@@ -1,5 +1,5 @@
 
-package delfinen.data;
+package delfinen.logic;
 
 
 public enum Disciplin

@@ -5,7 +5,7 @@
  */
 package delfinen.presentation;
 
-import delfinen.data.Member;
+import delfinen.logic.Member;
 
 /**
  *
