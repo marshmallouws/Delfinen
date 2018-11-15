@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * @author Annika Ehlers
  */
 public interface DataAccessor {
-    ArrayList<Member> getMembers(); 
-    Member getMember(String ssn);
+    ArrayList<Member> getMembers() throws DataException; 
+    Member getMember(String ssn) throws DataException;
     Member getMember(String firstname, String lastname);
     ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership);
     ArrayList<TrainingResult> getTrainingResult(String firstname, String lastname, Disciplin d);

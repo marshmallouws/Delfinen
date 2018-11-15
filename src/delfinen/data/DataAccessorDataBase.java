@@ -57,14 +57,11 @@ public class DataAccessorDataBase implements DataAccessor {
                 zipcode = rs.getString("zipcode");
                 phone = rs.getString("phone");
                 status = rs.getString("memberstatus");
-                membership = rs.getString("membership");
-                type = rs.getString("membertype");
-
+                
                 MemberStatus stat = MemberStatus.valueOf(status.toUpperCase());
-                Membership mem = Membership.valueOf(membership.toUpperCase());
                 MemberType ty = MemberType.valueOf(type.toUpperCase());
 
-                members.add(new Member(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat, mem, ty));
+                members.add(new Member(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat, ty));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -72,18 +69,20 @@ public class DataAccessorDataBase implements DataAccessor {
         return members;
     }
 
-    public ArrayList<Member> getMembers() {
+    @Override
+    public ArrayList<Member> getMembers() throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, address,"
-                + "zipcode, phone, memberstatus, membership, membertype FROM member;";
+                + "zipcode, phone, memberstatus, membertype FROM member;";
 
         ResultSet r = query(query);
         ArrayList<Member> members = membersData(r);
         return members;
     }
 
-    public Member getMember(String ssn) {
+    @Override
+    public Member getMember(String ssn) throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
-                + "address, zipcode, phone, memberstatus, membership, membertype FROM member WHERE ssn ='" + ssn + "';";
+                + "address, zipcode, phone, memberstatus, membertype FROM member WHERE ssn ='" + ssn + "';";
         ResultSet r = query(query);
         ArrayList<Member> members = membersData(r);
         return members.get(0);
@@ -104,7 +103,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public Member getMember(String firstname, String lastname) {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
-                + "address, zipcode, phone, memberstatus, membership, membertype FROM member WHERE "
+                + "address, zipcode, phone, memberstatus, membertype FROM member WHERE "
                 + "firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
 
         ResultSet r = query(query);
@@ -117,7 +116,7 @@ public class DataAccessorDataBase implements DataAccessor {
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership) {
         String query = "SELECT training_result.sw_time, training_result.sw_date, discipline, "
                 + "member.firstname, lastname, ssn, birthyear, address, zipcode, "
-                + "phone, memberstatus, membership, membertype "
+                + "phone, memberstatus, membertype "
                 + "FROM member "
                 + "JOIN training_result ON member_id = member.id "
                 + "INNER JOIN "
@@ -126,7 +125,8 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "GROUP BY firstname) top_time "
                 + "ON member.firstname = top_time.firstname "
                 + "AND training_result.sw_time = top_time.time "
-                + "WHERE discipline = '" + disciplin.toString() + "';";
+                + "WHERE discipline = '" + disciplin.toString() + "' "
+                + "ORDER BY sw_time;";
 
         ResultSet r = query(query);
 
@@ -165,7 +165,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public ArrayList<TrainingResult> getTrainingResult(String firstname, String lastname, Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, membership, membertype, sw_time, sw_date, discipline "
+                + "memberstatus, membertype, sw_time, sw_date, discipline "
                 + "FROM member "
                 + "JOIN training_result ON member_id = member.id "
                 + "WHERE firstname = '" + firstname + "' AND lastname = '" + lastname + "' "
@@ -205,7 +205,7 @@ public class DataAccessorDataBase implements DataAccessor {
    @Override
     public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, membership, membertype, sw_time, sw_date, discipline "
+                + "memberstatus, membertype, sw_time, sw_date, discipline "
                 + "FROM member "
                 + "JOIN training_result ON member_id = member.id "
                 + "WHERE discipline = '" + d + "' "
@@ -243,7 +243,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, membership, membertype, competition, sw_rank, sw_time, discipline "
+                + "memberstatus, membertype, competition, sw_rank, sw_time, discipline "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE firstname = '" + firstname + "' AND lastname = '" + lastname + "' "
@@ -284,7 +284,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, membership, membertype, competition, sw_rank, sw_time, discipline "
+                + "memberstatus, membertype, competition, sw_rank, sw_time, discipline "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE discipline = '" + d +  "' "
