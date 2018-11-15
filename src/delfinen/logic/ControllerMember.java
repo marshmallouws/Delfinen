@@ -2,7 +2,6 @@ package delfinen.logic;
 
 import delfinen.data.DataAccessor;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class ControllerMember implements Controller
 {
@@ -46,38 +45,6 @@ public class ControllerMember implements Controller
         }
     }
 
-    public double calculateS(Member m)
-    {
-        try
-        {
-            int year = Calendar.getInstance().get(Calendar.YEAR);
-            
-            if(m.getAge(year) < 0){
-                throw new IllegalArgumentException();
-            }
-
-            if (m.getMemberstatus().equals(MemberStatus.PASSIVE))
-            {
-                return 500;
-            } else
-            {
-                if (m.getAge(year) < 18)
-                {
-                    return 1000;
-                } else if (m.getAge(year) > 60)
-                {
-                    return 1600 * 0.75;
-                } else
-                {
-                    return 1600;
-                }
-            }
-        } catch (Exception ex)
-        {
-            throw new IllegalArgumentException(ex);
-
-        }
-
-    }
+    
 
 }

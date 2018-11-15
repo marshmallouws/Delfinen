@@ -67,37 +67,6 @@ public class ControllerMemberTest
         }
     }
 
-    @Test
-    public void testCalculateS()
-    {
-        try
-        {
-            Member m = controller.getMember("1506952222");
-            double test = controller.calculateS(m);
-            assertEquals(1600, test, 0);
-            
-            Member m2 = controller.getMember("1111079930");
-            double test2 = controller.calculateS(m2);
-            assertEquals(1000, test2, 0);
-
-            m.setMemberstatus(MemberStatus.PASSIVE);
-            double test3 = controller.calculateS(m);
-            assertEquals(500, test3, 0);
-
-        } catch (Exception ex)
-        {
-            fail(ex.getMessage());
-        }
-
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testNegativeCalculateS()
-    {
-
-        Member m = new Member("Sonja", "Hansen", "0609190532", 2019, "Højbjergvej 2", "4600", "42446221", MemberStatus.ACTIVE, MemberType.COMPETITIVE);
-        controller.calculateS(m);
-
-    }
+ 
 
 }

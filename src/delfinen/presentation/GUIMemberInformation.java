@@ -52,7 +52,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
         phone.setText(m.getPhone());
         membership.setText(m.getMembership().name());
         memberstatus.setText(m.getMemberstatus().name());
-        this.sub.setText(c.calculateS(m) + "kr.");
+        this.sub.setText(m.calculateS() + "kr.");
         int year = Calendar.getInstance().get(Calendar.YEAR);
         if (m.getYearsPaid().contains(year))
         {
@@ -320,7 +320,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
             phone.setText(m.getPhone());
             membership.setText(m.getMembership().name());
             memberstatus.setText(m.getMemberstatus().name());
-            this.sub.setText(c.calculateS(m) + "kr.");
+            this.sub.setText(m.calculateS() + "kr.");
             int year = Calendar.getInstance().get(Calendar.YEAR);
             if (m.getYearsPaid().contains(year))
             {
