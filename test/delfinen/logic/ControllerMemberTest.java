@@ -29,11 +29,11 @@ public class ControllerMemberTest
     {
         try
         {
-            assertNotNull(controller.getMember("0912951530"));
-            Member m = controller.getMember("0912951530");
-            assertEquals("Frederikke", m.getFirstname());
-            assertEquals("Nilsson", m.getLastname());
-            assertEquals(MemberType.NONCOMPETITIVE, m.getMemberType());
+            assertNotNull(controller.getMember("1506952222"));
+            Member m = controller.getMember("1506952222");
+            assertEquals("Oline", m.getFirstname());
+            assertEquals("Sørensen", m.getLastname());
+            assertEquals(MemberType.COMPETITIVE, m.getMemberType());
         } catch (Exception ex)
         {
             fail(ex.getMessage());
@@ -58,10 +58,10 @@ public class ControllerMemberTest
         {
             assertNotNull(controller.getMembers());
             ArrayList<Member> m = controller.getMembers();
-            assertEquals("Frederikke", m.get(0).getFirstname());
-            assertEquals("Nilsson", m.get(0).getLastname());
-            assertEquals("2635", m.get(1).getZipcode());
-            assertEquals("Vejlegården 6", m.get(1).getAddress());
+            assertEquals("Oline", m.get(0).getFirstname());
+            assertEquals("Sørensen", m.get(0).getLastname());
+            assertEquals("2670", m.get(1).getZipcode());
+            assertEquals("Mosebakken 53", m.get(1).getAddress());
             assertEquals(2, m.size());
         } catch (Exception ex)
         {
@@ -75,11 +75,11 @@ public class ControllerMemberTest
     {
         try
         {
-            Member m = controller.getMember("0912951530");
+            Member m = controller.getMember("1506952222");
             double test = controller.calculateS(m);
             assertEquals(1600, test, 0);
             
-            Member m2 = new Member("Sonja", "Hansen", "0609190532", 2001, "Højbjergvej 2", "4600", "42446221", MemberStatus.ACTIVE, MemberType.COMPETITIVE);
+            Member m2 = controller.getMember("1111079930");
             double test2 = controller.calculateS(m2);
             assertEquals(1000, test2, 0);
 
