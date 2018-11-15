@@ -11,6 +11,7 @@ import delfinen.data.DataAccessorDataBase;
 import delfinen.logic.Member;
 import delfinen.logic.MemberStatus;
 import delfinen.logic.ControllerMember;
+import delfinen.logic.MemberType;
 import java.sql.SQLException;
 import java.util.Calendar;
 
@@ -284,7 +285,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
 
         if (this.jButton2.getText().equals("Save"))
         {
-            
+
             this.jButton2.setText("Edit");
             this.FirstName.setEditable(false);
             this.LastName.setEditable(false);
@@ -353,7 +354,15 @@ public class GUIMemberInformation extends javax.swing.JFrame
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
     {//GEN-HEADEREND:event_backActionPerformed
         this.setVisible(false);
-        new GUIMemberMenu(m).setVisible(true);
+
+        if (m.getMemberType().equals(MemberType.COMPETITIVE))
+        {
+            new GUICompetitiveMenu(m).setVisible(true);
+        } else
+        {
+            new GUIMemberMenu(m).setVisible(true);
+        }
+
     }//GEN-LAST:event_backActionPerformed
 
     /**
@@ -398,17 +407,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
         {
             public void run()
             {
-                try
-                {
-                    DataAccessor data = new DataAccessorDataBase(new DBConnector());
 
-                    ControllerMember c = new ControllerMember(data);
-                    Member m = c.getMember("0912951530");
-                    new GUIMemberInformation(m).setVisible(true);
-                } catch (SQLException ex)
-                {
-                    ex.printStackTrace();
-                }
             }
         });
     }
