@@ -6,7 +6,6 @@ import delfinen.data.DataAccessorDataBase;
 import delfinen.data.Member;
 import delfinen.data.MemberStatus;
 import delfinen.data.MemberType;
-import delfinen.data.Membership;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.junit.Test;
