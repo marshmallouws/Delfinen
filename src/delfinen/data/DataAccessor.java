@@ -21,9 +21,9 @@ public interface DataAccessor {
     Member getMember(String ssn) throws DataException;
     Member getMember(String firstname, String lastname);
     ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership);
-    ArrayList<TrainingResult> getTrainingResult(String firstname, String lastname, Disciplin d);
+    ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d);
     ArrayList<TrainingResult> getTrainingResult(Disciplin d);
-    ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d);
+    ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(Disciplin d);
     ArrayList<Member> getComptitionSwimmers();
     

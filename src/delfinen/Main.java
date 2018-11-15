@@ -65,7 +65,7 @@ public class Main {
             
             System.out.println("__________________________________________");
             System.out.println("GetTrainingresult(name, dis)");
-            ArrayList<TrainingResult> result = dao.getTrainingResult("Annika", "Ehlers", Disciplin.CRAWL);
+            ArrayList<TrainingResult> result = dao.getTrainingResult("1506952222", Disciplin.CRAWL);
             for(TrainingResult r: result ){
                 System.out.println(r.getTime());
             }
@@ -87,7 +87,7 @@ public class Main {
             
             System.out.println("____________________________________________");
             System.out.println("Get competitionresult");
-            ArrayList <CompetitionResult> resul = dao.getCompetitionResult("Peter", "Jakobsen", Disciplin.CRAWL);
+            ArrayList <CompetitionResult> resul = dao.getCompetitionResult("0412038089", Disciplin.CRAWL);
             for(CompetitionResult er : resul){
                 System.out.println(er.getCompetition());
             }

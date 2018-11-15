@@ -39,7 +39,7 @@ public class DataAccesorFile implements DataAccessor {
     }
 
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(String firstname, String lastname, Disciplin d) {
+    public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -49,7 +49,7 @@ public class DataAccesorFile implements DataAccessor {
     }
 
     @Override
-    public ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d) {
+    public ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

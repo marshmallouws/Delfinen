@@ -158,7 +158,7 @@ public class DataAccessorDataBase implements DataAccessor {
         }
         
         
-        if(res.size() < 5){
+        if(res.size() > 5){
             ArrayList<TrainingResult> res5 = new ArrayList<>();
             res5.add(res.get(0));
             res5.add(res.get(1));
@@ -173,12 +173,12 @@ public class DataAccessorDataBase implements DataAccessor {
     }
 
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(String firstname, String lastname, Disciplin d) {
+    public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, membertype, sw_time, sw_date, discipline "
                 + "FROM member "
                 + "JOIN training_result ON member_id = member.id "
-                + "WHERE firstname = '" + firstname + "' AND lastname = '" + lastname + "' "
+                + "WHERE ssn = '" + ssn + "' "
                 + "AND discipline = '" + d + "' "
                 + "ORDER BY sw_time ASC;";
         
@@ -251,12 +251,12 @@ public class DataAccessorDataBase implements DataAccessor {
     }
 
     @Override
-    public ArrayList<CompetitionResult> getCompetitionResult(String firstname, String lastname, Disciplin d) {
+    public ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, membertype, competition, sw_rank, sw_time, discipline "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
-                + "WHERE firstname = '" + firstname + "' AND lastname = '" + lastname + "' "
+                + "WHERE ssn = '" + ssn + "' "
                 + "AND discipline = '" + d +  "';";
         
         ResultSet r = query(query);

@@ -120,7 +120,7 @@ public class DataAccessorTest {
      */
     @Test
     public void testGetTrainingResult_3args() {
-        ArrayList<TrainingResult> res = da.getTrainingResult("Oline", "Sørensen", Disciplin.CRAWL);
+        ArrayList<TrainingResult> res = da.getTrainingResult("1506952222", Disciplin.CRAWL);
         
         Time time1 = Time.valueOf("00:01:55");
         Time time2 = Time.valueOf("00:02:30");
@@ -147,7 +147,7 @@ public class DataAccessorTest {
     @Test
     public void testGetCompetitionResult_3args() {
         
-        ArrayList<CompetitionResult> res = da.getCompetitionResult("Frede", "Hansen", Disciplin.CRAWL);
+        ArrayList<CompetitionResult> res = da.getCompetitionResult("1507053333", Disciplin.CRAWL);
         
         Time time = Time.valueOf("00:02:01");
         assertEquals(res.get(0).getTime(), time);
