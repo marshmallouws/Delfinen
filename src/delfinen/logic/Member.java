@@ -151,6 +151,38 @@ public class Member
     {
         return membertype;
     }
+    
+    public double calculateS()
+    {
+        try
+        {  
+            if(this.getAge(year) < 0){
+                throw new IllegalArgumentException();
+            }
+
+            if (this.getMemberstatus().equals(MemberStatus.PASSIVE))
+            {
+                return 500;
+            } else
+            {
+                if (this.getAge(year) < 18)
+                {
+                    return 1000;
+                } else if (this.getAge(year) > 60)
+                {
+                    return 1600 * 0.75;
+                } else
+                {
+                    return 1600;
+                }
+            }
+        } catch (Exception ex)
+        {
+            throw new IllegalArgumentException(ex);
+
+        }
+
+    }
 
     @Override
     public String toString()

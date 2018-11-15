@@ -33,7 +33,7 @@ public class Team
     {
         for (CompetitionSwimmer s : swimmers)
         {
-            String name = s.getMember().getFirstname() + s.getMember().getLastname();
+            String name = s.getFirstname() + s.getLastname();
             
             if (swimmername == name)
             {
