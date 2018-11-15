@@ -62,7 +62,7 @@ public class ControllerMemberTest
             assertEquals("Sørensen", m.get(0).getLastname());
             assertEquals("2670", m.get(1).getZipcode());
             assertEquals("Mosebakken 53", m.get(1).getAddress());
-            assertEquals(2, m.size());
+            assertEquals(12, m.size());
         } catch (Exception ex)
         {
             fail(ex.getMessage());
@@ -82,8 +82,6 @@ public class ControllerMemberTest
             Member m2 = controller.getMember("1111079930");
             double test2 = controller.calculateS(m2);
             assertEquals(1000, test2, 0);
-            
-            System.out.println(m2.getMembership());
 
             m.setMemberstatus(MemberStatus.PASSIVE);
             double test3 = controller.calculateS(m);
