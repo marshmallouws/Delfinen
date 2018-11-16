@@ -8,11 +8,9 @@ import delfinen.logic.MemberStatus;
 import delfinen.logic.Member;
 import delfinen.logic.Team;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -156,6 +154,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "address, zipcode, phone, memberstatus, team_id FROM member WHERE ssn ='" + ssn + "';";
         ResultSet r = query(query);
         ArrayList<Member> members = retrieveMembersData(r);
+        CompetitionSwimmer c = null;
 
         if (members.get(0) instanceof CompetitionSwimmer) {
             Member m = members.get(0);
@@ -184,6 +183,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "address, zipcode, phone, memberstatus, team_id "
                 + "FROM training_result "
                 + "JOIN member ON member_id = member.id "
+                + "JOIN team ON member.team_id = team.id "
                 + "WHERE discipline = '" + disciplin + "'"
                 + "AND team_name = '" + team.getTeamname() + "' "
                 + "GROUP BY member_id "
@@ -392,6 +392,42 @@ public class DataAccessorDataBase implements DataAccessor {
     public void updateMember(String ssn, String change, String field) {
         String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
+    }
+    
+    /*
+    @Override
+    public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id){
+        String query = "INSERT INTO member (firstname, lastname, ssn, birthyear, "
+                + "address, zipcode, phone, memberstatus)"
+                + " VALUES ('" + firstname + "', '" + lastname +  "', '" + ssn + "', "
+                + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', '"
+                + memberstatus.toString() + "', " + team_id;
+        
+        updateDatabase(query);
+        
+    } */
+
+    @Override
+    public ArrayList<Team> getTeams() {
+        String query = "SELECT * FROM team;";
+        ArrayList<Team> teams = new ArrayList<>();
+        ResultSet r = query(query);
+        
+        String teamName = "";
+        int teamId = 0;
+           
+         try {
+            while(r.next()){
+                teamName = r.getString("team_name");
+                //teamId = r.getInt("team_id");
+                
+                teams.add(new Team(teamName));
+            }
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+        
+        return teams;
     }
 
 }

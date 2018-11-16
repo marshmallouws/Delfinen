@@ -12,7 +12,7 @@ import delfinen.data.DataException;
 import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Disciplin;
 import delfinen.logic.Member;
-import delfinen.logic.Membership;
+import delfinen.logic.MemberStatus;
 import delfinen.logic.Team;
 import delfinen.logic.TrainingResult;
 import java.sql.SQLException;
@@ -37,15 +37,6 @@ public class Main {
                 ex.getMessage();
             }
             
-            
-            
-            //try {
-            //    System.out.println(dao.getMember("1506952222").getFirstname());
-            //} catch (DataException ex) {
-            //    ex.getMessage();
-            //}
-            
-            //System.out.println(dao.getMember("0912951530"));
             ArrayList<Member> members = dao.getMembers();
             
             System.out.println("_________________________________________");
@@ -69,7 +60,6 @@ public class Main {
             System.out.println("GetMember(name)");
             System.out.println(dao.getMember("Annika", "Ehlers").getFirstname());
             
-            //System.out.println(dao.getTop5(Disciplin.CRAWL, Membership.JUNIOR));
             
             System.out.println("__________________________________________");
             System.out.println("GetTrainingresult(name, dis)");
@@ -102,18 +92,16 @@ public class Main {
                 System.out.println(er.getCompetition());
             }
             
-            /*
+            
             System.out.println("____________________________________________");
             System.out.println("Get top 5");
-            Team team = new Team("Junior");
+            Team team = new Team("Senior");
             ArrayList<TrainingResult> top5 = dao.getTop5(Disciplin.CRAWL, team);
             
             for(TrainingResult t: top5){
                 System.out.println(t.getMember().getFirstname() + " - " +  t.getTime());
             }
-            
-            */
-            
+ 
             System.out.println("_____________________________________________");
             System.out.println("Update member");
             dao.updateMember("1506952222", "Olina", "firstname");
@@ -126,6 +114,20 @@ public class Main {
                 System.out.println(c.getFirstname());
             } 
             
+            System.out.println("________________________________________________");
+            System.out.println("Get team");
+            ArrayList<Team> teams = dao.getTeams();
+            
+            for(Team t: teams){
+                System.out.println(t.getTeamname());
+            }
+            
+            
+            /*
+            System.out.println("______________________________________________");
+            System.out.println("Create member");
+            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE, 1);
+            dao.getMember("1506952668"); */
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } 

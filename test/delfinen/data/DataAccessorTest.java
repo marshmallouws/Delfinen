@@ -10,6 +10,7 @@ import delfinen.logic.Disciplin;
 import delfinen.logic.TrainingResult;
 import delfinen.logic.Membership;
 import delfinen.logic.Member;
+import delfinen.logic.Team;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -108,7 +109,9 @@ public class DataAccessorTest {
     //Doesn't work
     @Test
     public void testGetTop5() {
-        ArrayList<TrainingResult> top5 = da.getTop5(Disciplin.CRAWL, Membership.SENIOR);
+        Team t = da.getTeams().get(0);
+        
+        ArrayList<TrainingResult> top5 = da.getTop5(Disciplin.CRAWL, t);
         
         assertEquals(top5.size(), 5);
         assertEquals(top5.get(0).getMember().getFirstname(), "Lisbeth");
@@ -122,8 +125,8 @@ public class DataAccessorTest {
     public void testGetTrainingResult_3args() {
         ArrayList<TrainingResult> res = da.getTrainingResult("1506952222", Disciplin.CRAWL);
         
-        Time time1 = Time.valueOf("00:01:55");
-        Time time2 = Time.valueOf("00:02:30");
+        String time1 = "00:01:55";
+        String time2 = "00:02:30";
         assertEquals(res.get(0).getTime(), time1);
         assertEquals(res.get(1).getTime(), time2);
         
@@ -136,7 +139,7 @@ public class DataAccessorTest {
     public void testGetTrainingResult_Disciplin() {
         ArrayList<TrainingResult> res = da.getTrainingResult(Disciplin.CRAWL);
         
-        Time time1 = Time.valueOf("00:01:48");
+        String time1 = "00:01:48";
         assertEquals(res.size(), 21);
         assertEquals(res.get(0).getTime(), time1);
     }
@@ -149,7 +152,7 @@ public class DataAccessorTest {
         
         ArrayList<CompetitionResult> res = da.getCompetitionResult("1507053333", Disciplin.CRAWL);
         
-        Time time = Time.valueOf("00:02:01");
+        String time = "00:02:01";
         assertEquals(res.get(0).getTime(), time);
     }
 
@@ -160,7 +163,7 @@ public class DataAccessorTest {
     public void testGetCompetitionResult_Disciplin() {
         ArrayList<CompetitionResult> res = da.getCompetitionResult(Disciplin.CRAWL);
         
-        Time time1 = Time.valueOf("00:01:50");
+        String time1 = "00:01:50";
         assertEquals(res.size(), 6);
         assertEquals(res.get(0).getTime(), time1);
 

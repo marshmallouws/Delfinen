@@ -9,8 +9,8 @@ import delfinen.logic.CompetitionResult;
 import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Disciplin;
 import delfinen.logic.TrainingResult;
-import delfinen.logic.Membership;
 import delfinen.logic.Member;
+import delfinen.logic.MemberStatus;
 import delfinen.logic.Team;
 import java.util.ArrayList;
 
@@ -29,4 +29,6 @@ public interface DataAccessor {
     ArrayList<CompetitionResult> getCompetitionResult(Disciplin d);
     ArrayList<CompetitionSwimmer> getComptitionSwimmers();
     void updateMember(String ssn, String change, String field);
+    //void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id);
+    ArrayList<Team> getTeams();
 }
