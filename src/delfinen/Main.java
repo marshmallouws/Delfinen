@@ -127,10 +127,10 @@ public class Main {
             
             System.out.println("__________________________________________________");
             System.out.println("Get competition result from ssn");
-            ArrayList<CompetitionResult> r = dao.getCompetitionResult("0412038089");
+            ArrayList<CompetitionResult> r = dao.getCompetitionResult("1507053333");
             
             for(CompetitionResult c_result: r){
-                System.out.println(c_result.getTime());
+                System.out.println(c_result.getTime() + c_result.getRank());
             }
             
             /*
