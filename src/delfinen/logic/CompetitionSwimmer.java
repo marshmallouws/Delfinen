@@ -8,9 +8,9 @@ public class CompetitionSwimmer extends Member
     private ArrayList<TrainingResult> training;
     private ArrayList<CompetitionResult> competition;
     
-    public CompetitionSwimmer(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, MemberType membertype)
+    public CompetitionSwimmer(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus)
     {
-        super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, membertype);
+        super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus);
         this.training = new ArrayList<>();
         this.competition = new ArrayList<>();     
     }

@@ -386,15 +386,4 @@ public class DataAccessorDataBase implements DataAccessor
         String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
     }
-    
-    @Override
-    public void updateMember(String ssn, String change, int field) {
-        String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
-        updateDatabase(query);
-    }
-
-    @Override
-    public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Team team) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
