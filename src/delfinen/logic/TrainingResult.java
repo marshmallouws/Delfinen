@@ -10,10 +10,10 @@ public class TrainingResult
 {
     private Member m;
     private Disciplin d;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
 
-    public TrainingResult(Member m, Disciplin d, Date date, Time time)
+    public TrainingResult(Member m, Disciplin d, String date, String time)
     {
         this.m = m;
         this.d = d;
@@ -31,12 +31,12 @@ public class TrainingResult
         return d;
     }
 
-    public Date getDate()
+    public String getDate()
     {
         return date;
     }
 
-    public Time getTime()
+    public String getTime()
     {
         return time;
     }

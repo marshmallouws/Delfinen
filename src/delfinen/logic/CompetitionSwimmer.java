@@ -25,5 +25,9 @@ public class CompetitionSwimmer extends Member
         return competition;
     }
     
+    public void addTraining(TrainingResult t)
+    {
+        this.addTraining(t);
+    }
     
 }

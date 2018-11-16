@@ -5,6 +5,7 @@
  */
 package delfinen.presentation;
 
+import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Member;
 
 /**
@@ -54,6 +55,13 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
         });
 
         jButton2.setText("Training results");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Competition result");
 
@@ -115,6 +123,12 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
         this.setVisible(false);
         new GUIMenu().setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        this.setVisible(false);
+        //new GUITrainingResults((CompetitionSwimmer) ml).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

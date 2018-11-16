@@ -55,7 +55,7 @@ public class MemberTest
     public void testNegativeCalculateS()
     {
 
-        Member m = new Member("Sonja", "Hansen", "0609190532", 2019, "Højbjergvej 2", "4600", "42446221", MemberStatus.ACTIVE, MemberType.COMPETITIVE);
+        Member m = new Member("Sonja", "Hansen", "0609190532", 2019, "Højbjergvej 2", "4600", "42446221", MemberStatus.ACTIVE);
         m.calculateS();
 
     }

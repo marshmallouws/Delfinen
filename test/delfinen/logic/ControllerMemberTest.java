@@ -30,7 +30,7 @@ public class ControllerMemberTest
             Member m = controller.getMember("1506952222");
             assertEquals("Oline", m.getFirstname());
             assertEquals("Sørensen", m.getLastname());
-            assertEquals(MemberType.COMPETITIVE, m.getMemberType());
+            assertEquals(Membership.SENIOR, m.getMembership());
         } catch (Exception ex)
         {
             fail(ex.getMessage());
