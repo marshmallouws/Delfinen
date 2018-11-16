@@ -9,6 +9,7 @@ import delfinen.logic.CompetitionResult;
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessorDataBase;
 import delfinen.data.DataException;
+import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Disciplin;
 import delfinen.logic.Member;
 import delfinen.logic.Membership;
@@ -113,10 +114,16 @@ public class Main {
             System.out.println("Update member");
             dao.updateMember("1506952222", "Olina", "firstname");
             
+            System.out.println("_____________________________________________");
+            System.out.println("Get competitionSwimmer");
+            System.out.println(dao.getMember("1506952222") instanceof CompetitionSwimmer);
+            
+            
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
+    
 
 }
