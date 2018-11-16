@@ -7,7 +7,6 @@ package delfinen.presentation;
 
 import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Member;
-import delfinen.logic.MemberType;
 import java.util.ArrayList;
 
 /**

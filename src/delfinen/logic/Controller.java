@@ -11,8 +11,7 @@ public interface Controller
 
     public ArrayList<TrainingResult> getTrainingResult(CompetitionSwimmer s, Disciplin d);
 
-    public void updateMemberString (Member m, String field, String change);
+    public void updateMember (Member m, String field, String change);
     
-    public void updateMemberInt (Member m, String field, int change);
     
 }
