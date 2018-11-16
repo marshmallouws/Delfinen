@@ -45,6 +45,20 @@ public class ControllerMember implements Controller
         }
     }
 
+    @Override
+    public ArrayList<TrainingResult> getTrainingResult(Member m, Disciplin d)
+    {
+        try{
+            ArrayList<TrainingResult> tr = data.getTrainingResult(firstname, lastname, d);
+            return tr;
+        }catch(Exception ex)
+        {
+            System.out.println("No training results found");
+            return null;
+        }
+        
+    }
+
     
 
 }
