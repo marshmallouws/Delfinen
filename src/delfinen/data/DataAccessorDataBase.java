@@ -19,41 +19,50 @@ import java.util.ArrayList;
  *
  * @author sofieamalielandt
  */
-public class DataAccessorDataBase implements DataAccessor {
+public class DataAccessorDataBase implements DataAccessor
+{
 
     private DBConnector connector = null;
 
-    public DataAccessorDataBase(DBConnector connector) {
+    public DataAccessorDataBase(DBConnector connector)
+    {
         this.connector = connector;
     }
-    
-    private int updateDatabase(String query) {
+
+    private int updateDatabase(String query)
+    {
         int rs = 0;
-        try {
+        try
+        {
             Connection connection = connector.getConnection();
             Statement stmt = connection.createStatement();
             rs = stmt.executeUpdate(query);
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             System.out.println("Query not working");
             System.out.println(ex.getMessage());
         }
         return rs;
     }
 
-    private ResultSet query(String query) {
+    private ResultSet query(String query)
+    {
         ResultSet rs = null;
-        try {
+        try
+        {
             Connection connection = connector.getConnection();
             Statement stmt = connection.createStatement();
             rs = stmt.executeQuery(query);
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             System.out.println("Query not working");
             System.out.println(ex.getMessage());
         }
         return rs;
     }
 
-    private ArrayList<Member> retrieveMembersData(ResultSet rs) {
+    private ArrayList<Member> retrieveMembersData(ResultSet rs)
+    {
         String ssn = "";
         String firstname = "";
         String lastname = "";
@@ -66,8 +75,10 @@ public class DataAccessorDataBase implements DataAccessor {
 
         ArrayList<Member> members = new ArrayList<>();
 
-        try {
-            while (rs.next()) {
+        try
+        {
+            while (rs.next())
+            {
                 ssn = rs.getString("ssn");
                 firstname = rs.getString("firstname");
                 lastname = rs.getString("lastname");
@@ -77,20 +88,22 @@ public class DataAccessorDataBase implements DataAccessor {
                 phone = rs.getString("phone");
                 status = rs.getString("memberstatus");
                 type = rs.getString("membertype");
-                
+
                 MemberStatus stat = MemberStatus.valueOf(status.toUpperCase());
                 MemberType ty = MemberType.valueOf(type.toUpperCase());
 
                 members.add(new Member(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat, ty));
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
         return members;
     }
 
     @Override
-    public ArrayList<Member> getMembers() throws DataException {
+    public ArrayList<Member> getMembers() throws DataException
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, address,"
                 + "zipcode, phone, memberstatus, membertype FROM member;";
 
@@ -100,7 +113,8 @@ public class DataAccessorDataBase implements DataAccessor {
     }
 
     @Override
-    public Member getMember(String ssn) throws DataException {
+    public Member getMember(String ssn) throws DataException
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
                 + "address, zipcode, phone, memberstatus, membertype FROM member WHERE ssn ='" + ssn + "';";
         ResultSet r = query(query);
@@ -108,20 +122,21 @@ public class DataAccessorDataBase implements DataAccessor {
         return members.get(0);
     }
 
-    
     @Override
-    public ArrayList<Member> getComptitionSwimmers() {
+    public ArrayList<Member> getComptitionSwimmers()
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
                 + "address, zipcode, phone, memberstatus, membership, membertype FROM member "
                 + "WHERE membertype = competitive ";
-        
+
         ResultSet r = query(query);
         ArrayList<Member> members = retrieveMembersData(r);
         return members;
-    } 
+    }
 
     @Override
-    public Member getMember(String firstname, String lastname) {
+    public Member getMember(String firstname, String lastname)
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
                 + "address, zipcode, phone, memberstatus, membertype FROM member WHERE "
                 + "firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
@@ -133,7 +148,8 @@ public class DataAccessorDataBase implements DataAccessor {
 
     @Override
     //TODO - strip arraylist to size 5
-    public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership) {
+    public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership)
+    {
         String query = "SELECT MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, memberstatus, membertype "
                 + "FROM training_result "
@@ -141,8 +157,8 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "WHERE discipline = '" + disciplin + "'"
                 + "AND membership = '" + membership + "' "
                 + "GROUP BY member_id "
-                + "ORDER BY MIN(sw_time);";     
-                
+                + "ORDER BY MIN(sw_time);";
+
         ResultSet r = query(query);
 
         ArrayList<TrainingResult> res = new ArrayList<>();
@@ -152,10 +168,13 @@ public class DataAccessorDataBase implements DataAccessor {
         Date date = null;
         int i = 0;
 
-        try {
+        try
+        {
             r.beforeFirst();
-            while (r.next()) {
-                if (i > members.size()) {
+            while (r.next())
+            {
+                if (i > members.size())
+                {
                     break;
                 }
 
@@ -166,19 +185,20 @@ public class DataAccessorDataBase implements DataAccessor {
 
                 i++;
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
-        
-        
-        if(res.size() > 5){
+
+        if (res.size() > 5)
+        {
             ArrayList<TrainingResult> res5 = new ArrayList<>();
             res5.add(res.get(0));
             res5.add(res.get(1));
             res5.add(res.get(2));
             res5.add(res.get(3));
             res5.add(res.get(4));
-            
+
             return res5;
         }
 
@@ -186,7 +206,8 @@ public class DataAccessorDataBase implements DataAccessor {
     }
 
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d) {
+    public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d)
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, membertype, sw_time, sw_date, discipline "
                 + "FROM member "
@@ -194,7 +215,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "WHERE ssn = '" + ssn + "' "
                 + "AND discipline = '" + d + "' "
                 + "ORDER BY sw_time ASC;";
-        
+
         ResultSet r = query(query);
 
         ArrayList<TrainingResult> res = new ArrayList<>();
@@ -204,10 +225,13 @@ public class DataAccessorDataBase implements DataAccessor {
         Date date = null;
         int i = 0;
 
-        try {
+        try
+        {
             r.beforeFirst();
-            while (r.next()) {
-                if (i > members.size()) {
+            while (r.next())
+            {
+                if (i > members.size())
+                {
                     break;
                 }
 
@@ -218,15 +242,17 @@ public class DataAccessorDataBase implements DataAccessor {
 
                 i++;
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
 
         return res;
     }
 
-   @Override
-    public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
+    @Override
+    public ArrayList<TrainingResult> getTrainingResult(Disciplin d)
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, membertype, sw_time, sw_date, discipline "
                 + "FROM member "
@@ -242,10 +268,13 @@ public class DataAccessorDataBase implements DataAccessor {
         Date date = null;
         int i = 0;
 
-        try {
+        try
+        {
             r.beforeFirst();
-            while (r.next()) {
-                if (i > members.size()) {
+            while (r.next())
+            {
+                if (i > members.size())
+                {
                     break;
                 }
 
@@ -256,7 +285,8 @@ public class DataAccessorDataBase implements DataAccessor {
 
                 i++;
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
 
@@ -264,29 +294,32 @@ public class DataAccessorDataBase implements DataAccessor {
     }
 
     @Override
-    public ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d) {
+    public ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d)
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, membertype, competition, sw_rank, sw_time, discipline "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE ssn = '" + ssn + "' "
-                + "AND discipline = '" + d +  "';";
-        
+                + "AND discipline = '" + d + "';";
+
         ResultSet r = query(query);
 
         ArrayList<CompetitionResult> res = new ArrayList<>();
         ArrayList<Member> members = retrieveMembersData(r);
-        
+
         Time time = null;
         String name = "";
         int rank = 0;
         int i = 0;
-        
 
-        try {
+        try
+        {
             r.beforeFirst();
-            while (r.next()) {
-                if (i > members.size()) {
+            while (r.next())
+            {
+                if (i > members.size())
+                {
                     break;
                 }
 
@@ -297,7 +330,8 @@ public class DataAccessorDataBase implements DataAccessor {
 
                 i++;
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
 
@@ -305,14 +339,15 @@ public class DataAccessorDataBase implements DataAccessor {
     }
 
     @Override
-    public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
+    public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d)
+    {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, membertype, competition, sw_rank, sw_time, discipline "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
-                + "WHERE discipline = '" + d +  "' "
+                + "WHERE discipline = '" + d + "' "
                 + "ORDER BY sw_time ASC; ";
-        
+
         ResultSet r = query(query);
 
         ArrayList<CompetitionResult> res = new ArrayList<>();
@@ -321,11 +356,14 @@ public class DataAccessorDataBase implements DataAccessor {
         String name = "";
         int rank = 0;
         int i = 0;
-        
-        try{
+
+        try
+        {
             r.beforeFirst();
-            while (r.next()) {
-                if (i > members.size()) {
+            while (r.next())
+            {
+                if (i > members.size())
+                {
                     break;
                 }
 
@@ -336,16 +374,18 @@ public class DataAccessorDataBase implements DataAccessor {
 
                 i++;
             }
-           
-        } catch (SQLException ex) {
+
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
 
         return res;
-        }
+    }
 
     @Override
-    public void updateMember(String ssn, String change, String field) {
+    public void updateMember(String ssn, String change, String field)
+    {
         String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
     }

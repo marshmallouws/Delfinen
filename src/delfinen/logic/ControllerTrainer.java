@@ -25,8 +25,21 @@ public class ControllerTrainer implements Controller
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(Member m, Disciplin d)
+    public ArrayList<TrainingResult> getTrainingResult(CompetitionSwimmer s, Disciplin d)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateMemberString(Member m, String field, String change)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateMemberInt(Member m, String field, int change)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

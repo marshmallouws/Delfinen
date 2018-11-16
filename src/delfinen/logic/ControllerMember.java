@@ -46,19 +46,31 @@ public class ControllerMember implements Controller
     }
 
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(Member m, Disciplin d)
+    public ArrayList<TrainingResult> getTrainingResult(CompetitionSwimmer s, Disciplin d)
     {
-        try{
-            ArrayList<TrainingResult> tr = data.getTrainingResult(firstname, lastname, d);
+        try
+        {
+            ArrayList<TrainingResult> tr = data.getTrainingResult(s.getSsn(), d);
             return tr;
-        }catch(Exception ex)
+
+        } catch (Exception ex)
         {
             System.out.println("No training results found");
             return null;
         }
-        
+
     }
 
-    
+    @Override
+    public void updateMemberString(Member m, String change, String field)
+    {
+       data.updateMember(m.getSsn(), change, field); 
+    }
+
+    @Override
+    public void updateMemberInt(Member m, String field, int change)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

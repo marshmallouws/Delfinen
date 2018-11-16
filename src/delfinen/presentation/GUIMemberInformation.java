@@ -311,6 +311,13 @@ public class GUIMemberInformation extends javax.swing.JFrame
                     break;
             }
             m.setMemberstatus(ms);
+            
+            c.updateMemberString(m,FirstName.getText(),"firstname");
+            c.updateMemberString(m,LastName.getText(),"lastname");
+            c.updateMemberString(m,address.getText(),"address");
+            c.updateMemberString(m,zipcode.getText(),"zipcode");
+            c.updateMemberString(m,phone.getText(),"phone");
+            c.updateMemberString(m,_ms,"memberstatus");
 
             FirstName.setText(m.getFirstname());
             LastName.setText(m.getLastname());

@@ -9,6 +9,10 @@ public interface Controller
     
     public ArrayList<Member> getMembers();
 
-    public ArrayList<TrainingResult> getTrainingResult(Member m, Disciplin d);
+    public ArrayList<TrainingResult> getTrainingResult(CompetitionSwimmer s, Disciplin d);
 
+    public void updateMemberString (Member m, String field, String change);
+    
+    public void updateMemberInt (Member m, String field, int change);
+    
 }
