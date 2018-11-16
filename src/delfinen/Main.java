@@ -36,11 +36,12 @@ public class Main {
             }
             
             
-            try {
-                System.out.println(dao.getMember("1506952222").getFirstname());
-            } catch (DataException ex) {
-                ex.getMessage();
-            }
+            
+            //try {
+            //    System.out.println(dao.getMember("1506952222").getFirstname());
+            //} catch (DataException ex) {
+            //    ex.getMessage();
+            //}
             
             //System.out.println(dao.getMember("0912951530"));
             ArrayList<Member> members = dao.getMembers();
@@ -102,11 +103,11 @@ public class Main {
             
             System.out.println("____________________________________________");
             System.out.println("Get top 5");
-            ArrayList<TrainingResult> top5 = dao.getTop5(Disciplin.CRAWL, Membership.SENIOR);
+            //ArrayList<TrainingResult> top5 = dao.getTop5(Disciplin.CRAWL, );
             
-            for(TrainingResult t: top5){
-                System.out.println(t.getMember().getFirstname() + " - " +  t.getTime());
-            }
+            //for(TrainingResult t: top5){
+           //     System.out.println(t.getMember().getFirstname() + " - " +  t.getTime());
+            //}
             
             System.out.println("_____________________________________________");
             System.out.println("Update member");

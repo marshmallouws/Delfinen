@@ -386,4 +386,5 @@ public class DataAccessorDataBase implements DataAccessor
         String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
     }
+
 }
