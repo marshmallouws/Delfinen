@@ -343,7 +343,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 time = r.getString("sw_time");
                 name = r.getString("competition");
                 d = r.getString("discipline");
-                rank = r.getInt("rank");
+                rank = r.getInt("sw_rank");
                 
                 Disciplin dis = Disciplin.valueOf(d.toUpperCase());
                 res.add(new CompetitionResult(members.get(i), name, rank, time, dis));
