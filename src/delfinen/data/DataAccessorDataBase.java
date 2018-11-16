@@ -273,7 +273,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, sw_time, sw_date, discipline "
+                + "memberstatus, sw_time, sw_date, discipline, team_id "
                 + "FROM member "
                 + "JOIN training_result ON member_id = member.id "
                 + "WHERE discipline = '" + d + "' "

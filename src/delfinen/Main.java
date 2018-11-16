@@ -76,7 +76,7 @@ public class Main {
             ArrayList<TrainingResult> result = dao.getTrainingResult("1506952222", Disciplin.CRAWL);
             for(TrainingResult r: result ){
                 System.out.println(r.getTime());
-            } /*
+            } 
             
             System.out.println("__________________________________________");
             System.out.println("Get trainingresult(disciplin)");
@@ -86,12 +86,14 @@ public class Main {
                 System.out.println(r.getMember().getFirstname() + "  " + r.getTime());
             }
             
+            
             System.out.println("___________________________________________");
             System.out.println("Get competitionresult");
             ArrayList<CompetitionResult> resu = dao.getCompetitionResult(Disciplin.CRAWL);
             for(CompetitionResult re : resu){
                 System.out.println(re.getCompetition());
             }
+            
             
             System.out.println("____________________________________________");
             System.out.println("Get competitionresult");
@@ -100,6 +102,7 @@ public class Main {
                 System.out.println(er.getCompetition());
             }
             
+            /*
             System.out.println("____________________________________________");
             System.out.println("Get top 5");
             Team team = new Team("Junior");
@@ -108,6 +111,8 @@ public class Main {
             for(TrainingResult t: top5){
                 System.out.println(t.getMember().getFirstname() + " - " +  t.getTime());
             }
+            
+            */
             
             System.out.println("_____________________________________________");
             System.out.println("Update member");
@@ -119,7 +124,7 @@ public class Main {
             
             for(CompetitionSwimmer c: d){
                 System.out.println(c.getFirstname());
-            } */
+            } 
             
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
