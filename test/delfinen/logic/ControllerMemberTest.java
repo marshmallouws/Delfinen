@@ -77,8 +77,8 @@ public class ControllerMemberTest
             assertNotNull(controller.getTrainingResult(m, Disciplin.CRAWL));
             ArrayList<TrainingResult> test = controller.getTrainingResult(m, Disciplin.CRAWL);
             assertEquals(Disciplin.CRAWL, test.get(0).getDisciplin());
-            assertEquals("00:02:30", test.get(0).getTime());
-            assertEquals("13-11-2018", test.get(0).getDate());
+            assertEquals("00:01:55", test.get(0).getTime());
+            assertEquals("2018-11-13", test.get(0).getDate());
             assertEquals(2, test.size());
             
         } catch (Exception ex)
@@ -88,13 +88,6 @@ public class ControllerMemberTest
         }
     }
     
-    @Test
-    public void testNegativeGetTrainingResult()
-    {
-        Member m = controller.getMember("1506952222");
-        ArrayList<TrainingResult> test = controller.getTrainingResult(m, Disciplin.BREASTSTROKE);
-        assertNull(m);
-    }
     
     @Test
     public void testGetCompeptitionResult()

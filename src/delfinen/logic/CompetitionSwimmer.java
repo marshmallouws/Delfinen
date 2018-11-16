@@ -20,11 +20,11 @@ public class CompetitionSwimmer extends Member
     public CompetitionSwimmer(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus) throws SQLException
     {
         super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus);
-        data = new DataAccessorDataBase(new DBConnector());
-        this.trainingCrawl = data.getTrainingResult(this.getSsn(), Disciplin.CRAWL);
-        this.trainingBackCrawl = data.getTrainingResult(this.getSsn(), Disciplin.BACKCRAWL);
-        this.trainingButterfly = data.getTrainingResult(this.getSsn(), Disciplin.BUTTERFLY);
-        this.trainingBreastStroke = data.getTrainingResult(this.getSsn(), Disciplin.BREASTSTROKE);
+        
+        this.trainingCrawl = new ArrayList<>();
+        this.trainingBackCrawl = new ArrayList<>();
+        this.trainingButterfly = new ArrayList<>();
+        this.trainingBreastStroke = new ArrayList<>();
         this.competition = new ArrayList<>();
     }
 
@@ -53,4 +53,23 @@ public class CompetitionSwimmer extends Member
         return competition;
     }
 
+    public void addTrainingResult(TrainingResult r)
+    {
+        if(r.getDisciplin().equals(Disciplin.CRAWL))
+        {
+            trainingCrawl.add(r);
+        }
+        else if(r.getDisciplin().equals(Disciplin.BACKCRAWL))
+        {
+            trainingBackCrawl.add(r);
+        }
+        if(r.getDisciplin().equals(Disciplin.BREASTSTROKE))
+        {
+            trainingBreastStroke.add(r);
+        }
+        else
+        {
+            trainingButterfly.add(r);
+        }
+    }
 }
