@@ -9,7 +9,7 @@ public interface Controller
     
     public ArrayList<Member> getMembers();
 
-    public ArrayList<TrainingResult> getTrainingResult(CompetitionSwimmer s, Disciplin d);
+    public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d);
 
     public void updateMember (Member m, String field, String change);
     

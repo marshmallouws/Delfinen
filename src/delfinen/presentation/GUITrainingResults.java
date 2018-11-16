@@ -8,20 +8,13 @@ package delfinen.presentation;
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
-import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.ControllerMember;
 import delfinen.logic.Disciplin;
-import delfinen.logic.MemberStatus;
+import delfinen.logic.Member;
 import delfinen.logic.TrainingResult;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -31,13 +24,13 @@ public class GUITrainingResults extends javax.swing.JFrame
 {
 
     private ControllerMember c;
-    private final CompetitionSwimmer s;
+    private final Member s;
 
-    public GUITrainingResults(/*CompetitionSwimmer s*/)
+    public GUITrainingResults(Member s)
     {
         initComponents();
 
-        //this.s = s;
+        this.s = s;
         try
         {
             DataAccessor data = new DataAccessorDataBase(new DBConnector());
@@ -49,48 +42,50 @@ public class GUITrainingResults extends javax.swing.JFrame
             ex.printStackTrace();
         }
 
-        s = new CompetitionSwimmer("Sonja", "Hansen", "0804950338", 1990, "Hydevej 6", "3000", "38490712", MemberStatus.ACTIVE);
-        TrainingResult tr = new TrainingResult(s, Disciplin.CRAWL, "01-02-2018", "02:30");
-        s.addTraining(tr);
-
         Tcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
         Tcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
 
         ArrayList<TrainingResult> crawl = c.getTrainingResult(s, Disciplin.CRAWL);
 
-        for (int i = 0; i < Tcrawl.getModel().getRowCount(); i++)
+        for (int i = 0; i < crawl.size(); i++)
         {
-            for (int j = 0; j < 1; j++)
-            {
-                for (int k = 0; k < crawl.size(); k++)
-                {
-                    Tcrawl.getModel().setValueAt(crawl.get(i).getDate(), i, j);
-                }
-
-            }
-
-            for (int l = 1; l < Tcrawl.getModel().getColumnCount(); l++)
-            {
-                for (int p = 0; p < crawl.size(); p++)
-                {
-                    Tcrawl.getModel().setValueAt(crawl.get(i).getTime(), i, l);
-                }
-
-            }
-
+            Tcrawl.getModel().setValueAt(crawl.get(i).getDate(), i, 0);
+            Tcrawl.getModel().setValueAt(crawl.get(i).getTime(), i, 1);
         }
 
         Tbackcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
         Tbackcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
 
+        ArrayList<TrainingResult> backcrawl = c.getTrainingResult(s, Disciplin.BACKCRAWL);
+
+        for (int i = 0; i < backcrawl.size(); i++)
+        {
+            Tbackcrawl.getModel().setValueAt(backcrawl.get(i).getDate(), i, 0);
+            Tbackcrawl.getModel().setValueAt(backcrawl.get(i).getTime(), i, 1);
+        }
+
         Tbreaststroke.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
         Tbreaststroke.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
+
+        ArrayList<TrainingResult> breaststroke = c.getTrainingResult(s, Disciplin.BREASTSTROKE);
+
+        for (int i = 0; i < breaststroke.size(); i++)
+        {
+            Tbreaststroke.getModel().setValueAt(breaststroke.get(i).getDate(), i, 0);
+            Tbreaststroke.getModel().setValueAt(breaststroke.get(i).getTime(), i, 1);
+        }
 
         Tbutterfly.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
         Tbutterfly.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
 
-        //for (int i = 0; i < Tcrawl.getTableHeader().getColumnModel().getColumnCount(); i++)
-        //Tcrawl.getModel().setValueAt("hello", 0, 1);
+        ArrayList<TrainingResult> butterfly = c.getTrainingResult(s, Disciplin.BUTTERFLY);
+
+        for (int i = 0; i < butterfly.size(); i++)
+        {
+            Tbutterfly.getModel().setValueAt(butterfly.get(i).getDate(), i, 0);
+            Tbutterfly.getModel().setValueAt(butterfly.get(i).getTime(), i, 1);
+        }
+
     }
 
     /**
@@ -116,6 +111,7 @@ public class GUITrainingResults extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,36 +190,56 @@ public class GUITrainingResults extends javax.swing.JFrame
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel5.setText("Breatstroke");
 
+        jButton1.setText("Go back");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
-                        .addComponent(jLabel1))
+                        .addComponent(jButton1)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel2)
-                        .addGap(347, 347, 347)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel4)
-                        .addGap(329, 329, 329)
-                        .addComponent(jLabel5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(106, 106, 106)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(106, 106, 106))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)
+                                .addGap(170, 170, 170))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(50, 50, 50))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(30, 30, 30))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,21 +252,29 @@ public class GUITrainingResults extends javax.swing.JFrame
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addGap(5, 5, 5)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jButton1)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        this.setVisible(false);
+        new GUICompetitiveMenu(s).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,8 +317,6 @@ public class GUITrainingResults extends javax.swing.JFrame
             public void run()
             {
 
-                new GUITrainingResults().setVisible(true);
-
             }
         });
     }
@@ -304,6 +326,7 @@ public class GUITrainingResults extends javax.swing.JFrame
     private javax.swing.JTable Tbreaststroke;
     private javax.swing.JTable Tbutterfly;
     private javax.swing.JTable Tcrawl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

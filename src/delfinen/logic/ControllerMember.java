@@ -46,7 +46,7 @@ public class ControllerMember implements Controller
     }
 
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(CompetitionSwimmer s, Disciplin d)
+    public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d)
     {
         try
         {

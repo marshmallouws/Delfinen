@@ -127,6 +127,7 @@ public class GUIMemberLogin extends javax.swing.JFrame
     private void loginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loginActionPerformed
     {//GEN-HEADEREND:event_loginActionPerformed
         Member ml = null;
+        CompetitionSwimmer s = null;
 
         for (Member m : members)
         {

@@ -27,7 +27,7 @@ public class ControllerTrainer implements Controller
 
 
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(CompetitionSwimmer s, Disciplin d)
+    public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
