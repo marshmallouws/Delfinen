@@ -9,6 +9,6 @@ public interface Controller
     
     public ArrayList<Member> getMembers();
 
-   
+    public ArrayList<TrainingResult> getTrainingResult(Member m, Disciplin d);
 
 }

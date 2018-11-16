@@ -25,6 +25,12 @@ public class ControllerTrainer implements Controller
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public ArrayList<TrainingResult> getTrainingResult(Member m, Disciplin d)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
    
