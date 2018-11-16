@@ -24,11 +24,11 @@ public class Member
     private String phone;
     private ArrayList<Integer> yearsPaid;
     private MemberStatus memberstatus;
+    private Team team;
     private Membership membership;
-    private MemberType membertype;
     private static int year;
 
-    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, MemberType membertype)
+    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus)
     {
         this.year = Calendar.getInstance().get(Calendar.YEAR);
         this.firstname = firstname;
@@ -39,7 +39,7 @@ public class Member
         this.zipcode = zipcode;
         this.phone = phone;
         this.memberstatus = memberstatus;
-        this.membertype = membertype;
+        this.team = team;
         this.yearsPaid = new ArrayList<>();
 
         if (this.getAge(year) >= 18)
@@ -97,9 +97,9 @@ public class Member
         this.memberstatus = memberstatus;
     }
 
-    public void setMembertype(MemberType membertype)
+    public void setTeam(Team team)
     {
-        this.membertype = membertype;
+        this.team = team;
     }
 
     public String getFirstname()
@@ -147,9 +147,9 @@ public class Member
         return membership;
     }
 
-    public MemberType getMemberType()
+    public Team getTeam()
     {
-        return membertype;
+        return team;
     }
     
     public double calculateS()
@@ -187,7 +187,7 @@ public class Member
     @Override
     public String toString()
     {
-        return "Member: " + "firstname: " + firstname + ", lastname: " + lastname + ", birthyear: " + birthyear + ", ssn: " + ssn + ", address: " + address + ", zipcode: " + zipcode + ", phone: " + phone + ", yearsPaid: " + yearsPaid + ", memberstatus: " + memberstatus + ", membership: " + membership + ", membertype:" + membertype;
+        return "Member: " + "firstname: " + firstname + ", lastname: " + lastname + ", birthyear: " + birthyear + ", ssn: " + ssn + ", address: " + address + ", zipcode: " + zipcode + ", phone: " + phone + ", yearsPaid: " + yearsPaid + ", memberstatus: " + memberstatus + ", membership: " + membership + ", team: " + team;
     }
 
 }

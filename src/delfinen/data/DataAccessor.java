@@ -10,6 +10,7 @@ import delfinen.logic.Disciplin;
 import delfinen.logic.TrainingResult;
 import delfinen.logic.Membership;
 import delfinen.logic.Member;
+import delfinen.logic.Team;
 import java.util.ArrayList;
 
 /**
@@ -20,12 +21,12 @@ public interface DataAccessor {
     ArrayList<Member> getMembers() throws DataException; 
     Member getMember(String ssn) throws DataException;
     Member getMember(String firstname, String lastname);
-    ArrayList<TrainingResult> getTop5(Disciplin disciplin, Membership membership);
+    ArrayList<TrainingResult> getTop5(Disciplin disciplin, Team team);
     ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d);
     ArrayList<TrainingResult> getTrainingResult(Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(Disciplin d);
-    ArrayList<Member> getComptitionSwimmers();
+    // ArrayList<Member> getComptitionSwimmers();
     void updateMember(String ssn, String change, String field);
     void updateMember(String ssn, String change, int field);
     
