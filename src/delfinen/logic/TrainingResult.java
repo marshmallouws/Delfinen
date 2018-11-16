@@ -1,11 +1,6 @@
 
 package delfinen.logic;
 
-import delfinen.logic.Member;
-import java.sql.Date;
-import java.sql.Time;
-
-
 public class TrainingResult
 {
     private Member m;

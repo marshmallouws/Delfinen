@@ -1,9 +1,6 @@
 
 package delfinen.logic;
 
-import delfinen.logic.Disciplin;
-import delfinen.logic.Member;
-import java.sql.Time;
 
 
 public class CompetitionResult
@@ -11,10 +8,10 @@ public class CompetitionResult
     private Member m;
     private String competition;
     private int rank;
-    private Time time;
+    private String time;
     private Disciplin disciplin;
 
-    public CompetitionResult(Member m, String competition, int rank, Time time, Disciplin disciplin)
+    public CompetitionResult(Member m, String competition, int rank, String time, Disciplin disciplin)
     {
         this.m = m;
         this.competition = competition;
@@ -38,7 +35,7 @@ public class CompetitionResult
         return rank;
     }
 
-    public Time getTime()
+    public String getTime()
     {
         return time;
     }
