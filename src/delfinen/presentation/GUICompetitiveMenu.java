@@ -37,7 +37,7 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         memberinfo = new javax.swing.JButton();
         trainingR = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        competition = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,7 +63,14 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
             }
         });
 
-        jButton3.setText("Competition result");
+        competition.setText("Competition result");
+        competition.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                competitionActionPerformed(evt);
+            }
+        });
 
         back.setText("Go back");
         back.addActionListener(new java.awt.event.ActionListener()
@@ -84,7 +91,7 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(competition, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(trainingR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(memberinfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
@@ -102,7 +109,7 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(trainingR)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(competition)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(20, 20, 20))
@@ -129,6 +136,12 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
         this.setVisible(false);
         new GUITrainingResults(ml).setVisible(true);
     }//GEN-LAST:event_trainingRActionPerformed
+
+    private void competitionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_competitionActionPerformed
+    {//GEN-HEADEREND:event_competitionActionPerformed
+        this.setVisible(false);
+        new GUICompetitionResults(ml).setVisible(true);
+    }//GEN-LAST:event_competitionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,7 +190,7 @@ public class GUICompetitiveMenu extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton competition;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton memberinfo;
     private javax.swing.JButton trainingR;

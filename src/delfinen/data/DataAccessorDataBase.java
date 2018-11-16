@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -157,9 +159,14 @@ public class DataAccessorDataBase implements DataAccessor {
         CompetitionSwimmer c = null;
 
         if (members.get(0) instanceof CompetitionSwimmer) {
-            Member m = members.get(0);
-            return new CompetitionSwimmer(m.getFirstname(), m.getLastname(), m.getSsn(),
-                    m.getBirthyear(), m.getAddress(), m.getZipcode(), m.getPhone(), m.getMemberstatus());
+            try {
+                Member m = members.get(0);
+                return new CompetitionSwimmer(m.getFirstname(), m.getLastname(), m.getSsn(),
+                        m.getBirthyear(), m.getAddress(), m.getZipcode(), m.getPhone(), m.getMemberstatus());
+            } catch (SQLException ex) {
+                System.out.println("Competitionswimmer not found");
+                return null;
+            }
         } else {
             return members.get(0);
         }

@@ -8,6 +8,7 @@ package delfinen.presentation;
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
+import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.ControllerMember;
 import delfinen.logic.Disciplin;
 import delfinen.logic.Member;

@@ -1,33 +1,56 @@
-
 package delfinen.logic;
 
+import delfinen.data.DBConnector;
+import delfinen.data.DataAccessor;
+import delfinen.data.DataAccessorDataBase;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CompetitionSwimmer extends Member
 {
-    private ArrayList<TrainingResult> training;
+
+    private DataAccessor data;
+
+    private ArrayList<TrainingResult> trainingCrawl;
+    private ArrayList<TrainingResult> trainingBackCrawl;
+    private ArrayList<TrainingResult> trainingButterfly;
+    private ArrayList<TrainingResult> trainingBreastStroke;
     private ArrayList<CompetitionResult> competition;
-    
-    public CompetitionSwimmer(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus)
+
+    public CompetitionSwimmer(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus) throws SQLException
     {
         super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus);
-        this.training = new ArrayList<>();
-        this.competition = new ArrayList<>();     
+        data = new DataAccessorDataBase(new DBConnector());
+        this.trainingCrawl = data.getTrainingResult(this.getSsn(), Disciplin.CRAWL);
+        this.trainingBackCrawl = data.getTrainingResult(this.getSsn(), Disciplin.BACKCRAWL);
+        this.trainingButterfly = data.getTrainingResult(this.getSsn(), Disciplin.BUTTERFLY);
+        this.trainingBreastStroke = data.getTrainingResult(this.getSsn(), Disciplin.BREASTSTROKE);
+        this.competition = new ArrayList<>();
     }
 
-    public ArrayList<TrainingResult> getTraining()
+    public ArrayList<TrainingResult> getTrainingCrawl()
     {
-        return training;
+        return trainingCrawl;
+    }
+
+    public ArrayList<TrainingResult> getTrainingBackCrawl()
+    {
+        return trainingBackCrawl;
+    }
+
+    public ArrayList<TrainingResult> getTrainingButterfly()
+    {
+        return trainingButterfly;
+    }
+
+    public ArrayList<TrainingResult> getTrainingBreastStroke()
+    {
+        return trainingBreastStroke;
     }
 
     public ArrayList<CompetitionResult> getCompetition()
     {
         return competition;
     }
-    
-    public void addTraining(TrainingResult t)
-    {
-        training.add(t);
-    }
-    
+
 }

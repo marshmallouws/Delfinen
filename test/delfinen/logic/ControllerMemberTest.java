@@ -5,6 +5,7 @@ import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Dictionary;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -60,6 +61,54 @@ public class ControllerMemberTest
             assertEquals("2670", m.get(1).getZipcode());
             assertEquals("Mosebakken 53", m.get(1).getAddress());
             assertEquals(12, m.size());
+        } catch (Exception ex)
+        {
+            fail(ex.getMessage());
+
+        }
+    }
+    
+    @Test
+    public void testGetTrainingResult()
+    {
+        try
+        {
+            Member m = controller.getMember("1506952222");
+            assertNotNull(controller.getTrainingResult(m, Disciplin.CRAWL));
+            ArrayList<TrainingResult> test = controller.getTrainingResult(m, Disciplin.CRAWL);
+            assertEquals(Disciplin.CRAWL, test.get(0).getDisciplin());
+            assertEquals("00:02:30", test.get(0).getTime());
+            assertEquals("13-11-2018", test.get(0).getDate());
+            assertEquals(2, test.size());
+            
+        } catch (Exception ex)
+        {
+            fail(ex.getMessage());
+
+        }
+    }
+    
+    @Test
+    public void testNegativeGetTrainingResult()
+    {
+        Member m = controller.getMember("1506952222");
+        ArrayList<TrainingResult> test = controller.getTrainingResult(m, Disciplin.BREASTSTROKE);
+        assertNull(m);
+    }
+    
+    @Test
+    public void testGetCompeptitionResult()
+    {
+        try
+        {
+            Member m = controller.getMember("1507053333");
+            assertNotNull(controller.getCompetitionResult(m));
+            ArrayList<CompetitionResult> test = controller.getCompetitionResult(m);
+            assertEquals(Disciplin.CRAWL, test.get(0).getDisciplin());
+            assertEquals("00:02:01", test.get(0).getTime());
+            assertEquals("Holbæk svømmehal", test.get(0).getCompetition());
+            assertEquals(1, test.size());
+            
         } catch (Exception ex)
         {
             fail(ex.getMessage());

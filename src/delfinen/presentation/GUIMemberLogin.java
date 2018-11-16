@@ -127,7 +127,6 @@ public class GUIMemberLogin extends javax.swing.JFrame
     private void loginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loginActionPerformed
     {//GEN-HEADEREND:event_loginActionPerformed
         Member ml = null;
-        CompetitionSwimmer s = null;
 
         for (Member m : members)
         {
@@ -145,10 +144,11 @@ public class GUIMemberLogin extends javax.swing.JFrame
         }
 
         this.setVisible(false);
-        if (ml instanceof CompetitionSwimmer){
+        if (ml instanceof CompetitionSwimmer)
+        {
             new GUICompetitiveMenu(ml).setVisible(true);
-        }
-        else{
+        } else
+        {
             new GUIMemberMenu(ml).setVisible(true);
         }
     }//GEN-LAST:event_loginActionPerformed

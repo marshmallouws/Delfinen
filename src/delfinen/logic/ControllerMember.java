@@ -67,4 +67,19 @@ public class ControllerMember implements Controller
        data.updateMember(m.getSsn(), change, field); 
     }
 
+    @Override
+    public ArrayList<CompetitionResult> getCompetitionResult(Member s)
+    {
+         try
+        {
+            ArrayList<CompetitionResult> cr = data.getCompetitionResult(s.getSsn());
+            return cr;
+
+        } catch (Exception ex)
+        {
+            System.out.println("No training results found");
+            return null;
+        }
+    }
+
 }
