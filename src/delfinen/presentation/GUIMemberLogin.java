@@ -5,8 +5,8 @@
  */
 package delfinen.presentation;
 
+import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Member;
-import delfinen.logic.MemberType;
 import java.util.ArrayList;
 
 /**
@@ -144,7 +144,7 @@ public class GUIMemberLogin extends javax.swing.JFrame
         }
 
         this.setVisible(false);
-        if(ml.getMemberType().equals(MemberType.COMPETITIVE)){
+        if (ml instanceof CompetitionSwimmer){
             new GUICompetitiveMenu(ml).setVisible(true);
         }
         else{

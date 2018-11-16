@@ -33,13 +33,7 @@ public class ControllerTrainer implements Controller
     }
 
     @Override
-    public void updateMemberString(Member m, String field, String change)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void updateMemberInt(Member m, String field, int change)
+    public void updateMember(Member m, String field, String change)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

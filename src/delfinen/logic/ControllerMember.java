@@ -62,15 +62,9 @@ public class ControllerMember implements Controller
     }
 
     @Override
-    public void updateMemberString(Member m, String change, String field)
+    public void updateMember(Member m, String field, String change)
     {
        data.updateMember(m.getSsn(), change, field); 
-    }
-
-    @Override
-    public void updateMemberInt(Member m, String field, int change)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

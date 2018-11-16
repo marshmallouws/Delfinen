@@ -8,10 +8,10 @@ package delfinen.presentation;
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
+import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Member;
 import delfinen.logic.MemberStatus;
 import delfinen.logic.ControllerMember;
-import delfinen.logic.MemberType;
 import java.sql.SQLException;
 import java.util.Calendar;
 
@@ -312,12 +312,12 @@ public class GUIMemberInformation extends javax.swing.JFrame
             }
             m.setMemberstatus(ms);
             
-            c.updateMemberString(m,FirstName.getText(),"firstname");
-            c.updateMemberString(m,LastName.getText(),"lastname");
-            c.updateMemberString(m,address.getText(),"address");
-            c.updateMemberString(m,zipcode.getText(),"zipcode");
-            c.updateMemberString(m,phone.getText(),"phone");
-            c.updateMemberString(m,_ms,"memberstatus");
+            c.updateMember(m,FirstName.getText(),"firstname");
+            c.updateMember(m,LastName.getText(),"lastname");
+            c.updateMember(m,address.getText(),"address");
+            c.updateMember(m,zipcode.getText(),"zipcode");
+            c.updateMember(m,phone.getText(),"phone");
+            c.updateMember(m,_ms,"memberstatus");
 
             FirstName.setText(m.getFirstname());
             LastName.setText(m.getLastname());
@@ -361,8 +361,9 @@ public class GUIMemberInformation extends javax.swing.JFrame
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
     {//GEN-HEADEREND:event_backActionPerformed
         this.setVisible(false);
-
-        if (m.getMemberType().equals(MemberType.COMPETITIVE))
+       
+        
+        if (m instanceof CompetitionSwimmer)
         {
             new GUICompetitiveMenu(m).setVisible(true);
         } else
