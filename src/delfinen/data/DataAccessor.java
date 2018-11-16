@@ -6,6 +6,7 @@
 package delfinen.data;
 
 import delfinen.logic.CompetitionResult;
+import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Disciplin;
 import delfinen.logic.TrainingResult;
 import delfinen.logic.Membership;
@@ -26,6 +27,6 @@ public interface DataAccessor {
     ArrayList<TrainingResult> getTrainingResult(Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d);
     ArrayList<CompetitionResult> getCompetitionResult(Disciplin d);
-    // ArrayList<Member> getComptitionSwimmers();
+    ArrayList<CompetitionSwimmer> getComptitionSwimmers();
     void updateMember(String ssn, String change, String field);
 }

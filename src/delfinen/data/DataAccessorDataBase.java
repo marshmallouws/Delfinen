@@ -84,7 +84,7 @@ public class DataAccessorDataBase implements DataAccessor {
                 if (team_id == 0) {
                     members.add(new Member(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat));
                 } else {
-                    com_sw.add(new CompetitionSwimmer(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat));
+                    members.add(new CompetitionSwimmer(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat));
                 }
             }
         } catch (SQLException ex) {
@@ -92,21 +92,68 @@ public class DataAccessorDataBase implements DataAccessor {
         }
         return members;
     }
+    
+    private ArrayList<CompetitionSwimmer> retrieveCompSwimmerData(ResultSet rs){
+        ArrayList<CompetitionSwimmer> c = new ArrayList<>();
+        
+        String ssn = "";
+        String firstname = "";
+        String lastname = "";
+        int birthyear = 0;
+        String address = "";
+        String zipcode = "";
+        String phone = "";
+        String status = "";
+        int team_id = 0;
+
+        try {
+            while (rs.next()) {
+                ssn = rs.getString("ssn");
+                firstname = rs.getString("firstname");
+                lastname = rs.getString("lastname");
+                birthyear = rs.getInt("birthyear");
+                address = rs.getString("address");
+                zipcode = rs.getString("zipcode");
+                phone = rs.getString("phone");
+                status = rs.getString("memberstatus");
+                team_id = rs.getInt("team_id");
+
+                MemberStatus stat = MemberStatus.valueOf(status.toUpperCase());
+
+                if (team_id != 0) {
+                    c.add(new CompetitionSwimmer(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat));
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return c;
+    }
 
     @Override
     public ArrayList<Member> getMembers() throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, address,"
-                + "zipcode, phone, memberstatus FROM member;";
+                + "zipcode, phone, memberstatus, team_id FROM member;";
 
         ResultSet r = query(query);
         ArrayList<Member> members = retrieveMembersData(r);
         return members;
     }
+    
+    @Override
+    public ArrayList<CompetitionSwimmer> getComptitionSwimmers() {
+        String query = "SELECT ssn, firstname, lastname, birthyear, address, "
+                + "zipcode, phone, memberstatus, team_id FROM member;";
+        
+        ResultSet r = query(query);
+        ArrayList<CompetitionSwimmer> sw = retrieveCompSwimmerData(r);
+        return sw;
+    }
 
     @Override
     public Member getMember(String ssn) throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
-                + "address, zipcode, phone, memberstatus FROM member WHERE ssn ='" + ssn + "';";
+                + "address, zipcode, phone, memberstatus, team_id FROM member WHERE ssn ='" + ssn + "';";
         ResultSet r = query(query);
         ArrayList<Member> members = retrieveMembersData(r);
 
@@ -118,22 +165,11 @@ public class DataAccessorDataBase implements DataAccessor {
             return members.get(0);
         }
     }
-
-    /*@Override
-    public ArrayList<Member> getComptitionSwimmers()
-    {
-        String query = "SELECT ssn, firstname, lastname, birthyear, "
-                + "address, zipcode, phone, memberstatus, membership FROM member "
-                + "WHERE membertype = competitive ";
-
-        ResultSet r = query(query);
-        ArrayList<Member> members = retrieveMembersData(r);
-        return members;
-    }*/
+    
     @Override
     public Member getMember(String firstname, String lastname) {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
-                + "address, zipcode, phone, memberstatus FROM member WHERE "
+                + "address, zipcode, phone, memberstatus, team_id FROM member WHERE "
                 + "firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
 
         ResultSet r = query(query);
@@ -145,11 +181,11 @@ public class DataAccessorDataBase implements DataAccessor {
     //TODO - strip arraylist to size 5
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Team team) {
         String query = "SELECT MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
-                + "address, zipcode, phone, memberstatus "
+                + "address, zipcode, phone, memberstatus, team_id "
                 + "FROM training_result "
                 + "JOIN member ON member_id = member.id "
                 + "WHERE discipline = '" + disciplin + "'"
-                + "AND team = '" + team + "' "
+                + "AND team_name = '" + team.getTeamname() + "' "
                 + "GROUP BY member_id "
                 + "ORDER BY MIN(sw_time);";
 
@@ -158,8 +194,8 @@ public class DataAccessorDataBase implements DataAccessor {
         ArrayList<TrainingResult> res = new ArrayList<>();
         ArrayList<Member> members = retrieveMembersData(r);
 
-        Time time = null;
-        Date date = null;
+        String time = null;
+        String date = null;
         int i = 0;
 
         try {
@@ -169,8 +205,8 @@ public class DataAccessorDataBase implements DataAccessor {
                     break;
                 }
 
-                time = r.getTime("time");
-                date = r.getDate("sw_date");
+                time = r.getString("time");
+                date = r.getString("sw_date");
 
                 res.add(new TrainingResult(members.get(i), disciplin, date, time));
 
@@ -197,7 +233,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, sw_time, sw_date, discipline "
+                + "memberstatus, sw_time, sw_date, team_id, discipline "
                 + "FROM member "
                 + "JOIN training_result ON member_id = member.id "
                 + "WHERE ssn = '" + ssn + "' "
@@ -209,8 +245,8 @@ public class DataAccessorDataBase implements DataAccessor {
         ArrayList<TrainingResult> res = new ArrayList<>();
         ArrayList<Member> members = retrieveMembersData(r);
 
-        Time time = null;
-        Date date = null;
+        String time = null;
+        String date = null;
         int i = 0;
 
         try {
@@ -220,8 +256,8 @@ public class DataAccessorDataBase implements DataAccessor {
                     break;
                 }
 
-                time = r.getTime("sw_time");
-                date = r.getDate("sw_date");
+                time = r.getString("sw_time");
+                date = r.getString("sw_date");
 
                 res.add(new TrainingResult(members.get(i), d, date, time));
 
@@ -247,8 +283,8 @@ public class DataAccessorDataBase implements DataAccessor {
         ArrayList<TrainingResult> res = new ArrayList<>();
         ArrayList<Member> members = retrieveMembersData(r);
 
-        Time time = null;
-        Date date = null;
+        String time = null;
+        String date = null;
         int i = 0;
 
         try {
@@ -258,8 +294,8 @@ public class DataAccessorDataBase implements DataAccessor {
                     break;
                 }
 
-                time = r.getTime("sw_time");
-                date = r.getDate("sw_date");
+                time = r.getString("sw_time");
+                date = r.getString("sw_date");
 
                 res.add(new TrainingResult(members.get(i), d, date, time));
 
@@ -275,7 +311,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, competition, sw_rank, sw_time, discipline "
+                + "memberstatus, competition, sw_rank, sw_time, discipline, team_id "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE ssn = '" + ssn + "' "
@@ -286,7 +322,7 @@ public class DataAccessorDataBase implements DataAccessor {
         ArrayList<CompetitionResult> res = new ArrayList<>();
         ArrayList<Member> members = retrieveMembersData(r);
 
-        Time time = null;
+        String time = null;
         String name = "";
         int rank = 0;
         int i = 0;
@@ -298,7 +334,7 @@ public class DataAccessorDataBase implements DataAccessor {
                     break;
                 }
 
-                time = r.getTime("sw_time");
+                time = r.getString("sw_time");
                 name = r.getString("competition");
 
                 res.add(new CompetitionResult(members.get(i), name, rank, time, d));
@@ -315,7 +351,7 @@ public class DataAccessorDataBase implements DataAccessor {
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, competition, sw_rank, sw_time, discipline "
+                + "memberstatus, competition, sw_rank, sw_time, discipline, team_id "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE discipline = '" + d + "' "
@@ -325,7 +361,7 @@ public class DataAccessorDataBase implements DataAccessor {
 
         ArrayList<CompetitionResult> res = new ArrayList<>();
         ArrayList<Member> members = retrieveMembersData(r);
-        Time time = null;
+        String time = null;
         String name = "";
         int rank = 0;
         int i = 0;
@@ -337,7 +373,7 @@ public class DataAccessorDataBase implements DataAccessor {
                     break;
                 }
 
-                time = r.getTime("sw_time");
+                time = r.getString("sw_time");
                 name = r.getString("competition");
 
                 res.add(new CompetitionResult(members.get(i), name, rank, time, d));
