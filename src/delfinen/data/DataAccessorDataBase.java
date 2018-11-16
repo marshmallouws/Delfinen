@@ -309,19 +309,20 @@ public class DataAccessorDataBase implements DataAccessor {
     }
 
     @Override
-    public ArrayList<CompetitionResult> getCompetitionResult(String ssn, Disciplin d) {
+    public ArrayList<CompetitionResult> getCompetitionResult(String ssn) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, competition, sw_rank, sw_time, discipline, team_id "
                 + "FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE ssn = '" + ssn + "' "
-                + "AND discipline = '" + d + "';";
+                + "ORDER BY sw_time ASC; ";
 
         ResultSet r = query(query);
 
         ArrayList<CompetitionResult> res = new ArrayList<>();
         ArrayList<Member> members = retrieveMembersData(r);
-
+        
+        String d = "";
         String time = null;
         String name = "";
         int rank = 0;
@@ -336,8 +337,10 @@ public class DataAccessorDataBase implements DataAccessor {
 
                 time = r.getString("sw_time");
                 name = r.getString("competition");
-
-                res.add(new CompetitionResult(members.get(i), name, rank, time, d));
+                d = r.getString("discipline");
+                
+                Disciplin dis = Disciplin.valueOf(d.toUpperCase());
+                res.add(new CompetitionResult(members.get(i), name, rank, time, dis));
 
                 i++;
             }
@@ -429,5 +432,4 @@ public class DataAccessorDataBase implements DataAccessor {
         
         return teams;
     }
-
 }

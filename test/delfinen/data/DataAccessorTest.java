@@ -150,9 +150,9 @@ public class DataAccessorTest {
     @Test
     public void testGetCompetitionResult_3args() {
         
-        ArrayList<CompetitionResult> res = da.getCompetitionResult("1507053333", Disciplin.CRAWL);
+        ArrayList<CompetitionResult> res = da.getCompetitionResult("0412038089");
         
-        String time = "00:02:01";
+        String time = "00:05:01";
         assertEquals(res.get(0).getTime(), time);
     }
 
@@ -166,7 +166,5 @@ public class DataAccessorTest {
         String time1 = "00:01:50";
         assertEquals(res.size(), 6);
         assertEquals(res.get(0).getTime(), time1);
-
     }
-
 }

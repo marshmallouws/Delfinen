@@ -45,6 +45,8 @@ public class Main {
                 System.out.println(m.getFirstname());
             }
             
+            
+           
             ArrayList<Member> sw = dao.getMembers();
             
             
@@ -53,7 +55,7 @@ public class Main {
             Member m = dao.getMember("1506952222");
             System.out.println(m.getAddress());
             System.out.println(m instanceof CompetitionSwimmer);
-            
+           
             
             
             System.out.println("_________________________________________");
@@ -87,7 +89,7 @@ public class Main {
             
             System.out.println("____________________________________________");
             System.out.println("Get competitionresult");
-            ArrayList <CompetitionResult> resul = dao.getCompetitionResult("0412038089", Disciplin.CRAWL);
+            ArrayList <CompetitionResult> resul = dao.getCompetitionResult("0412038089");
             for(CompetitionResult er : resul){
                 System.out.println(er.getCompetition());
             }
@@ -122,6 +124,14 @@ public class Main {
                 System.out.println(t.getTeamname());
             }
             
+            
+            System.out.println("__________________________________________________");
+            System.out.println("Get competition result from ssn");
+            ArrayList<CompetitionResult> r = dao.getCompetitionResult("0412038089");
+            
+            for(CompetitionResult c_result: r){
+                System.out.println(c_result.getTime());
+            }
             
             /*
             System.out.println("______________________________________________");
