@@ -8,6 +8,7 @@ package delfinen.presentation;
 import delfinen.data.DBConnector;
 import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
+import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Member;
 import delfinen.logic.MemberStatus;
 import delfinen.logic.ControllerMember;
@@ -361,8 +362,9 @@ public class GUIMemberInformation extends javax.swing.JFrame
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
     {//GEN-HEADEREND:event_backActionPerformed
         this.setVisible(false);
-
-        if (m.getMemberType().equals(MemberType.COMPETITIVE))
+       
+        
+        if (m instanceof CompetitionSwimmer)
         {
             new GUICompetitiveMenu(m).setVisible(true);
         } else
