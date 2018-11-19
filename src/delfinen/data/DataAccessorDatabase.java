@@ -17,11 +17,11 @@ import java.util.ArrayList;
  *
  * @author sofieamalielandt
  */
-public class DataAccessorDataBase implements DataAccessor {
+public class DataAccessorDatabase  {
 
     private DBConnector connector = null;
 
-    public DataAccessorDataBase(DBConnector connector) {
+    public DataAccessorDatabase(DBConnector connector) {
         this.connector = connector;
     }
 
@@ -128,7 +128,6 @@ public class DataAccessorDataBase implements DataAccessor {
         return c;
     }
 
-    @Override
     public ArrayList<Member> getMembers() throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, address,"
                 + "zipcode, phone, memberstatus, team_id FROM member;";
@@ -138,7 +137,7 @@ public class DataAccessorDataBase implements DataAccessor {
         return members;
     }
     
-    @Override
+
     public ArrayList<CompetitionSwimmer> getComptitionSwimmers() {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, "
                 + "zipcode, phone, memberstatus, team_id FROM member;";
@@ -148,7 +147,7 @@ public class DataAccessorDataBase implements DataAccessor {
         return sw;
     }
 
-    @Override
+
     public Member getMember(String ssn) throws DataException {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
                 + "address, zipcode, phone, memberstatus, team_id FROM member WHERE ssn ='" + ssn + "';";
@@ -170,7 +169,7 @@ public class DataAccessorDataBase implements DataAccessor {
         }
     }
     
-    @Override
+    
     public Member getMember(String firstname, String lastname) {
         String query = "SELECT ssn, firstname, lastname, birthyear, "
                 + "address, zipcode, phone, memberstatus, team_id FROM member WHERE "
@@ -181,7 +180,7 @@ public class DataAccessorDataBase implements DataAccessor {
         return members.get(0);
     }
 
-    @Override
+    
     //TODO - strip arraylist to size 5
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Team team) {
         String query = "SELECT MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
@@ -237,7 +236,7 @@ public class DataAccessorDataBase implements DataAccessor {
         return res;
     }
 
-    @Override
+
     public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, sw_time, sw_date, team_id, discipline "
@@ -277,7 +276,6 @@ public class DataAccessorDataBase implements DataAccessor {
         return res;
     }
 
-    @Override
     public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, sw_time, sw_date, discipline, team_id "
@@ -315,7 +313,6 @@ public class DataAccessorDataBase implements DataAccessor {
         return res;
     }
 
-    @Override
     public ArrayList<CompetitionResult> getCompetitionResult(String ssn) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, competition, sw_rank, sw_time, discipline, team_id "
@@ -359,7 +356,6 @@ public class DataAccessorDataBase implements DataAccessor {
         return res;
     }
 
-    @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
         String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
                 + "memberstatus, competition, sw_rank, sw_time, discipline, team_id "
@@ -399,26 +395,23 @@ public class DataAccessorDataBase implements DataAccessor {
         return res;
     }
 
-    @Override
     public void updateMember(String ssn, String change, String field) {
         String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
     }
     
-    /*
-    @Override
+    
     public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id){
-        String query = "INSERT INTO member (firstname, lastname, ssn, birthyear, "
+        String query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, memberstatus)"
-                + " VALUES ('" + firstname + "', '" + lastname +  "', '" + ssn + "', "
+                + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
                 + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', '"
                 + memberstatus.toString() + "', " + team_id;
         
         updateDatabase(query);
         
-    } */
+    }
 
-    @Override
     public ArrayList<Team> getTeams() {
         String query = "SELECT * FROM team;";
         ArrayList<Team> teams = new ArrayList<>();

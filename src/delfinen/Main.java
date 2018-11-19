@@ -7,7 +7,7 @@ package delfinen;
 
 import delfinen.logic.CompetitionResult;
 import delfinen.data.DBConnector;
-import delfinen.data.DataAccessorDataBase;
+import delfinen.data.DataAccessorDatabase;
 import delfinen.data.DataException;
 import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Disciplin;
@@ -28,11 +28,11 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            DataAccessorDataBase dao = null;
+            DataAccessorDatabase dao = null;
             
             try {
                 DBConnector DB = new DBConnector();
-                dao = new DataAccessorDataBase(DB);
+                dao = new DataAccessorDatabase(DB);
             } catch (SQLException ex) {
                 ex.getMessage();
             }
@@ -132,12 +132,12 @@ public class Main {
             for(CompetitionResult c_result: r){
                 System.out.println(c_result.getTime() + c_result.getRank());
             }
-            
             /*
             System.out.println("______________________________________________");
             System.out.println("Create member");
-            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE, 1);
+            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", 1);
             dao.getMember("1506952668"); */
+            
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } 

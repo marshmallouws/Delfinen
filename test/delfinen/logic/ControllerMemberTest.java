@@ -1,8 +1,7 @@
 package delfinen.logic;
 
 import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
-import delfinen.data.DataAccessorDataBase;
+import delfinen.data.DataAccessorDatabase;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -13,12 +12,11 @@ public class ControllerMemberTest
 {
 
     private ControllerMember controller;
-    private DataAccessor data;
+    private DataAccessorDatabase data;
 
     public ControllerMemberTest() throws SQLException
     {
-        data = new DataAccessorDataBase(new DBConnector());
-        controller = new ControllerMember(data);
+        controller = new ControllerMember();
 
     }
 

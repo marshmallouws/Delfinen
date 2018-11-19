@@ -5,14 +5,10 @@
  */
 package delfinen.presentation;
 
-import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
-import delfinen.data.DataAccessorDataBase;
 import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Member;
 import delfinen.logic.MemberStatus;
 import delfinen.logic.ControllerMember;
-import java.sql.SQLException;
 import java.util.Calendar;
 
 /**
@@ -32,16 +28,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
     {
         initComponents();
 
-        try
-        {
-            DataAccessor data = new DataAccessorDataBase(new DBConnector());
-
-            c = new ControllerMember(data);
-
-        } catch (SQLException ex)
-        {
-            ex.printStackTrace();
-        }
+        c = new ControllerMember();
 
         this.status.setVisible(false);
         FirstName.setText(m.getFirstname());

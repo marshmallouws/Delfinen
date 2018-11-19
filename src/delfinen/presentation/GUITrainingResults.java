@@ -6,50 +6,35 @@
 package delfinen.presentation;
 
 import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
-import delfinen.data.DataAccessorDataBase;
 import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.ControllerMember;
 import delfinen.logic.Disciplin;
 import delfinen.logic.Member;
 import delfinen.logic.TrainingResult;
-import java.sql.SQLException;
 import java.util.ArrayList;
-
 
 /**
  *
  * @author aamandajuhl
  */
-public class GUITrainingResults extends javax.swing.JFrame
-{
+public class GUITrainingResults extends javax.swing.JFrame {
 
     private ControllerMember c;
     private final Member s;
 
-    public GUITrainingResults(Member s)
-    {
+    public GUITrainingResults(Member s) {
         initComponents();
 
         this.s = s;
-        try
-        {
-            DataAccessor data = new DataAccessorDataBase(new DBConnector());
 
-            c = new ControllerMember(data);
-
-        } catch (SQLException ex)
-        {
-            ex.printStackTrace();
-        }
+        c = new ControllerMember();
 
         Tcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
         Tcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
 
         ArrayList<TrainingResult> crawl = c.getTrainingResult(s, Disciplin.CRAWL);
 
-        for (int i = 0; i < crawl.size(); i++)
-        {
+        for (int i = 0; i < crawl.size(); i++) {
             Tcrawl.getModel().setValueAt(crawl.get(i).getDate(), i, 0);
             Tcrawl.getModel().setValueAt(crawl.get(i).getTime(), i, 1);
         }
@@ -59,8 +44,7 @@ public class GUITrainingResults extends javax.swing.JFrame
 
         ArrayList<TrainingResult> backcrawl = c.getTrainingResult(s, Disciplin.BACKCRAWL);
 
-        for (int i = 0; i < backcrawl.size(); i++)
-        {
+        for (int i = 0; i < backcrawl.size(); i++) {
             Tbackcrawl.getModel().setValueAt(backcrawl.get(i).getDate(), i, 0);
             Tbackcrawl.getModel().setValueAt(backcrawl.get(i).getTime(), i, 1);
         }
@@ -70,8 +54,7 @@ public class GUITrainingResults extends javax.swing.JFrame
 
         ArrayList<TrainingResult> breaststroke = c.getTrainingResult(s, Disciplin.BREASTSTROKE);
 
-        for (int i = 0; i < breaststroke.size(); i++)
-        {
+        for (int i = 0; i < breaststroke.size(); i++) {
             Tbreaststroke.getModel().setValueAt(breaststroke.get(i).getDate(), i, 0);
             Tbreaststroke.getModel().setValueAt(breaststroke.get(i).getTime(), i, 1);
         }
@@ -81,8 +64,7 @@ public class GUITrainingResults extends javax.swing.JFrame
 
         ArrayList<TrainingResult> butterfly = c.getTrainingResult(s, Disciplin.BUTTERFLY);
 
-        for (int i = 0; i < butterfly.size(); i++)
-        {
+        for (int i = 0; i < butterfly.size(); i++) {
             Tbutterfly.getModel().setValueAt(butterfly.get(i).getDate(), i, 0);
             Tbutterfly.getModel().setValueAt(butterfly.get(i).getTime(), i, 1);
         }
@@ -280,43 +262,33 @@ public class GUITrainingResults extends javax.swing.JFrame
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
 
             }
         });

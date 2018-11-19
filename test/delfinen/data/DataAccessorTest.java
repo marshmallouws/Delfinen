@@ -8,11 +8,9 @@ package delfinen.data;
 import delfinen.logic.CompetitionResult;
 import delfinen.logic.Disciplin;
 import delfinen.logic.TrainingResult;
-import delfinen.logic.Membership;
 import delfinen.logic.Member;
 import delfinen.logic.Team;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -23,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class DataAccessorTest {
 
-    private DataAccessor da;
+    private DataAccessorDatabase da;
     private DBConnector c;
 
     public DataAccessorTest() {
@@ -33,50 +31,39 @@ public class DataAccessorTest {
             ex.getMessage();
         }
 
-        da = new DataAccessorDataBase(c);
+        da = new DataAccessorDatabase(c);
     }
 
     /**
      * Test of getMembers method, of class DataAccessor.
      */
     @Test
-    public void testGetMembers() {
-        try {
-            assertNotNull(da.getMembers());
-            int expected = 12;
-            int actual = da.getMembers().size();
-            assertEquals(expected, actual);
-        } catch (DataException ex) {
-            fail(ex.getMessage());
-        }
+    public void testGetMembers() throws DataException {
+        assertNotNull(da.getMembers());
+        int expected = 12;
+        int actual = da.getMembers().size();
+        assertEquals(expected, actual);
     }
 
     /**
      * Test of getMember method, of class DataAccessor.
      */
     @Test
-    public void testGetMember_String() {
-        try {
-
-            Member m = da.getMember("2202014547");
-            assertNotNull(m);
-            String firstname = "Søren";
-            String lastname = "Andersen";
-            int birthyear = 2001;
-            String address = "Nørregade";
-            String zipcode = "2150";
-            String phone = "91562665";
-
-            assertEquals(m.getFirstname(), firstname);
-            assertEquals(m.getLastname(), lastname);
-            assertEquals(m.getBirthyear(), birthyear);
-            assertEquals(m.getAddress(), address);
-            assertEquals(m.getZipcode(), zipcode);
-            assertEquals(m.getPhone(), phone);
-
-        } catch (DataException ex) {
-            fail(ex.getMessage());
-        }
+    public void testGetMember_String() throws DataException {
+        Member m = da.getMember("2202014547");
+        assertNotNull(m);
+        String firstname = "Søren";
+        String lastname = "Andersen";
+        int birthyear = 2001;
+        String address = "Nørregade";
+        String zipcode = "2150";
+        String phone = "91562665";
+        assertEquals(m.getFirstname(), firstname);
+        assertEquals(m.getLastname(), lastname);
+        assertEquals(m.getBirthyear(), birthyear);
+        assertEquals(m.getAddress(), address);
+        assertEquals(m.getZipcode(), zipcode);
+        assertEquals(m.getPhone(), phone);
     }
 
     /**

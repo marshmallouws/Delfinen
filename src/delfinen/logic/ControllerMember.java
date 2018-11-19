@@ -1,16 +1,23 @@
 package delfinen.logic;
 
-import delfinen.data.DataAccessor;
+import delfinen.data.DBConnector;
+import delfinen.data.DataAccessorDatabase;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ControllerMember implements Controller
 {
 
-    private DataAccessor data;
-
-    public ControllerMember(DataAccessor data)
-    {
-        this.data = data;
+    private DBConnector c = null;
+    private DataAccessorDatabase data = null;
+    
+    public ControllerMember(){
+        try {
+            c = new DBConnector();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        data = new DataAccessorDatabase(c);
     }
 
     @Override

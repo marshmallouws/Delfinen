@@ -1,15 +1,14 @@
 package delfinen.logic;
 
 import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
-import delfinen.data.DataAccessorDataBase;
+import delfinen.data.DataAccessorDatabase;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CompetitionSwimmer extends Member
 {
 
-    private DataAccessor data;
+    private DataAccessorDatabase data;
 
     private ArrayList<TrainingResult> trainingCrawl;
     private ArrayList<TrainingResult> trainingBackCrawl;

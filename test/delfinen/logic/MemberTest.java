@@ -6,8 +6,7 @@
 package delfinen.logic;
 
 import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
-import delfinen.data.DataAccessorDataBase;
+import delfinen.data.DataAccessorDatabase;
 import java.sql.SQLException;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -19,12 +18,12 @@ import static org.junit.Assert.*;
 public class MemberTest
 {
      private ControllerMember controller;
-    private DataAccessor data;
+    private DataAccessorDatabase data;
     
     public MemberTest() throws SQLException
     {
-        data = new DataAccessorDataBase(new DBConnector());
-        controller = new ControllerMember(data);
+        data = new DataAccessorDatabase(new DBConnector());
+        controller = new ControllerMember();
     }
     
      @Test

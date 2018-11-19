@@ -5,15 +5,11 @@
  */
 package delfinen.presentation;
 
-import delfinen.data.DBConnector;
-import delfinen.data.DataAccessor;
-import delfinen.data.DataAccessorDataBase;
 import delfinen.logic.CompetitionResult;
 import delfinen.logic.ControllerMember;
 import delfinen.logic.Disciplin;
 import delfinen.logic.Member;
 import delfinen.logic.TrainingResult;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -30,17 +26,7 @@ public class GUICompetitionResults extends javax.swing.JFrame
     {
         initComponents();
 
-        this.s = s;
-        try
-        {
-            DataAccessor data = new DataAccessorDataBase(new DBConnector());
-
-            c = new ControllerMember(data);
-
-        } catch (SQLException ex)
-        {
-            ex.printStackTrace();
-        }
+        c = new ControllerMember();
 
         Tcompetition.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Competition");
         Tcompetition.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Disciplin");
