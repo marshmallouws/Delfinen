@@ -20,7 +20,6 @@ public class ControllerMember implements Controller
         data = new DataAccessorDatabase(c);
     }
 
-    @Override
     public Member getMember(String ssn)
     {
         try
@@ -36,7 +35,6 @@ public class ControllerMember implements Controller
 
     }
 
-    @Override
     public ArrayList<Member> getMembers()
     {
         try
@@ -69,15 +67,15 @@ public class ControllerMember implements Controller
     }
 
     @Override
-    public void updateMember(Member m, String field, String change)
+    public void updateMember(Member m, String change, String field)
     {
-       data.updateMember(m.getSsn(), change, field); 
+        data.updateMember(m.getSsn(), change, field);
     }
 
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Member s)
     {
-         try
+        try
         {
             ArrayList<CompetitionResult> cr = data.getCompetitionResult(s.getSsn());
             return cr;

@@ -18,41 +18,80 @@ public class ControllerTrainer implements Controller
             ex.printStackTrace();
         }
         data = new DataAccessorDatabase(c);
+
     }
 
-    @Override
-    public Member getMember(String ssn)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-     @Override
-    public ArrayList<Member> getMembers()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
+    public ArrayList<CompetitionSwimmer> getSwimmers()
+    {
+        try
+        {
+            ArrayList<CompetitionSwimmer> swimmers = data.getComptitionSwimmers();
+            return swimmers;
+
+        } catch (Exception ex)
+        {
+            System.out.println("Swimmers not found");
+            return null;
+
+        }
+    }
 
     @Override
     public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try
+        {
+            ArrayList<TrainingResult> tr = data.getTrainingResult(s.getSsn(), d);
+            return tr;
+
+        } catch (Exception ex)
+        {
+            System.out.println("No training results found");
+            return null;
+        }
     }
 
     @Override
     public void updateMember(Member m, String field, String change)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        data.updateMember(m.getSsn(), change, field); 
     }
 
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Member s)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    { 
+        try
+        {
+            ArrayList<CompetitionResult> cr = data.getCompetitionResult(s.getSsn());
+            return cr;
+
+        } catch (Exception ex)
+        {
+            System.out.println("No training results found");
+            return null;
+        }
     }
 
-    
+    public void makeTeams()
+    {
 
-   
+        ArrayList<Team> teams = data.getTeams();
+        ArrayList<CompetitionSwimmer> swimmers = data.getComptitionSwimmers();
+
+        for (CompetitionSwimmer s : swimmers)
+        {
+
+            if (s.getMembership().equals(Membership.JUNIOR))
+            {
+                teams.get(1).addSwimmer(s);
+            } else
+            {
+                teams.get(0).addSwimmer(s);
+            }
+
+        }
+
+    }
 
 }
