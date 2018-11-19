@@ -135,11 +135,11 @@ public class Main
                 System.out.println(c_result.getTime() + c_result.getRank());
             }
 
-            /*
+            
             System.out.println("______________________________________________");
             System.out.println("Create member");
-            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", 1);
-            dao.getMember("1506952668"); */
+            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE , 1);
+            //dao.getMember("1506952668");
 
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

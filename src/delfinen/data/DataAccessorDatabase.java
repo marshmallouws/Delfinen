@@ -403,10 +403,10 @@ public class DataAccessorDatabase  {
     
     public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id){
         String query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
-                + "address, zipcode, phone, memberstatus)"
+                + "address, zipcode, phone, memberstatus, team_id)"
                 + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
                 + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', '"
-                + memberstatus.toString() + "', " + team_id;
+                + memberstatus.toString() + "', " + team_id + ");";
         
         updateDatabase(query);
         
