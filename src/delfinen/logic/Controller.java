@@ -5,10 +5,6 @@ import java.util.ArrayList;
 public interface Controller
 {
 
-    public Member getMember(String ssn);
-    
-    public ArrayList<Member> getMembers();
-
     public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d);
     
     public ArrayList<CompetitionResult> getCompetitionResult(Member s);

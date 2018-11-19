@@ -5,7 +5,6 @@ import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

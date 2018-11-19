@@ -9,7 +9,6 @@ import delfinen.data.DBConnector;
 import delfinen.data.DataAccessor;
 import delfinen.data.DataAccessorDataBase;
 import delfinen.logic.Member;
-import delfinen.logic.Controller;
 import delfinen.logic.ControllerMember;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  */
 public class GUIMenu extends javax.swing.JFrame
 {
-    private Controller c;
+    private ControllerMember c;
     private ArrayList<Member> members;
 
     public GUIMenu()

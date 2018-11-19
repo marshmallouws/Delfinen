@@ -24,11 +24,10 @@ public class Team {
         swimmers.add(s);
     }
 
-    public void removeSwimmer(String swimmername) {
+    public void removeSwimmer(String ssn) {
         for (CompetitionSwimmer s : swimmers) {
-            String name = s.getFirstname() + s.getLastname();
 
-            if (swimmername == name) {
+            if (ssn.equals(s.getSsn())) {
                 swimmers.remove(s);
             }
         }

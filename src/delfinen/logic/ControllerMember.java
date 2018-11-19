@@ -13,7 +13,6 @@ public class ControllerMember implements Controller
         this.data = data;
     }
 
-    @Override
     public Member getMember(String ssn)
     {
         try
@@ -29,7 +28,6 @@ public class ControllerMember implements Controller
 
     }
 
-    @Override
     public ArrayList<Member> getMembers()
     {
         try
