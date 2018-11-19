@@ -8,9 +8,11 @@ import delfinen.logic.MemberStatus;
 import delfinen.logic.Member;
 import delfinen.logic.Team;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -411,6 +413,18 @@ public class DataAccessorDatabase  {
         updateDatabase(query);
         
     }
+    
+    public void CreateTrainingResult(Member m, Disciplin d, String date, String time){
+        Time t = Time.valueOf(time);
+        Date nDate = Date.valueOf(date);
+        
+        String query = "INSERT INTO training_result (discipline, sw_date, sw_time, member_id"
+                + "VALUES ('" + d + "', '" + nDate + "', '" + t + "', " + m + ");";
+                
+        updateDatabase(query);
+        
+    }
+    
 
     public ArrayList<Team> getTeams() {
         String query = "SELECT * FROM team;";
