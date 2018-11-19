@@ -64,7 +64,7 @@ public class DataAccessorDataBase implements DataAccessor {
 
         ArrayList<Member> members = new ArrayList<>();
         ArrayList<CompetitionSwimmer> com_sw = new ArrayList<>();
-
+       
         try {
             while (rs.next()) {
                 ssn = rs.getString("ssn");
@@ -191,8 +191,10 @@ public class DataAccessorDataBase implements DataAccessor {
                 + "JOIN team ON member.team_id = team.id "
                 + "WHERE discipline = '" + disciplin + "'"
                 + "AND team_name = '" + team.getTeamname() + "' "
-                + "GROUP BY member_id "
+                + "GROUP BY member_id, sw_time, sw_date, firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id "
                 + "ORDER BY MIN(sw_time);";
+        
+        
 
         ResultSet r = query(query);
 

@@ -39,6 +39,7 @@ public class Member
         this.phone = phone;
         this.memberstatus = memberstatus;
         this.yearsPaid = new ArrayList<>();
+        
 
         if (this.getAge(year) >= 18)
         {
