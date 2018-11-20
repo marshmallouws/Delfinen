@@ -146,7 +146,11 @@ public class Main
             
             System.out.println("______________________________________________");
             System.out.println("Create Training Result");
-            dao.CreateTrainingResult(m, Disciplin.CRAWL, date, time);
+            dao.createTrainingResult(m, Disciplin.CRAWL, date, time);
+            
+            System.out.println("______________________________________________");
+            System.out.println("Create Competition result");
+            dao.createCompetitionResult(m, "Greve svømmehal", 6, time, Disciplin.CRAWL);
             
 
         } catch (DataException ex) {

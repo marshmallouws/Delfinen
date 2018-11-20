@@ -416,7 +416,7 @@ public class DataAccessorDatabase  {
         
     }
     
-    public void CreateTrainingResult(Member m, Disciplin d, String date, String time){
+    public void createTrainingResult(Member m, Disciplin d, String date, String time){
         Time t = Time.valueOf(time);
         Date nDate = Date.valueOf(date);
         
@@ -439,6 +439,28 @@ public class DataAccessorDatabase  {
         updateDatabase(query);
     }
     
+    public void createCompetitionResult(Member m, String competition, int rank, String time, Disciplin disciplin){
+        Time t = Time.valueOf(time);
+        
+        int id = 0;
+        
+        String idQuery = "SELECT id FROM member WHERE ssn = " + m.getSsn() + ";";
+        
+        ResultSet r = query(idQuery);
+        
+        try{
+            if(r.next()){
+                id = r.getInt("id");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        String query = "INSERT INTO comp_result (competition, discipline, sw_rank, sw_time, member_id)"
+                + "VALUES('" + competition + "', '" + disciplin.toString() + "', " + rank + ", '" + t + "', " + id + ");";
+        updateDatabase(query);
+        
+    }
 
     public ArrayList<Team> getTeams() {
         String query = "SELECT * FROM team;";
