@@ -40,7 +40,6 @@ public class GUIMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         member = new javax.swing.JButton();
         trainer = new javax.swing.JButton();
-        admin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,15 +64,6 @@ public class GUIMenu extends javax.swing.JFrame {
             }
         });
 
-        admin.setText("Administration");
-        admin.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                adminActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,10 +74,9 @@ public class GUIMenu extends javax.swing.JFrame {
                         .addGap(164, 164, 164)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
+                        .addGap(156, 156, 156)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(member, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(admin)
                             .addComponent(trainer, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
@@ -98,9 +87,7 @@ public class GUIMenu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(46, 46, 46)
                 .addComponent(member)
-                .addGap(18, 18, 18)
-                .addComponent(admin)
-                .addGap(18, 18, 18)
+                .addGap(65, 65, 65)
                 .addComponent(trainer)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
@@ -114,10 +101,10 @@ public class GUIMenu extends javax.swing.JFrame {
         new GUIMemberLogin(members).setVisible(true);
     }//GEN-LAST:event_memberActionPerformed
 
-    private void adminActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_adminActionPerformed
-    {//GEN-HEADEREND:event_adminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminActionPerformed
+    private void trainerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_trainerActionPerformed
+    {//GEN-HEADEREND:event_trainerActionPerformed
+        
+    }//GEN-LAST:event_trainerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,7 +144,6 @@ public class GUIMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton admin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton member;
     private javax.swing.JButton trainer;

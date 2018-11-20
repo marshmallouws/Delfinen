@@ -30,10 +30,9 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="member" min="-2" pref="111" max="-2" attributes="0"/>
-                          <Component id="admin" min="-2" max="-2" attributes="0"/>
                           <Component id="trainer" alignment="1" min="-2" pref="110" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -49,9 +48,7 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="member" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="admin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
               <Component id="trainer" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="80" max="32767" attributes="0"/>
           </Group>
@@ -81,14 +78,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="trainerActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="admin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Administration"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
