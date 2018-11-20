@@ -141,9 +141,13 @@ public class Main
             dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE , 1);
             //dao.getMember("1506952668");
             
+            String time = "00:01:00";
+            String date = "2016-09-11";
+            
             System.out.println("______________________________________________");
             System.out.println("Create Training Result");
             dao.CreateTrainingResult(m, Disciplin.CRAWL, date, time);
+            
 
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

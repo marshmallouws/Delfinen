@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -418,11 +420,23 @@ public class DataAccessorDatabase  {
         Time t = Time.valueOf(time);
         Date nDate = Date.valueOf(date);
         
-        String query = "INSERT INTO training_result (discipline, sw_date, sw_time, member_id"
-                + "VALUES ('" + d + "', '" + nDate + "', '" + t + "', " + m + ");";
-                
-        updateDatabase(query);
+        int id = 0;
         
+        String idQuery = "SELECT id FROM member WHERE ssn = " + m.getSsn() + ";";
+        
+        ResultSet r = query(idQuery);
+        
+        try{
+            if(r.next()){
+                id = r.getInt("id");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        String query = "INSERT INTO training_result (discipline, sw_date, sw_time, member_id) "
+                + "VALUES ('" + d + "', '" + nDate + "', '" + t + "', " + id + ");"; 
+        updateDatabase(query);
     }
     
 
