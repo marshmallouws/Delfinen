@@ -9,9 +9,13 @@ import delfinen.logic.CompetitionResult;
 import delfinen.logic.Disciplin;
 import delfinen.logic.TrainingResult;
 import delfinen.logic.Member;
+import delfinen.logic.MemberStatus;
 import delfinen.logic.Team;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,6 +36,11 @@ public class DataAccessorTest {
         }
 
         da = new DataAccessorDatabase(c);
+    }
+    
+    @After
+    public void tearDown() {
+        
     }
 
     /**
@@ -154,4 +163,113 @@ public class DataAccessorTest {
         assertEquals(res.size(), 6);
         assertEquals(res.get(0).getTime(), time1);
     }
+    
+    @Test
+    public void testCreateMember(){
+        String first = "Lise";
+        String last = "Lotte";
+        String ssn = "1506951234";
+        int year = 1998;
+        String add = "Hejvej 1";
+        String zip = "2550";
+        String phone = "53388469";
+        MemberStatus s = MemberStatus.ACTIVE;
+        int team = 1;
+        
+        Member m = null;
+        da.createMember(first, last, ssn, year, add, zip, phone, s, team);
+        try {
+            m = da.getMember("1506951234");
+        } catch (DataException ex) {
+            ex.printStackTrace();
+        }
+        
+        assertEquals(m.getFirstname(), first);
+        assertEquals(m.getLastname(), last);
+        assertEquals(m.getSsn(), ssn);
+    }
+    
+    @Test
+    public void negativeTestCreateMember(){
+         String first = "Lise";
+        String last = "Lotte";
+        String ssn = "1506951234";
+        int year = 1998;
+        String add = "Hejvej 1";
+        String zip = "2550";
+        String phone = "53388469";
+        MemberStatus s = MemberStatus.ACTIVE;
+        int team = 1;
+        
+        Member m = null;
+        da.createMember(first, last, ssn, year, add, zip, phone, s, team);
+        try {
+            m = da.getMember("1506951234");
+        } catch (DataException | IllegalArgumentException ex) {
+            //Expected
+        }
+    }
+    
+    @Test
+    public void testCreateTrainingResult(){
+        Member m = null;
+        try {
+            m = da.getMember("1506952222");
+        } catch (DataException ex) {
+            ex.printStackTrace();
+        }
+        String date = "2013-11-21";
+        String time = "00:09:11";
+        
+        da.createTrainingResult(m, Disciplin.CRAWL, date, time);
+        ArrayList<TrainingResult> r = da.getTrainingResult(m.getSsn(), Disciplin.CRAWL);
+        TrainingResult t = r.get(r.size()-1);
+        
+        assertEquals(t.getTime(), time);
+        assertEquals(t.getMember().getSsn(), m.getSsn());
+        
+    }
+    
+    @Test
+    public void testCreateCompetitionResult(){
+        Member m = null; 
+        try {
+            m = da.getMember("0809021121");
+        } catch (DataException ex) {
+            ex.printStackTrace();
+        }
+        
+        String time = "00:05:56";
+        da.createCompetitionResult(m, "Sundby bad", 8, time, Disciplin.CRAWL);
+        ArrayList<CompetitionResult> c = da.getCompetitionResult(m.getSsn());
+        CompetitionResult r = c.get(c.size()-1);
+        
+        assertEquals(r.getTime(), time);
+        assertEquals(r.getMember().getSsn(), m.getSsn());
+    }
+    
+    @Test 
+    public void testGetTeams(){
+        ArrayList<Team> teams = da.getTeams();
+        int expected = 2;
+        int actual = teams.size();
+        
+        assertEquals(actual, expected);
+    }
+    
+    @Test
+    public void testUpdateMember(){
+        String change = "Peiter";
+        da.updateMember("0412038089", change, "firstname");
+        Member m = null;
+        try {
+            m = da.getMember("0412038089");
+        } catch (DataException ex) {
+            ex.printStackTrace();
+        }
+        
+        assertEquals(m.getFirstname(), change);
+        
+    }
+    
 }
