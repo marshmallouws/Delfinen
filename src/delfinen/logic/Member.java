@@ -39,7 +39,6 @@ public class Member
         this.phone = phone;
         this.memberstatus = memberstatus;
         this.yearsPaid = new ArrayList<>();
-        
 
         if (this.getAge(year) >= 18)
         {
@@ -106,6 +105,12 @@ public class Member
         return lastname;
     }
 
+    public String getName()
+    {
+
+        return firstname + " " + lastname;
+    }
+
     public String getSsn()
     {
         return ssn;
@@ -140,12 +145,13 @@ public class Member
     {
         return membership;
     }
-    
+
     public double calculateS()
     {
         try
-        {  
-            if(this.getAge(year) < 0){
+        {
+            if (this.getAge(year) < 0)
+            {
                 throw new IllegalArgumentException();
             }
 

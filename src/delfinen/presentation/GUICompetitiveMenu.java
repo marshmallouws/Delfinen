@@ -5,7 +5,6 @@
  */
 package delfinen.presentation;
 
-import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.Member;
 
 /**

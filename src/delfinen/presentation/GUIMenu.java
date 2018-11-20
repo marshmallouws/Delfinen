@@ -5,7 +5,6 @@
  */
 package delfinen.presentation;
 
-import delfinen.logic.Controller;
 import delfinen.logic.Member;
 import delfinen.logic.ControllerMember;
 import java.util.ArrayList;
@@ -58,8 +57,22 @@ public class GUIMenu extends javax.swing.JFrame {
         });
 
         trainer.setText("Trainer");
+        trainer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                trainerActionPerformed(evt);
+            }
+        });
 
         admin.setText("Administration");
+        admin.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                adminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +113,11 @@ public class GUIMenu extends javax.swing.JFrame {
         this.setVisible(false);
         new GUIMemberLogin(members).setVisible(true);
     }//GEN-LAST:event_memberActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_adminActionPerformed
+    {//GEN-HEADEREND:event_adminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_adminActionPerformed
 
     /**
      * @param args the command line arguments

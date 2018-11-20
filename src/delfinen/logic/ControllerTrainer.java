@@ -7,20 +7,23 @@ import java.util.ArrayList;
 
 public class ControllerTrainer implements Controller
 {
-    
-    private DBConnector c = null;
-    private DataAccessorDatabase data = null;
-    
-    public ControllerTrainer(){
-        try {
+
+    private DBConnector c;
+    private DataAccessorDatabase data;
+
+    public ControllerTrainer()
+    {
+        try
+        {
             c = new DBConnector();
-        } catch (SQLException ex) {
+            data = new DataAccessorDatabase(c);
+
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
-        data = new DataAccessorDatabase(c);
 
     }
-
 
     public ArrayList<CompetitionSwimmer> getSwimmers()
     {
@@ -40,7 +43,7 @@ public class ControllerTrainer implements Controller
     @Override
     public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d)
     {
-         try
+        try
         {
             ArrayList<TrainingResult> tr = data.getTrainingResult(s.getSsn(), d);
             return tr;
@@ -55,12 +58,12 @@ public class ControllerTrainer implements Controller
     @Override
     public void updateMember(Member m, String field, String change)
     {
-        data.updateMember(m.getSsn(), change, field); 
+        data.updateMember(m.getSsn(), change, field);
     }
 
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Member s)
-    { 
+    {
         try
         {
             ArrayList<CompetitionResult> cr = data.getCompetitionResult(s.getSsn());
@@ -73,10 +76,15 @@ public class ControllerTrainer implements Controller
         }
     }
 
-    public void makeTeams()
+    public ArrayList<Team> getTeams()
+    {
+        return data.getTeams();
+
+    }
+
+    public void makeTeams(ArrayList<Team> teams)
     {
 
-        ArrayList<Team> teams = data.getTeams();
         ArrayList<CompetitionSwimmer> swimmers = data.getComptitionSwimmers();
 
         for (CompetitionSwimmer s : swimmers)
@@ -92,6 +100,11 @@ public class ControllerTrainer implements Controller
 
         }
 
+    }
+    
+    public ArrayList<TrainingResult> top5(Team team, Disciplin d){
+        
+        return data.getTop5(d, team);
     }
 
 }

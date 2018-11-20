@@ -8,16 +8,20 @@ import java.util.ArrayList;
 public class ControllerMember implements Controller
 {
 
-    private DBConnector c = null;
-    private DataAccessorDatabase data = null;
-    
-    public ControllerMember(){
-        try {
+    private DBConnector c;
+    private DataAccessorDatabase data;
+
+    public ControllerMember()
+    {
+        try
+        {
             c = new DBConnector();
-        } catch (SQLException ex) {
+            data = new DataAccessorDatabase(c);
+
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
-        data = new DataAccessorDatabase(c);
     }
 
     public Member getMember(String ssn)

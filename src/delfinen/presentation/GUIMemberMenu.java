@@ -93,7 +93,6 @@ public class GUIMemberMenu extends javax.swing.JFrame
 
     private void memberinfoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_memberinfoActionPerformed
     {//GEN-HEADEREND:event_memberinfoActionPerformed
- 
         this.setVisible(false);
         new GUIMemberInformation(ml).setVisible(true);
     }//GEN-LAST:event_memberinfoActionPerformed

@@ -31,7 +31,7 @@ public class GUITrainerMenu extends javax.swing.JFrame {
         teams = new javax.swing.JButton();
         back = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        top5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +58,14 @@ public class GUITrainerMenu extends javax.swing.JFrame {
 
         jButton2.setText("Register result");
 
-        jButton1.setText("Top 5");
+        top5.setText("Top 5");
+        top5.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                top5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,7 +79,7 @@ public class GUITrainerMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(108, 108, 108)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(top5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(teams, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -87,7 +94,7 @@ public class GUITrainerMenu extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(teams)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(top5)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -110,6 +117,12 @@ public class GUITrainerMenu extends javax.swing.JFrame {
         this.setVisible(false);
         new GUIMenu().setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void top5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_top5ActionPerformed
+    {//GEN-HEADEREND:event_top5ActionPerformed
+        this.setVisible(false);
+        new GUIChooseTeam().setVisible(true);
+    }//GEN-LAST:event_top5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,10 +161,10 @@ public class GUITrainerMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton teams;
+    private javax.swing.JButton top5;
     // End of variables declaration//GEN-END:variables
 
 }

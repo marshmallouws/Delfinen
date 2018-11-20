@@ -5,6 +5,11 @@
  */
 package delfinen.presentation;
 
+import delfinen.logic.CompetitionSwimmer;
+import delfinen.logic.ControllerTrainer;
+import delfinen.logic.Team;
+import java.util.ArrayList;
+
 /**
  *
  * @author sofieamalielandt
@@ -12,12 +17,26 @@ package delfinen.presentation;
 public class GUITeams extends javax.swing.JFrame
 {
 
-    /**
-     * Creates new form GUITeams
-     */
+   private ControllerTrainer c;
+    
     public GUITeams()
     {
         initComponents();
+        
+            c = new ControllerTrainer();
+         
+         ArrayList<CompetitionSwimmer> swimmers = c.getSwimmers();
+         ArrayList<Team> teams = c.getTeams();
+         c.makeTeams(teams);
+         
+         teams.get(0).getSwimmers(); //senior
+         teams.get(1).getSwimmers(); //junior
+         
+         for( CompetitionSwimmer s : teams.get(0).getSwimmers()){
+             
+           
+         }       
+         
     }
 
     /**
