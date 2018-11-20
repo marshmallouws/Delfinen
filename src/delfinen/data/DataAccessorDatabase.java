@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -131,8 +133,7 @@ public class DataAccessorDatabase  {
     }
 
     public ArrayList<Member> getMembers() throws DataException {
-        String query = "SELECT ssn, firstname, lastname, birthyear, address,"
-                + "zipcode, phone, memberstatus, team_id FROM member;";
+        String query = "SELECT * FROM member;"; 
 
         ResultSet r = query(query);
         ArrayList<Member> members = retrieveMembersData(r);
@@ -141,8 +142,7 @@ public class DataAccessorDatabase  {
     
 
     public ArrayList<CompetitionSwimmer> getComptitionSwimmers() {
-        String query = "SELECT ssn, firstname, lastname, birthyear, address, "
-                + "zipcode, phone, memberstatus, team_id FROM member;";
+        String query = "SELECT * FROM member;"; 
         
         ResultSet r = query(query);
         ArrayList<CompetitionSwimmer> sw = retrieveCompSwimmerData(r);
@@ -151,8 +151,9 @@ public class DataAccessorDatabase  {
 
 
     public Member getMember(String ssn) throws DataException {
-        String query = "SELECT ssn, firstname, lastname, birthyear, "
-                + "address, zipcode, phone, memberstatus, team_id FROM member WHERE ssn ='" + ssn + "';";
+        String query = "SELECT * FROM member "
+                + "WHERE ssn ='" + ssn + "';";
+        
         ResultSet r = query(query);
         ArrayList<Member> members = retrieveMembersData(r);
         CompetitionSwimmer c = null;
@@ -173,9 +174,8 @@ public class DataAccessorDatabase  {
     
     
     public Member getMember(String firstname, String lastname) {
-        String query = "SELECT ssn, firstname, lastname, birthyear, "
-                + "address, zipcode, phone, memberstatus, team_id FROM member WHERE "
-                + "firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
+        String query = "SELECT * FROM member "
+                + "WHERE firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
 
         ResultSet r = query(query);
         ArrayList<Member> members = retrieveMembersData(r);
@@ -239,9 +239,7 @@ public class DataAccessorDatabase  {
 
 
     public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d) {
-        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, sw_time, sw_date, team_id, discipline "
-                + "FROM member "
+        String query = "SELECT member.*, sw_time, sw_date, discipline FROM member "
                 + "JOIN training_result ON member_id = member.id "
                 + "WHERE ssn = '" + ssn + "' "
                 + "AND discipline = '" + d + "' "
@@ -278,12 +276,11 @@ public class DataAccessorDatabase  {
     }
 
     public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
-        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, sw_time, sw_date, discipline, team_id "
-                + "FROM member "
+        String query = "SELECT member.*, sw_time, sw_date, discipline FROM member "
                 + "JOIN training_result ON member_id = member.id "
                 + "WHERE discipline = '" + d + "' "
                 + "ORDER BY sw_time ASC;";
+        
         ResultSet r = query(query);
 
         ArrayList<TrainingResult> res = new ArrayList<>();
@@ -315,9 +312,7 @@ public class DataAccessorDatabase  {
     }
 
     public ArrayList<CompetitionResult> getCompetitionResult(String ssn) {
-        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, competition, sw_rank, sw_time, discipline, team_id "
-                + "FROM member "
+        String query = "SELECT member.*, competition, sw_rank, sw_time, discipline FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE ssn = '" + ssn + "' "
                 + "ORDER BY sw_time ASC; ";
@@ -358,9 +353,7 @@ public class DataAccessorDatabase  {
     }
 
     public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
-        String query = "SELECT ssn, firstname, lastname, birthyear, address, zipcode, phone, "
-                + "memberstatus, competition, sw_rank, sw_time, discipline, team_id "
-                + "FROM member "
+        String query = "SELECT member.*, competition, sw_rank, sw_time, discipline FROM member "
                 + "JOIN comp_result ON member_id = member.id "
                 + "WHERE discipline = '" + d + "' "
                 + "ORDER BY sw_time ASC; ";
@@ -413,17 +406,51 @@ public class DataAccessorDatabase  {
         
     }
     
-    public void CreateTrainingResult(Member m, Disciplin d, String date, String time){
+    public void createTrainingResult(Member m, Disciplin d, String date, String time){
         Time t = Time.valueOf(time);
         Date nDate = Date.valueOf(date);
         
-        String query = "INSERT INTO training_result (discipline, sw_date, sw_time, member_id"
-                + "VALUES ('" + d + "', '" + nDate + "', '" + t + "', " + m + ");";
-                
+        int id = 0;
+        
+        String idQuery = "SELECT id FROM member WHERE ssn = " + m.getSsn() + ";";
+        
+        ResultSet r = query(idQuery);
+        
+        try{
+            if(r.next()){
+                id = r.getInt("id");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        String query = "INSERT INTO training_result (discipline, sw_date, sw_time, member_id) "
+                + "VALUES ('" + d + "', '" + nDate + "', '" + t + "', " + id + ");"; 
+        updateDatabase(query);
+    }
+    
+    public void createCompetitionResult(Member m, String competition, int rank, String time, Disciplin disciplin){
+        Time t = Time.valueOf(time);
+        
+        int id = 0;
+        
+        String idQuery = "SELECT id FROM member WHERE ssn = " + m.getSsn() + ";";
+        
+        ResultSet r = query(idQuery);
+        
+        try{
+            if(r.next()){
+                id = r.getInt("id");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        String query = "INSERT INTO comp_result (competition, discipline, sw_rank, sw_time, member_id)"
+                + "VALUES('" + competition + "', '" + disciplin.toString() + "', " + rank + ", '" + t + "', " + id + ");";
         updateDatabase(query);
         
     }
-    
 
     public ArrayList<Team> getTeams() {
         String query = "SELECT * FROM team;";
