@@ -185,14 +185,14 @@ public class DataAccessorDatabase  {
     
     //TODO - strip arraylist to size 5
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Team team) {
-        String query = "SELECT MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
+        String query = "SELECT member_id, MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, memberstatus, team_id "
                 + "FROM training_result "
                 + "JOIN member ON member_id = member.id "
                 + "JOIN team ON team_id = team.id "
                 + "WHERE discipline = '" + disciplin + "'"
                 + "AND team_name = '" + team.getTeamname() + "' "
-                + "GROUP BY member_id, sw_date "
+                + "GROUP BY member_id, firstname, team_name, sw_date "
                 + "ORDER BY MIN(sw_time);";
 
 
