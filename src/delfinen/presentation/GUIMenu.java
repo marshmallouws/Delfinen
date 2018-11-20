@@ -58,6 +58,13 @@ public class GUIMenu extends javax.swing.JFrame {
         });
 
         trainer.setText("Trainer");
+        trainer.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                trainerActionPerformed(evt);
+            }
+        });
 
         admin.setText("Administration");
 
@@ -100,6 +107,11 @@ public class GUIMenu extends javax.swing.JFrame {
         this.setVisible(false);
         new GUIMemberLogin(members).setVisible(true);
     }//GEN-LAST:event_memberActionPerformed
+
+    private void trainerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_trainerActionPerformed
+    {//GEN-HEADEREND:event_trainerActionPerformed
+        
+    }//GEN-LAST:event_trainerActionPerformed
 
     /**
      * @param args the command line arguments
