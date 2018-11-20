@@ -103,7 +103,7 @@ public class GUIMenu extends javax.swing.JFrame {
 
     private void trainerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_trainerActionPerformed
     {//GEN-HEADEREND:event_trainerActionPerformed
-        this.setAlwaysOnTop(false);
+        this.setVisible(false);
         new GUITrainerMenu().setVisible(true);
     }//GEN-LAST:event_trainerActionPerformed
 
