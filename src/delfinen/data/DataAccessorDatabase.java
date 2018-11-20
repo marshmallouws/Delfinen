@@ -188,14 +188,13 @@ public class DataAccessorDatabase  {
         String query = "SELECT MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, memberstatus, team_id "
                 + "FROM training_result "
-                + "JOIN member ON member_id = member.id "
-                + "JOIN team ON member.team_id = team.id "
+                + "JOIN member ON member_id = id "
+                + "JOIN team ON team_id = id "
                 + "WHERE discipline = '" + disciplin + "'"
                 + "AND team_name = '" + team.getTeamname() + "' "
-                + "GROUP BY member_id, sw_time, sw_date, firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id "
+                + "GROUP BY member_id, sw_date "
                 + "ORDER BY MIN(sw_time);";
-        
-        
+
 
         ResultSet r = query(query);
 
