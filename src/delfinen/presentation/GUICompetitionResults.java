@@ -7,9 +7,7 @@ package delfinen.presentation;
 
 import delfinen.logic.CompetitionResult;
 import delfinen.logic.ControllerMember;
-import delfinen.logic.Disciplin;
 import delfinen.logic.Member;
-import delfinen.logic.TrainingResult;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +23,8 @@ public class GUICompetitionResults extends javax.swing.JFrame
     public GUICompetitionResults(Member s)
     {
         initComponents();
-
+        
+        this.s = s;
         c = new ControllerMember();
 
         Tcompetition.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Competition");

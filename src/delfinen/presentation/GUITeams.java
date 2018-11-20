@@ -17,26 +17,32 @@ import java.util.ArrayList;
 public class GUITeams extends javax.swing.JFrame
 {
 
-   private ControllerTrainer c;
-    
+    private ControllerTrainer c;
+    private ArrayList<Team> teams;
+    private CompetitionSwimmer fs;
+
     public GUITeams()
     {
         initComponents();
-        
-            c = new ControllerTrainer();
-         
-         ArrayList<CompetitionSwimmer> swimmers = c.getSwimmers();
-         ArrayList<Team> teams = c.getTeams();
-         c.makeTeams(teams);
-         
-         teams.get(0).getSwimmers(); //senior
-         teams.get(1).getSwimmers(); //junior
-         
-         for( CompetitionSwimmer s : teams.get(0).getSwimmers()){
-             
-           
-         }       
-         
+
+        c = new ControllerTrainer();
+
+        teams = c.getTeams();
+        c.makeTeams(teams);
+
+        teams.get(0).getSwimmers(); //senior
+        teams.get(1).getSwimmers(); //junior
+
+        for (CompetitionSwimmer s : teams.get(0).getSwimmers())
+        {
+            sswimmers.addItem(s.getName());
+        }
+
+        for (CompetitionSwimmer s : teams.get(1).getSwimmers())
+        {
+            jswimmers.addItem(s.getName());
+        }
+
     }
 
     /**
@@ -50,34 +56,18 @@ public class GUITeams extends javax.swing.JFrame
     {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        sswimmers = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jswimmers = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         goback = new javax.swing.JButton();
+        sswimmers = new javax.swing.JComboBox<>();
+        jswimmers = new javax.swing.JComboBox<>();
+        shows = new javax.swing.JButton();
+        showj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Teams");
-
-        sswimmers.setModel(new javax.swing.AbstractListModel<String>()
-        {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(sswimmers);
-
-        jswimmers.setModel(new javax.swing.AbstractListModel<String>()
-        {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jswimmers);
 
         jLabel2.setText("SENIOR");
 
@@ -92,22 +82,34 @@ public class GUITeams extends javax.swing.JFrame
             }
         });
 
+        shows.setText("Show member");
+        shows.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                showsActionPerformed(evt);
+            }
+        });
+
+        showj.setText("Show member");
+        showj.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                showjActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(76, 76, 76)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(81, 81, 81))
+                .addGap(72, 72, 72))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -117,23 +119,35 @@ public class GUITeams extends javax.swing.JFrame
                         .addGap(16, 16, 16)
                         .addComponent(goback)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showj)
+                    .addComponent(jswimmers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(shows, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sswimmers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(shows)
+                    .addComponent(showj))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sswimmers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jswimmers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(goback)
                 .addGap(19, 19, 19))
         );
@@ -146,6 +160,38 @@ public class GUITeams extends javax.swing.JFrame
         this.setVisible(false);
         new GUITrainerMenu().setVisible(true);
     }//GEN-LAST:event_gobackActionPerformed
+
+    private void showsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_showsActionPerformed
+    {//GEN-HEADEREND:event_showsActionPerformed
+        String name = (String) this.sswimmers.getSelectedItem();
+        for (CompetitionSwimmer s : teams.get(0).getSwimmers())
+        {
+            if (s.getName().equals(name))
+            {
+                fs = s;
+                break;
+            }
+        }
+         
+        this.setVisible(false);
+        new GUIShowSwimmer(fs).setVisible(true);
+    }//GEN-LAST:event_showsActionPerformed
+
+    private void showjActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_showjActionPerformed
+    {//GEN-HEADEREND:event_showjActionPerformed
+        String name = (String) this.jswimmers.getSelectedItem();
+        for (CompetitionSwimmer s : teams.get(1).getSwimmers())
+        {
+            if (s.getName().equals(name))
+            {
+                fs = s;
+                break;
+            }
+        }
+        
+        this.setVisible(false);
+        new GUIShowSwimmer(fs).setVisible(true);
+    }//GEN-LAST:event_showjActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,7 +233,7 @@ public class GUITeams extends javax.swing.JFrame
         {
             public void run()
             {
-                new GUITeams().setVisible(true);
+
             }
         });
     }
@@ -197,9 +243,9 @@ public class GUITeams extends javax.swing.JFrame
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> jswimmers;
-    private javax.swing.JList<String> sswimmers;
+    private javax.swing.JComboBox<String> jswimmers;
+    private javax.swing.JButton showj;
+    private javax.swing.JButton shows;
+    private javax.swing.JComboBox<String> sswimmers;
     // End of variables declaration//GEN-END:variables
 }

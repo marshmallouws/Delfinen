@@ -116,7 +116,7 @@ public class GUITrainerMenu extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_teamsActionPerformed
 
         this.setVisible(false);
-        //new GUIMemberInformation(ml).setVisible(true);
+        new GUITeams().setVisible(true);
     }//GEN-LAST:event_teamsActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
