@@ -10,6 +10,7 @@ import delfinen.data.DBConnector;
 import delfinen.data.DataAccessorDatabase;
 import delfinen.data.DataException;
 import delfinen.logic.CompetitionSwimmer;
+import delfinen.logic.ControllerAdmin;
 import delfinen.logic.Disciplin;
 import delfinen.logic.Member;
 import delfinen.logic.MemberStatus;
@@ -36,7 +37,8 @@ public class Main
             } catch (SQLException ex) {
                 ex.getMessage();
             }
-
+            
+            ControllerAdmin admin = new ControllerAdmin();
             ArrayList<Member> members = dao.getMembers();
 
             System.out.println("_________________________________________");

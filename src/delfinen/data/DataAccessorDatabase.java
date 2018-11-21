@@ -28,6 +28,11 @@ public class DataAccessorDatabase  {
         this.connector = connector;
     }
 
+    /**
+     * 
+     * @param query a query in MySQL format.
+     * @return 0 if the query fails and 1 if the query succeeds
+     */
     private int updateDatabase(String query) {
         int rs = 0;
         try {
@@ -41,6 +46,11 @@ public class DataAccessorDatabase  {
         return rs;
     }
 
+    /**
+     * 
+     * @param query a query in MySQL format.
+     * @return ResultSet with the data that the query retrieves.
+     */
     private ResultSet query(String query) {
         ResultSet rs = null;
         try {
@@ -54,6 +64,11 @@ public class DataAccessorDatabase  {
         return rs;
     }
 
+    /**
+     * 
+     * @param rs ResultSet with data
+     * @return ArrayList of members
+     */
     private ArrayList<Member> retrieveMembersData(ResultSet rs) {
         String ssn = "";
         String firstname = "";
@@ -96,6 +111,11 @@ public class DataAccessorDatabase  {
         return members;
     }
     
+     /**
+     * 
+     * @param rs ResultSet with data
+     * @return ArrayList of CompetitionSwimmers
+     */
     private ArrayList<CompetitionSwimmer> retrieveCompSwimmerData(ResultSet rs){
         ArrayList<CompetitionSwimmer> c = new ArrayList<>();
         
@@ -135,6 +155,11 @@ public class DataAccessorDatabase  {
         return c;
     }
 
+    /**
+     * 
+     * @return ArrayList of all members in the database
+     * @throws DataException
+     */
     public ArrayList<Member> getMembers() throws DataException {
         String query = "SELECT * FROM member;"; 
 
@@ -143,6 +168,10 @@ public class DataAccessorDatabase  {
         return members;
     }
     
+    /**
+     * 
+     * @return an ArrayList of all CompetitionSwimmers in the database
+     */
 
     public ArrayList<CompetitionSwimmer> getComptitionSwimmers() {
         String query = "SELECT * FROM member;"; 
@@ -152,6 +181,12 @@ public class DataAccessorDatabase  {
         return sw;
     }
 
+    /**
+     * 
+     * @param ssn is used to search for a specific Member
+     * @return the member with the given ssn.
+     * @throws DataException 
+     */
 
     public Member getMember(String ssn) throws DataException {
         String query = "SELECT * FROM member "
@@ -175,7 +210,12 @@ public class DataAccessorDatabase  {
         }
     }
     
-    
+    /**
+     * 
+     * @param firstname used to search for Member
+     * @param lastname used to search for Member
+     * @return Member with the given first- and lastname
+     */
     public Member getMember(String firstname, String lastname) {
         String query = "SELECT * FROM member "
                 + "WHERE firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
@@ -185,8 +225,12 @@ public class DataAccessorDatabase  {
         return members.get(0);
     }
 
-    
-    //TODO - strip arraylist to size 5
+    /**
+     * 
+     * @param disciplin used to tell which discipline the top 5 is from
+     * @param team used to say if it is senior or junior team
+     * @return a list of top 5 training results with given parameters
+     */
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Team team) {
         String query = "SELECT member_id, MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, memberstatus, last_payment, team_id "
