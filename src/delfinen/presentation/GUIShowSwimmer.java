@@ -179,6 +179,13 @@ public class GUIShowSwimmer extends javax.swing.JFrame
         });
 
         Cbutton.setText("Register new  ");
+        Cbutton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                CbuttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,6 +254,12 @@ public class GUIShowSwimmer extends javax.swing.JFrame
        this.setVisible(false);
        new GUIRegisterTraining(s).setVisible(true);
     }//GEN-LAST:event_TbuttonActionPerformed
+
+    private void CbuttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_CbuttonActionPerformed
+    {//GEN-HEADEREND:event_CbuttonActionPerformed
+        this.setVisible(false);
+        new GUIRegisterCompetition(s).setVisible(true);
+    }//GEN-LAST:event_CbuttonActionPerformed
 
     /**
      * @param args the command line arguments

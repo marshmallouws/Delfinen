@@ -113,9 +113,9 @@ public class ControllerTrainer implements Controller
         data.createTrainingResult(s, d, date, time); 
     }
     
-    public void registerCompetition(CompetitionSwimmer s, int rank, String time, String Competition, Disciplin d)
+    public void registerCompetition(CompetitionSwimmer s, String competition, int rank, String time, Disciplin disciplin)
     {
-        data.createCompetitionResult(s, Competition, rank, time, d);
+        data.createCompetitionResult(s, competition, rank, time, disciplin);
     }
     
 }
