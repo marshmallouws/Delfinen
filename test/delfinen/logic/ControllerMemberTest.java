@@ -63,7 +63,7 @@ public class ControllerMemberTest
 
         }
     }
-    
+
     @Test
     public void testGetTrainingResult()
     {
@@ -76,15 +76,14 @@ public class ControllerMemberTest
             assertEquals("00:01:55", test.get(0).getTime());
             assertEquals("2018-11-13", test.get(0).getDate());
             assertEquals(2, test.size());
-            
+
         } catch (Exception ex)
         {
             fail(ex.getMessage());
 
         }
     }
-    
-    
+
     @Test
     public void testGetCompeptitionResult()
     {
@@ -97,7 +96,7 @@ public class ControllerMemberTest
             assertEquals("00:02:01", test.get(0).getTime());
             assertEquals("Holbæk svømmehal", test.get(0).getCompetition());
             assertEquals(1, test.size());
-            
+
         } catch (Exception ex)
         {
             fail(ex.getMessage());
@@ -105,6 +104,5 @@ public class ControllerMemberTest
         }
     }
 
- 
 
 }

@@ -49,7 +49,7 @@ public class DataAccessorTest {
     @Test
     public void testGetMembers() throws DataException {
         assertNotNull(da.getMembers());
-        int expected = 12;
+        int expected = 13;
         int actual = da.getMembers().size();
         assertEquals(expected, actual);
     }
@@ -136,7 +136,7 @@ public class DataAccessorTest {
         ArrayList<TrainingResult> res = da.getTrainingResult(Disciplin.CRAWL);
         
         String time1 = "00:01:48";
-        assertEquals(res.size(), 21);
+        assertEquals(res.size(), 22);
         assertEquals(res.get(0).getTime(), time1);
     }
 
@@ -160,7 +160,7 @@ public class DataAccessorTest {
         ArrayList<CompetitionResult> res = da.getCompetitionResult(Disciplin.CRAWL);
         
         String time1 = "00:01:50";
-        assertEquals(res.size(), 6);
+        assertEquals(res.size(), 7);
         assertEquals(res.get(0).getTime(), time1);
     }
     
@@ -177,7 +177,7 @@ public class DataAccessorTest {
         int team = 1;
         
         Member m = null;
-        da.createMember(first, last, ssn, year, add, zip, phone, s,2017, team);
+        da.createMember(first, last, ssn, year, add, zip, phone, s, team);
         try {
             m = da.getMember("1506951234");
         } catch (DataException ex) {
@@ -202,7 +202,7 @@ public class DataAccessorTest {
         int team = 1;
         
         Member m = null;
-        da.createMember(first, last, ssn, year, add, zip, phone, s, 2017, team);
+        da.createMember(first, last, ssn, year, add, zip, phone, s, team);
         try {
             m = da.getMember("1506951234");
         } catch (DataException | IllegalArgumentException ex) {

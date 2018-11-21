@@ -19,9 +19,6 @@ public class ControllerTrainerTest
 
     }
 
-    /**
-     * Test of getSwimmers method, of class ControllerTrainer.
-     */
     @Test
     public void testGetSwimmers()
     {
@@ -42,25 +39,6 @@ public class ControllerTrainerTest
         }
     }
 
-    /**
-     * Test of updateMember method, of class ControllerTrainer.
-     */
-    @Test
-    public void testUpdateMember()
-    {
-        System.out.println("updateMember");
-        Member m = null;
-        String field = "";
-        String change = "";
-        ControllerTrainer instance = new ControllerTrainer();
-        instance.updateMember(m, field, change);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTeams method, of class ControllerTrainer.
-     */
     @Test
     public void testGetTeams()
     {
@@ -78,23 +56,25 @@ public class ControllerTrainerTest
 
     }
 
-    /**
-     * Test of makeTeams method, of class ControllerTrainer.
-     */
     @Test
     public void testMakeTeams()
     {
-        System.out.println("makeTeams");
-        ArrayList<Team> teams = null;
-        ControllerTrainer instance = new ControllerTrainer();
-        instance.makeTeams(teams);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try
+        {
+            ArrayList<Team> teams = controller.getTeams();
+            assertEquals(true, teams.get(0).getSwimmers().isEmpty());
+            assertEquals(true, teams.get(1).getSwimmers().isEmpty());
+            controller.makeTeams(teams);
+            assertEquals(false, teams.get(0).getSwimmers().isEmpty());
+            assertEquals(false, teams.get(1).getSwimmers().isEmpty());
+            assertEquals(Membership.JUNIOR, teams.get(1).getSwimmers().get(0).getMembership());
+            assertEquals(Membership.SENIOR, teams.get(0).getSwimmers().get(0).getMembership());
+        } catch (Exception ex)
+        {
+            fail(ex.getMessage());
+        }
     }
 
-    /**
-     * Test of top5 method, of class ControllerTrainer.
-     */
     @Test
     public void testTop5()
     {
@@ -102,48 +82,28 @@ public class ControllerTrainerTest
         {
             ArrayList<Team> teams = controller.getTeams();
             ArrayList<TrainingResult> t = controller.top5(teams.get(1), Disciplin.BACKCRAWL);
-            assertEquals("2018-10-13", t.get(0).getDate());
-            assertEquals("00:02:20", t.get(0).getTime());
-            assertEquals("Åge", t.get(1).getMember().getFirstname());
+            assertEquals("2017-11-10", t.get(0).getDate());
+            assertEquals("00:01:00", t.get(0).getTime());
+            assertEquals("Hans", t.get(1).getMember().getFirstname());
+
+            ArrayList<TrainingResult> t1 = controller.top5(teams.get(0), Disciplin.BUTTERFLY);
+            assertEquals("2018-11-13", t1.get(0).getDate());
+            assertEquals("00:04:30", t1.get(0).getTime());
+            assertEquals("Åge", t1.get(1).getMember().getFirstname());
+
+            ArrayList<TrainingResult> t2 = controller.top5(teams.get(0), Disciplin.BREASTSTROKE);
+            assertEquals("2018-11-13", t2.get(1).getDate());
+            assertEquals("00:06:21", t2.get(2).getTime());
+            assertEquals("1804955455", t2.get(2).getMember().getSsn());
+
+            ArrayList<TrainingResult> t3 = controller.top5(teams.get(1), Disciplin.CRAWL);
+            assertEquals("2017-11-10", t3.get(4).getDate());
+            assertEquals("00:01:55", t3.get(1).getTime());
+            assertEquals("2202014547", t3.get(1).getMember().getSsn());
         } catch (Exception ex)
         {
             fail(ex.getMessage());
         }
-    }
-
-    /**
-     * Test of registerTraining method, of class ControllerTrainer.
-     */
-    @Test
-    public void testRegisterTraining()
-    {
-        System.out.println("registerTraining");
-        CompetitionSwimmer s = null;
-        String date = "";
-        String time = "";
-        Disciplin d = null;
-        ControllerTrainer instance = new ControllerTrainer();
-        instance.registerTraining(s, date, time, d);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of registerCompetition method, of class ControllerTrainer.
-     */
-    @Test
-    public void testRegisterCompetition()
-    {
-        System.out.println("registerCompetition");
-        CompetitionSwimmer s = null;
-        String competition = "";
-        int rank = 0;
-        String time = "";
-        Disciplin disciplin = null;
-        ControllerTrainer instance = new ControllerTrainer();
-        instance.registerCompetition(s, competition, rank, time, disciplin);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

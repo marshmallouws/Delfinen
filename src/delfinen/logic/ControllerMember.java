@@ -61,7 +61,7 @@ public class ControllerMember implements Controller
         {
             ArrayList<TrainingResult> tr = data.getTrainingResult(s.getSsn(), d);
             return tr;
-            
+
         } catch (Exception ex)
         {
             System.out.println("No training results found");
@@ -70,15 +70,14 @@ public class ControllerMember implements Controller
 
     }
 
-
-@Override
-        public void updateMember(Member m, String change, String field)
+    @Override
+    public void updateMember(Member m, String change, String field)
     {
         data.updateMember(m.getSsn(), change, field);
     }
 
     @Override
-        public ArrayList<CompetitionResult> getCompetitionResult(Member s)
+    public ArrayList<CompetitionResult> getCompetitionResult(Member s)
     {
         try
         {
