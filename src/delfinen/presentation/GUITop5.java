@@ -25,72 +25,52 @@ public class GUITop5 extends javax.swing.JFrame
 
         c = new ControllerTrainer();
 
-        tcrawl.getTableHeader()
-                .getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tcrawl.getTableHeader()
-                .getColumnModel().getColumn(1).setHeaderValue("Date");
-        tcrawl.getTableHeader()
-                .getColumnModel().getColumn(2).setHeaderValue("Time");
+        tcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
+        tcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
+        tcrawl.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
 
         ArrayList<TrainingResult> crawl = c.top5(team, Disciplin.CRAWL);
 
-        for (int i = 0;
-                i < crawl.size();
-                i++)
+        for (int i = 0; i < crawl.size(); i++)
         {
             tcrawl.getModel().setValueAt(crawl.get(i).getMember().getName(), i, 0);
             tcrawl.getModel().setValueAt(crawl.get(i).getDate(), i, 1);
             tcrawl.getModel().setValueAt(crawl.get(i).getTime(), i, 2);
         }
 
-        tbutterfly.getTableHeader()
-                .getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tbutterfly.getTableHeader()
-                .getColumnModel().getColumn(1).setHeaderValue("Date");
-        tbutterfly.getTableHeader()
-                .getColumnModel().getColumn(2).setHeaderValue("Time");
+        tbutterfly.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
+        tbutterfly.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
+        tbutterfly.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
 
         ArrayList<TrainingResult> butterfly = c.top5(team, Disciplin.BUTTERFLY);
 
-        for (int i = 0;
-                i < butterfly.size();
-                i++)
+        for (int i = 0; i < butterfly.size(); i++)
         {
             tbutterfly.getModel().setValueAt(butterfly.get(i).getMember().getName(), i, 0);
             tbutterfly.getModel().setValueAt(butterfly.get(i).getDate(), i, 1);
             tbutterfly.getModel().setValueAt(butterfly.get(i).getTime(), i, 2);
         }
 
-        tbreaststroke.getTableHeader()
-                .getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tbreaststroke.getTableHeader()
-                .getColumnModel().getColumn(1).setHeaderValue("Date");
-        tbreaststroke.getTableHeader()
-                .getColumnModel().getColumn(2).setHeaderValue("Time");
+        tbreaststroke.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
+        tbreaststroke.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
+        tbreaststroke.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
 
         ArrayList<TrainingResult> breaststroke = c.top5(team, Disciplin.BREASTSTROKE);
 
-        for (int i = 0;
-                i < breaststroke.size();
-                i++)
+        for (int i = 0; i < breaststroke.size(); i++)
         {
             tbreaststroke.getModel().setValueAt(breaststroke.get(i).getMember().getName(), i, 0);
             tbreaststroke.getModel().setValueAt(breaststroke.get(i).getDate(), i, 1);
             tbreaststroke.getModel().setValueAt(breaststroke.get(i).getTime(), i, 2);
         }
 
-        tbackcrawl.getTableHeader()
-                .getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tbackcrawl.getTableHeader()
-                .getColumnModel().getColumn(1).setHeaderValue("Date");
-        tbackcrawl.getTableHeader()
-                .getColumnModel().getColumn(2).setHeaderValue("Time");
+        tbackcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
+        tbackcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
+        tbackcrawl.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
 
         ArrayList<TrainingResult> backcrawl = c.top5(team, Disciplin.BACKCRAWL);
 
-        for (int i = 0;
-                i < backcrawl.size();
-                i++)
+        for (int i = 0;i < backcrawl.size();i++)
         {
             tbackcrawl.getModel().setValueAt(backcrawl.get(i).getMember().getName(), i, 0);
             tbackcrawl.getModel().setValueAt(backcrawl.get(i).getDate(), i, 1);

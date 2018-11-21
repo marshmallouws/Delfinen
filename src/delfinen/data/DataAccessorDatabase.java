@@ -28,6 +28,11 @@ public class DataAccessorDatabase  {
         this.connector = connector;
     }
 
+    /**
+     * 
+     * @param query a query in MySQL format.
+     * @return 0 if the query fails and 1 if the query succeeds
+     */
     private int updateDatabase(String query) {
         int rs = 0;
         try {
@@ -41,6 +46,11 @@ public class DataAccessorDatabase  {
         return rs;
     }
 
+    /**
+     * 
+     * @param query a query in MySQL format.
+     * @return ResultSet with the data that the query retrieves.
+     */
     private ResultSet query(String query) {
         ResultSet rs = null;
         try {
@@ -54,6 +64,11 @@ public class DataAccessorDatabase  {
         return rs;
     }
 
+    /**
+     * 
+     * @param rs ResultSet with data
+     * @return ArrayList of members
+     */
     private ArrayList<Member> retrieveMembersData(ResultSet rs) {
         String ssn = "";
         String firstname = "";
@@ -96,6 +111,11 @@ public class DataAccessorDatabase  {
         return members;
     }
     
+     /**
+     * 
+     * @param rs ResultSet with data
+     * @return ArrayList of CompetitionSwimmers
+     */
     private ArrayList<CompetitionSwimmer> retrieveCompSwimmerData(ResultSet rs){
         ArrayList<CompetitionSwimmer> c = new ArrayList<>();
         
@@ -135,6 +155,11 @@ public class DataAccessorDatabase  {
         return c;
     }
 
+    /**
+     * 
+     * @return ArrayList of all members in the database
+     * @throws DataException
+     */
     public ArrayList<Member> getMembers() throws DataException {
         String query = "SELECT * FROM member;"; 
 
@@ -143,6 +168,10 @@ public class DataAccessorDatabase  {
         return members;
     }
     
+    /**
+     * 
+     * @return an ArrayList of all CompetitionSwimmers in the database
+     */
 
     public ArrayList<CompetitionSwimmer> getComptitionSwimmers() {
         String query = "SELECT * FROM member;"; 
@@ -152,6 +181,12 @@ public class DataAccessorDatabase  {
         return sw;
     }
 
+    /**
+     * 
+     * @param ssn is used to search for a specific Member
+     * @return the member with the given ssn.
+     * @throws DataException 
+     */
 
     public Member getMember(String ssn) throws DataException {
         String query = "SELECT * FROM member "
@@ -175,7 +210,12 @@ public class DataAccessorDatabase  {
         }
     }
     
-    
+    /**
+     * 
+     * @param firstname used to search for Member
+     * @param lastname used to search for Member
+     * @return Member with the given first- and lastname
+     */
     public Member getMember(String firstname, String lastname) {
         String query = "SELECT * FROM member "
                 + "WHERE firstname = '" + firstname + "' AND lastname ='" + lastname + "';";
@@ -185,8 +225,12 @@ public class DataAccessorDatabase  {
         return members.get(0);
     }
 
-    
-    //TODO - strip arraylist to size 5
+    /**
+     * 
+     * @param disciplin used to tell which discipline the top 5 is from
+     * @param team used to say if it is senior or junior team
+     * @return a list of top 5 training results with given parameters
+     */
     public ArrayList<TrainingResult> getTop5(Disciplin disciplin, Team team) {
         String query = "SELECT member_id, MIN(sw_time) AS time, sw_date, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, memberstatus, last_payment, team_id "
@@ -239,7 +283,12 @@ public class DataAccessorDatabase  {
 
         return res;
     }
-
+    /**
+     * 
+     * @param ssn used to search for members training result
+     * @param d used to search  in specific disciplin
+     * @return a list of training result
+     */
 
     public ArrayList<TrainingResult> getTrainingResult(String ssn, Disciplin d) {
         String query = "SELECT member.*, sw_time, sw_date, discipline FROM member "
@@ -278,6 +327,11 @@ public class DataAccessorDatabase  {
         return res;
     }
 
+    /**
+     * 
+     * @param d Used to search for training result in specific disciplin
+     * @return a list of training result in specific disciplin
+     */
     public ArrayList<TrainingResult> getTrainingResult(Disciplin d) {
         String query = "SELECT member.*, sw_time, sw_date, discipline FROM member "
                 + "JOIN training_result ON member_id = member.id "
@@ -313,7 +367,11 @@ public class DataAccessorDatabase  {
 
         return res;
     }
-
+    /**
+     * 
+     * @param ssn used to search for member competitionresult
+     * @return a list of member competitionresult
+     */
     public ArrayList<CompetitionResult> getCompetitionResult(String ssn) {
         String query = "SELECT member.*, competition, sw_rank, sw_time, discipline FROM member "
                 + "JOIN comp_result ON member_id = member.id "
@@ -354,7 +412,12 @@ public class DataAccessorDatabase  {
 
         return res;
     }
-
+    
+    /**
+     * 
+     * @param d used to search for competionsresult in a specific disciplin
+     * @return  a list of competitionresults in specific disciplin
+     */
     public ArrayList<CompetitionResult> getCompetitionResult(Disciplin d) {
         String query = "SELECT member.*, competition, sw_rank, sw_time, discipline FROM member "
                 + "JOIN comp_result ON member_id = member.id "
@@ -391,18 +454,41 @@ public class DataAccessorDatabase  {
 
         return res;
     }
+    
+    /**
+     * 
+     * @param ssn used to search for member
+     * @param change used to tell what change there is going to be
+     * @param field the field that is going to be updated
+     */
 
     public void updateMember(String ssn, String change, String field) {
         String query = "UPDATE member SET " + field + " = '" + change + "' WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
     }
     
+    /**
+     * 
+     * @param ssn used to search for member which payment should be updated
+     */
     public void updatePayment(String ssn){
         int year = Calendar.getInstance().get(Calendar.YEAR);
         String query = "UPDATE member SET last_payment = " + year + " WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
     }
     
+    /**
+     * 
+     * @param firstname create firstname
+     * @param lastname create lastname
+     * @param ssn create ssn
+     * @param birthyear create birthyear
+     * @param address create address
+     * @param zipcode create zipcode
+     * @param phone create phone
+     * @param memberstatus create memberstatus
+     * @param team_id create team id
+     */
     
     public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id){
         String query = "";
@@ -426,6 +512,13 @@ public class DataAccessorDatabase  {
         
     }
     
+    /**
+     * 
+     * @param m the specific member
+     * @param d the disciplin of training result
+     * @param date date of training result
+     * @param time time of training result
+     */
     public void createTrainingResult(Member m, Disciplin d, String date, String time){
         Time t = Time.valueOf(time);
         Date nDate = Date.valueOf(date);
@@ -449,6 +542,14 @@ public class DataAccessorDatabase  {
         updateDatabase(query);
     }
     
+    /**
+     * 
+     * @param m the specific member
+     * @param competition where the competition is located
+     * @param rank rank of competitionresult
+     * @param time time of competionresult
+     * @param disciplin the specific disciplins competitionresullt
+     */
     public void createCompetitionResult(Member m, String competition, int rank, String time, Disciplin disciplin){
         Time t = Time.valueOf(time);
         
@@ -471,7 +572,11 @@ public class DataAccessorDatabase  {
         updateDatabase(query);
         
     }
-
+    
+    /**
+     * 
+     * @return a list of teams
+     */
     public ArrayList<Team> getTeams() {
         String query = "SELECT * FROM team;";
         ArrayList<Team> teams = new ArrayList<>();
@@ -494,6 +599,10 @@ public class DataAccessorDatabase  {
         return teams;
     }
     
+    /**
+     * 
+     * @param m which member to remove
+     */
     public void removeMember(Member m){
         String query = "DELETE FROM member WHERE ssn = '" + m.getSsn() + "';"; 
         updateDatabase(query);
