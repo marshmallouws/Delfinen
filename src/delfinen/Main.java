@@ -152,6 +152,11 @@ public class Main
             System.out.println("Create Competition result");
             dao.createCompetitionResult(m, "Greve svømmehal", 6, time, Disciplin.CRAWL);
             
+            System.out.println("_______________________________________________");
+            System.out.println("Delete member");
+            dao.removeMember(m);
+            dao.getMember("1506952222");
+            
 
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

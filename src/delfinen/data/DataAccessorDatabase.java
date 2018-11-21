@@ -471,4 +471,9 @@ public class DataAccessorDatabase  {
         
         return teams;
     }
+    
+    public void removeMember(Member m){
+        String query = "DELETE FROM member WHERE ssn = '" + m.getSsn() + "';"; 
+        updateDatabase(query);
+    }
 }
