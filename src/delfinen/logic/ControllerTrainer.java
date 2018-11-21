@@ -108,7 +108,7 @@ public class ControllerTrainer implements Controller
         return data.getTop5(d, team);
     }
     
-    public void RegisterTraining(CompetitionSwimmer s, String date, String time, Disciplin d)
+    public void registerTraining(CompetitionSwimmer s, String date, String time, Disciplin d)
     {
         data.createTrainingResult(s, d, date, time); 
     }
