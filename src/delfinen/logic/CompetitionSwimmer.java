@@ -16,9 +16,9 @@ public class CompetitionSwimmer extends Member
     private ArrayList<TrainingResult> trainingBreastStroke;
     private ArrayList<CompetitionResult> competition;
 
-    public CompetitionSwimmer(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus) throws SQLException
+    public CompetitionSwimmer(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int lastPayment) throws SQLException
     {
-        super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus);
+        super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, lastPayment);
         
         this.trainingCrawl = new ArrayList<>();
         this.trainingBackCrawl = new ArrayList<>();

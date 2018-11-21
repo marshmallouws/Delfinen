@@ -26,8 +26,9 @@ public class Member
     private MemberStatus memberstatus;
     private Membership membership;
     private static int year;
+    private int lastPayment;
 
-    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus)
+    public Member(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int lastPayment)
     {
         this.year = Calendar.getInstance().get(Calendar.YEAR);
         this.firstname = firstname;
@@ -39,6 +40,9 @@ public class Member
         this.phone = phone;
         this.memberstatus = memberstatus;
         this.yearsPaid = new ArrayList<>();
+        this.lastPayment = lastPayment;
+        
+        
 
         if (this.getAge(year) >= 18)
         {
