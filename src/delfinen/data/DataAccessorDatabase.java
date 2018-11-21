@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -396,21 +397,29 @@ public class DataAccessorDatabase  {
         updateDatabase(query);
     }
     
+    public void updatePayment(String ssn){
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String query = "UPDATE member SET last_payment = " + year + " WHERE ssn = '" + ssn + "';";
+        updateDatabase(query);
+    }
     
-    public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int lastPayment, int team_id){
+    
+    public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id){
         String query = "";
+        int lastPayment = Calendar.getInstance().get(Calendar.YEAR);
+        
         if(team_id == 0){
             query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, last_payment, memberstatus, team_id)"
                 + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
                 + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', "
-                + lastPayment + ", " + memberstatus.toString() + "', NULL);";
+                + lastPayment + ", '" + memberstatus.toString() + "', NULL);";
         } else {
             query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, last_payment, memberstatus, team_id)"
                 + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
                 + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', "
-                + lastPayment + ", " + memberstatus.toString() + "', " + team_id + ");";
+                + lastPayment + ", '" + memberstatus.toString() + "', " + team_id + ");";
         }
 
         updateDatabase(query);

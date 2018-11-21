@@ -130,6 +130,8 @@ public class ControllerAdmin implements Controller {
         } else {
             throw new IllegalArgumentException();
         }
+        
+        data.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
     }
     
     public ArrayList<Member> seeMembersInArrears (){
@@ -151,5 +153,10 @@ public class ControllerAdmin implements Controller {
         
         return arrears;
     }
+    
+    public void payForCurrentYear(Member m){
+        data.updatePayment(m.getSsn());
+    }
+    
 
 }
