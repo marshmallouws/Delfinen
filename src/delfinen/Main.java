@@ -91,7 +91,7 @@ public class Main
                 System.out.println(er.getCompetition());
             }
 
-            System.out.println("____________________________________________");
+            /*System.out.println("____________________________________________");
             System.out.println("Get top 5");
             Team team = new Team("Senior");
             ArrayList<TrainingResult> top5 = dao.getTop5(Disciplin.CRAWL, team);
@@ -99,7 +99,7 @@ public class Main
             for (TrainingResult t : top5)
             {
                 System.out.println(t.getMember().getFirstname() + " - " + t.getTime());
-            }
+            }*/
 
             System.out.println("_____________________________________________");
             System.out.println("Update member");
@@ -138,7 +138,7 @@ public class Main
             
             System.out.println("______________________________________________");
             System.out.println("Create member");
-            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE , 0);
+            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE , 0, 2017);
             //dao.getMember("1506952668");
             
             String time = "00:01:00";

@@ -61,6 +61,7 @@ public class DataAccessorDatabase  {
         String address = "";
         String zipcode = "";
         String phone = "";
+        int lastPayment = 0;
         String status = "";
         int team_id = 0;
 
@@ -76,15 +77,16 @@ public class DataAccessorDatabase  {
                 address = rs.getString("address");
                 zipcode = rs.getString("zipcode");
                 phone = rs.getString("phone");
+                lastPayment = rs.getInt("last_payment");
                 status = rs.getString("memberstatus");
                 team_id = rs.getInt("team_id");
 
                 MemberStatus stat = MemberStatus.valueOf(status.toUpperCase());
 
                 if (team_id == 0) {
-                    members.add(new Member(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat));
+                    members.add(new Member(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat, lastPayment));
                 } else {
-                    members.add(new CompetitionSwimmer(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat));
+                    members.add(new CompetitionSwimmer(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat, lastPayment));
                 }
             }
         } catch (SQLException ex) {
@@ -103,6 +105,7 @@ public class DataAccessorDatabase  {
         String address = "";
         String zipcode = "";
         String phone = "";
+        int lastPayment = 0;
         String status = "";
         int team_id = 0;
 
@@ -115,13 +118,14 @@ public class DataAccessorDatabase  {
                 address = rs.getString("address");
                 zipcode = rs.getString("zipcode");
                 phone = rs.getString("phone");
+                lastPayment = rs.getInt("last_payment");
                 status = rs.getString("memberstatus");
                 team_id = rs.getInt("team_id");
 
                 MemberStatus stat = MemberStatus.valueOf(status.toUpperCase());
 
                 if (team_id != 0) {
-                    c.add(new CompetitionSwimmer(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat));
+                    c.add(new CompetitionSwimmer(firstname, lastname, ssn, birthyear, address, zipcode, phone, stat, lastPayment));
                 }
             }
         } catch (SQLException ex) {
@@ -160,7 +164,7 @@ public class DataAccessorDatabase  {
             try {
                 Member m = members.get(0);
                 return new CompetitionSwimmer(m.getFirstname(), m.getLastname(), m.getSsn(),
-                        m.getBirthyear(), m.getAddress(), m.getZipcode(), m.getPhone(), m.getMemberstatus());
+                        m.getBirthyear(), m.getAddress(), m.getZipcode(), m.getPhone(), m.getMemberstatus(), m.getLastPayment());
             } catch (SQLException ex) {
                 System.out.println("Competitionswimmer not found");
                 return null;
@@ -393,20 +397,20 @@ public class DataAccessorDatabase  {
     }
     
     
-    public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id){
+    public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int lastPayment, int team_id){
         String query = "";
         if(team_id == 0){
             query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
-                + "address, zipcode, phone, memberstatus, team_id)"
+                + "address, zipcode, phone, last_payment, memberstatus, team_id)"
                 + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
-                + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', '"
-                + memberstatus.toString() + "', NULL);";
+                + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', "
+                + lastPayment + ", " + memberstatus.toString() + "', NULL);";
         } else {
             query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
-                + "address, zipcode, phone, memberstatus, team_id)"
+                + "address, zipcode, phone, last_payment, memberstatus, team_id)"
                 + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
-                + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', '"
-                + memberstatus.toString() + "', " + team_id + ");";
+                + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', "
+                + lastPayment + ", " + memberstatus.toString() + "', " + team_id + ");";
         }
 
         updateDatabase(query);

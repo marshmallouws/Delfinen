@@ -149,6 +149,10 @@ public class Member
     {
         return membership;
     }
+    
+    public int getLastPayment(){
+        return lastPayment;
+    }
 
     public double calculateS()
     {
