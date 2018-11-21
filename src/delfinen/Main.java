@@ -163,7 +163,7 @@ public class Main
             System.out.println("________________________________________________");
             System.out.println("Update payment");
             System.out.println(a.getLastPayment());
-            dao.updatePayment(a.getSsn());
+            dao.updatePayment(a.getSsn(), 2018);
             
             System.out.println(dao.getMember("1506952222").getLastPayment());
             

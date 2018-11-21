@@ -11,8 +11,6 @@ import delfinen.data.DataException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -166,7 +164,7 @@ public class ControllerAdmin implements Controller
         data.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
     }
 
-    public ArrayList<Member> seeMembersInArrears()
+    public ArrayList<Member> seeMembersInArrears(int year)
     {
         ArrayList<Member> members = new ArrayList<>();
         ArrayList<Member> arrears = new ArrayList<>();
@@ -178,11 +176,11 @@ public class ControllerAdmin implements Controller
             ex.getStackTrace();
         }
 
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+        //int year = Calendar.getInstance().get(Calendar.YEAR);
 
         for (Member m : members)
         {
-            if (m.getLastPayment() != year)
+            if (!(m.getYearsPaid().contains(year)))
             {
                 arrears.add(m);
             }
@@ -191,9 +189,9 @@ public class ControllerAdmin implements Controller
         return arrears;
     }
 
-    public void payForCurrentYear(Member m)
+    public void payForCurrentYear(Member m, int year)
     {
-        data.updatePayment(m.getSsn());
+        data.updatePayment(m.getSsn(), year);
     }
 
 }

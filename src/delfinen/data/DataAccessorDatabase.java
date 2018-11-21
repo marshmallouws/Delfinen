@@ -470,9 +470,9 @@ public class DataAccessorDatabase  {
     /**
      * 
      * @param ssn used to search for member which payment should be updated
+     * @param year is used to find which year the member wants to pay for
      */
-    public void updatePayment(String ssn){
-        int year = Calendar.getInstance().get(Calendar.YEAR);
+    public void updatePayment(String ssn, int year){
         String query = "UPDATE member SET last_payment = " + year + " WHERE ssn = '" + ssn + "';";
         updateDatabase(query);
     }
