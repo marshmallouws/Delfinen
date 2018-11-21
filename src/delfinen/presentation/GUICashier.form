@@ -31,19 +31,21 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="allMembers" min="-2" max="-2" attributes="0"/>
-                          <Component id="arrears" min="-2" max="-2" attributes="0"/>
-                          <Component id="rPayment" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="allMembers" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="arrears" max="32767" attributes="0"/>
+                              <Component id="rPayment" min="-2" pref="164" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="goback" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="120" max="32767" attributes="0"/>
+              <EmptySpace pref="113" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,15 +54,15 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="arrears" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="allMembers" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="rPayment" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="goback" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="goback" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,6 +72,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Members in arrears"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="arrearsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="allMembers">
       <Properties>
@@ -93,6 +98,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Go back"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gobackActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -31,13 +31,16 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                              <Component id="admin" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="admin" max="32767" attributes="0"/>
+                                  <Component id="cashier" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-                      <Component id="cashier" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="goback" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="126" max="32767" attributes="0"/>
@@ -51,9 +54,11 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Component id="admin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="cashier" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="96" max="32767" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Component id="goback" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,6 +83,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cashierActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="goback">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Go back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gobackActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

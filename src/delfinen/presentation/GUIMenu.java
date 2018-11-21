@@ -66,6 +66,13 @@ public class GUIMenu extends javax.swing.JFrame {
         });
 
         jButton1.setText("Admin");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +118,12 @@ public class GUIMenu extends javax.swing.JFrame {
         this.setVisible(false);
         new GUITrainerMenu().setVisible(true);
     }//GEN-LAST:event_trainerActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        this.setVisible(false);
+        new GUIAdminMenu().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

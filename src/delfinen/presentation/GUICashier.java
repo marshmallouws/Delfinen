@@ -39,6 +39,13 @@ public class GUICashier extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         arrears.setText("Members in arrears");
+        arrears.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                arrearsActionPerformed(evt);
+            }
+        });
 
         allMembers.setText("All members");
 
@@ -48,6 +55,13 @@ public class GUICashier extends javax.swing.JFrame
         jLabel1.setText("Cashier");
 
         goback.setText("Go back");
+        goback.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                gobackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,34 +74,47 @@ public class GUICashier extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(allMembers)
-                            .addComponent(arrears)
-                            .addComponent(rPayment)))
+                        .addGap(123, 123, 123)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(allMembers, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(arrears, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addGap(25, 25, 25)
                         .addComponent(goback)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addGap(27, 27, 27)
                 .addComponent(arrears)
                 .addGap(18, 18, 18)
                 .addComponent(allMembers)
                 .addGap(18, 18, 18)
                 .addComponent(rPayment)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(goback)
-                .addGap(29, 29, 29))
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void gobackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_gobackActionPerformed
+    {//GEN-HEADEREND:event_gobackActionPerformed
+        this.setVisible(false);
+        new GUIAdminMenu().setVisible(true);
+    }//GEN-LAST:event_gobackActionPerformed
+
+    private void arrearsActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_arrearsActionPerformed
+    {//GEN-HEADEREND:event_arrearsActionPerformed
+        this.setVisible(false);
+        new GUIArrears().setVisible(true);
+    }//GEN-LAST:event_arrearsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,7 +156,6 @@ public class GUICashier extends javax.swing.JFrame
         {
             public void run()
             {
-                new GUICashier().setVisible(true);
             }
         });
     }
