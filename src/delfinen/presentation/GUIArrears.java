@@ -5,19 +5,36 @@
  */
 package delfinen.presentation;
 
+import delfinen.logic.ControllerAdmin;
+import delfinen.logic.Member;
+import java.util.ArrayList;
+
 /**
  *
  * @author sofieamalielandt
  */
-public class GUIAdminMenu extends javax.swing.JFrame
+public class GUIArrears extends javax.swing.JFrame
 {
 
-    /**
-     * Creates new form GUIAdminMenu
-     */
-    public GUIAdminMenu()
+    private ControllerAdmin c;
+    
+    public GUIArrears()
     {
         initComponents();
+        c = new ControllerAdmin();
+        
+        ArrayList<Member> members = c.seeMembersInArrears();
+        
+        for (int i = 0; i < members.size(); i++)
+        {
+            mA.getModel().setValueAt(members.get(i).getSsn(), i, 0);
+            mA.getModel().setValueAt(members.get(i).getName(), i, 1);
+            mA.getModel().setValueAt(members.get(i).getMembership(), i, 2);
+            mA.getModel().setValueAt(members.get(i).getMemberstatus(), i, 3);
+            mA.getModel().setValueAt(members.get(i).calculateS(), i, 4);
+            mA.getModel().setValueAt(members.get(i).getLastPayment(), i, 5);
+        }
+        
     }
 
     /**
@@ -31,25 +48,45 @@ public class GUIAdminMenu extends javax.swing.JFrame
     {
 
         jLabel1 = new javax.swing.JLabel();
-        admin = new javax.swing.JButton();
-        cashier = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        mA = new javax.swing.JTable();
         goback = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setText("Admin Menu");
+        jLabel1.setText("Members in Arrears");
 
-        admin.setText("Administration");
-
-        cashier.setText("Cashier");
-        cashier.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
+        mA.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
             {
-                cashierActionPerformed(evt);
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String []
+            {
+                "ssn", "Name", "Membership", "Status", "Subscription", "Last Payment"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(mA);
 
         goback.setText("Go back");
         goback.addActionListener(new java.awt.event.ActionListener()
@@ -67,46 +104,34 @@ public class GUIAdminMenu extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cashier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(goback)))
-                .addContainerGap(126, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(goback)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(admin)
-                .addGap(34, 34, 34)
-                .addComponent(cashier)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(goback)
-                .addGap(25, 25, 25))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cashierActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cashierActionPerformed
-    {//GEN-HEADEREND:event_cashierActionPerformed
-        this.setVisible(false);
-        new GUICashier().setVisible(true);
-    }//GEN-LAST:event_cashierActionPerformed
-
     private void gobackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_gobackActionPerformed
     {//GEN-HEADEREND:event_gobackActionPerformed
         this.setVisible(false);
-        new GUIMenu().setVisible(true);
+        new GUICashier().setVisible(true);
     }//GEN-LAST:event_gobackActionPerformed
 
     /**
@@ -131,16 +156,16 @@ public class GUIAdminMenu extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(GUIAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIArrears.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(GUIAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIArrears.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(GUIAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIArrears.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(GUIAdminMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIArrears.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -154,9 +179,9 @@ public class GUIAdminMenu extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton admin;
-    private javax.swing.JButton cashier;
     private javax.swing.JButton goback;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable mA;
     // End of variables declaration//GEN-END:variables
 }
