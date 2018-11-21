@@ -6,9 +6,9 @@
 package delfinen.presentation;
 
 import delfinen.logic.CompetitionResult;
-import delfinen.logic.ControllerMember;
+import delfinen.logic.CompetitionSwimmer;
+import delfinen.logic.ControllerTrainer;
 import delfinen.logic.Disciplin;
-import delfinen.logic.Member;
 import delfinen.logic.TrainingResult;
 import java.util.ArrayList;
 
@@ -19,14 +19,14 @@ import java.util.ArrayList;
 public class GUIShowSwimmer extends javax.swing.JFrame
 {
 
-    private ControllerMember c;
-    private Member s;
+    private ControllerTrainer c;
+    private CompetitionSwimmer s;
 
-    public GUIShowSwimmer(Member s)
+    public GUIShowSwimmer(CompetitionSwimmer s)
     {
         initComponents();
 
-        c = new ControllerMember();
+        c = new ControllerTrainer();
         this.s = s;
 
         name.setText(s.getName());
@@ -103,6 +103,8 @@ public class GUIShowSwimmer extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         goback = new javax.swing.JButton();
+        Tbutton = new javax.swing.JButton();
+        Cbutton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,45 +169,54 @@ public class GUIShowSwimmer extends javax.swing.JFrame
             }
         });
 
+        Tbutton.setText("Register new");
+        Tbutton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                TbuttonActionPerformed(evt);
+            }
+        });
+
+        Cbutton.setText("Register new  ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(goback)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 27, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(140, 140, 140))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(goback)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Tbutton))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cbutton))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(name)
                             .addComponent(phone))
-                        .addGap(96, 96, 96))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jLabel3)
-                .addGap(140, 140, 140))
+                        .addGap(345, 345, 345))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addComponent(name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(phone)
-                .addGap(13, 13, 13)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
@@ -213,9 +224,13 @@ public class GUIShowSwimmer extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Tbutton)
+                    .addComponent(Cbutton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(goback)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -226,6 +241,12 @@ public class GUIShowSwimmer extends javax.swing.JFrame
         this.setVisible(false);
         new GUITeams().setVisible(true);
     }//GEN-LAST:event_gobackActionPerformed
+
+    private void TbuttonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_TbuttonActionPerformed
+    {//GEN-HEADEREND:event_TbuttonActionPerformed
+       this.setVisible(false);
+       new GUIRegisterTraining(s).setVisible(true);
+    }//GEN-LAST:event_TbuttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,6 +293,8 @@ public class GUIShowSwimmer extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cbutton;
+    private javax.swing.JButton Tbutton;
     private javax.swing.JButton goback;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
