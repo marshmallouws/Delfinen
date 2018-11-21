@@ -53,8 +53,7 @@ public class MemberTest
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeCalculateS()
     {
-
-        Member m = new Member("Sonja", "Hansen", "0609190532", 2019, "Højbjergvej 2", "4600", "42446221", MemberStatus.ACTIVE);
+        Member m = new Member("Sonja", "Hansen", "0609190532", 2019, "Højbjergvej 2", "4600", "42446221", MemberStatus.ACTIVE, 2017);
         m.calculateS();
 
     }

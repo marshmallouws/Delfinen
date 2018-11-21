@@ -1,6 +1,5 @@
 package delfinen.logic;
 
-import delfinen.data.DBConnector;
 import delfinen.data.DataAccessorDatabase;
 import java.sql.SQLException;
 import java.util.ArrayList;

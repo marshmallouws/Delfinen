@@ -177,7 +177,7 @@ public class DataAccessorTest {
         int team = 1;
         
         Member m = null;
-        da.createMember(first, last, ssn, year, add, zip, phone, s, team);
+        da.createMember(first, last, ssn, year, add, zip, phone, s,2017, team);
         try {
             m = da.getMember("1506951234");
         } catch (DataException ex) {
@@ -202,7 +202,7 @@ public class DataAccessorTest {
         int team = 1;
         
         Member m = null;
-        da.createMember(first, last, ssn, year, add, zip, phone, s, team);
+        da.createMember(first, last, ssn, year, add, zip, phone, s, 2017, team);
         try {
             m = da.getMember("1506951234");
         } catch (DataException | IllegalArgumentException ex) {
