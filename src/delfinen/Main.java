@@ -138,7 +138,7 @@ public class Main
             
             System.out.println("______________________________________________");
             System.out.println("Create member");
-            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE , 0, 2017);
+            dao.createMember("Bitten", "Skumfidus", "1506952668", 1995, "Sømosen 1", "2550", "53388469", MemberStatus.ACTIVE , 0);
             //dao.getMember("1506952668");
             
             String time = "00:01:00";
@@ -153,10 +153,17 @@ public class Main
             dao.createCompetitionResult(m, "Greve svømmehal", 6, time, Disciplin.CRAWL);
             
             System.out.println("_______________________________________________");
-            Member a = dao.getMember("1211941233");
+            Member a = dao.getMember("1506952222");
+            /*
             System.out.println("Delete member");
-            dao.removeMember(a);
-            dao.getMember("1211941233");
+            dao.removeMember(a); */
+            
+            System.out.println("________________________________________________");
+            System.out.println("Update payment");
+            System.out.println(a.getLastPayment());
+            dao.updatePayment(a.getSsn());
+            
+            System.out.println(dao.getMember("1506952222").getLastPayment());
             
 
         } catch (DataException ex) {
