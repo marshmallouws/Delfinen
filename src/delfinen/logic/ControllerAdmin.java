@@ -151,5 +151,10 @@ public class ControllerAdmin implements Controller {
         
         return arrears;
     }
+    
+    public void payForCurrentYear(Member m){
+        data.updatePayment(m.getSsn());
+    }
+    
 
 }
