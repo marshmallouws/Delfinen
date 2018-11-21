@@ -11,6 +11,8 @@ import delfinen.data.DataException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -130,9 +132,24 @@ public class ControllerAdmin implements Controller {
         }
     }
     
-    public void seeMembersInArrears (){
+    public ArrayList<Member> seeMembersInArrears (){
+        ArrayList<Member> members = null;
+        ArrayList<Member> arrears = null;
+        try {
+            data.getMembers();
+        } catch (DataException ex) {
+            ex.getStackTrace();
+        }
         
+        int year = Calendar.getInstance().get(Calendar.YEAR);
         
+        for(Member m: members){
+            if(m.getLastPayment() != year){
+                arrears.add(m);
+            }
+        }
+        
+        return arrears;
     }
 
 }
