@@ -1,15 +1,11 @@
 package delfinen.logic;
 
-import delfinen.data.DBConnector;
-import delfinen.data.DataAccessorDatabase;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CompetitionSwimmer extends Member
 {
-
-    private DataAccessorDatabase data;
-
+    private ControllerTrainer c;
     private ArrayList<TrainingResult> trainingCrawl;
     private ArrayList<TrainingResult> trainingBackCrawl;
     private ArrayList<TrainingResult> trainingButterfly;
@@ -20,11 +16,12 @@ public class CompetitionSwimmer extends Member
     {
         super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, lastPayment);
         
-        this.trainingCrawl = new ArrayList<>();
-        this.trainingBackCrawl = new ArrayList<>();
-        this.trainingButterfly = new ArrayList<>();
-        this.trainingBreastStroke = new ArrayList<>();
-        this.competition = new ArrayList<>();
+        this.c = c;
+        this.trainingCrawl = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.CRAWL);
+        this.trainingBackCrawl = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.BACKCRAWL);
+        this.trainingButterfly = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.BUTTERFLY);
+        this.trainingBreastStroke = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.BREASTSTROKE);
+        this.competition = new ArrayList<>(); //c.getCompetitionResult(this);
     }
 
     public ArrayList<TrainingResult> getTrainingCrawl()
@@ -52,23 +49,9 @@ public class CompetitionSwimmer extends Member
         return competition;
     }
 
-    public void addTrainingResult(TrainingResult r)
+    public void addTrainingResult(String date, String time, Disciplin d)
     {
-        if(r.getDisciplin().equals(Disciplin.CRAWL))
-        {
-            trainingCrawl.add(r);
-        }
-        else if(r.getDisciplin().equals(Disciplin.BACKCRAWL))
-        {
-            trainingBackCrawl.add(r);
-        }
-        if(r.getDisciplin().equals(Disciplin.BREASTSTROKE))
-        {
-            trainingBreastStroke.add(r);
-        }
-        else
-        {
-            trainingButterfly.add(r);
-        }
+        c.registerTraining(this, date, time, d);
+    
     }
 }
