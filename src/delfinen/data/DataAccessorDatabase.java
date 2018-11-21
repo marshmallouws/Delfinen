@@ -394,12 +394,21 @@ public class DataAccessorDatabase  {
     
     
     public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id){
-        String query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
+        String query = "";
+        if(team_id == 0){
+            query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
+                + "address, zipcode, phone, memberstatus, team_id)"
+                + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
+                + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', '"
+                + memberstatus.toString() + "', NULL);";
+        } else {
+            query = "INSERT INTO member (id, firstname, lastname, ssn, birthyear, "
                 + "address, zipcode, phone, memberstatus, team_id)"
                 + " VALUES (NULL, '" + firstname + "', '" + lastname +  "', '" + ssn + "', "
                 + birthyear + ", '" + address + "', '" + zipcode +  "', '" + phone + "', '"
                 + memberstatus.toString() + "', " + team_id + ");";
-        
+        }
+
         updateDatabase(query);
         
     }
