@@ -5,6 +5,7 @@
  */
 package delfinen.logic;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -41,8 +42,7 @@ public class Member
         this.memberstatus = memberstatus;
         this.yearsPaid = new ArrayList<>();
         this.lastPayment = lastPayment;
-        
-        
+        makeYears();
 
         if (this.getAge(year) >= 18)
         {
@@ -52,6 +52,15 @@ public class Member
             this.membership = Membership.JUNIOR;
         }
 
+    }
+
+    private void makeYears()
+    {
+        for (int i = birthyear; i < lastPayment; i++)
+        {
+            yearsPaid.add(i);
+        }
+        yearsPaid.add(lastPayment);
     }
 
     public int getAge(int year)
@@ -149,8 +158,9 @@ public class Member
     {
         return membership;
     }
-    
-    public int getLastPayment(){
+
+    public int getLastPayment()
+    {
         return lastPayment;
     }
 
