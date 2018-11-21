@@ -43,7 +43,7 @@ public class Member
         this.lastPayment = lastPayment;
         makeYears();
 
-        if (this.getAge(year) >= 18)
+        if (this.getAge() >= 18)
         {
             this.membership = Membership.SENIOR;
         } else
@@ -62,7 +62,7 @@ public class Member
         yearsPaid.add(lastPayment);
     }
 
-    public int getAge(int year)
+    public int getAge()
     {
         int age = year - birthyear;
         return age;
@@ -167,7 +167,7 @@ public class Member
     {
         try
         {
-            if (this.getAge(year) < 0)
+            if (this.getAge() < 0)
             {
                 throw new IllegalArgumentException();
             }
@@ -177,10 +177,10 @@ public class Member
                 return 500;
             } else
             {
-                if (this.getAge(year) < 18)
+                if (this.getAge() < 18)
                 {
                     return 1000;
-                } else if (this.getAge(year) > 60)
+                } else if (this.getAge() > 60)
                 {
                     return 1600 * 0.75;
                 } else

@@ -19,7 +19,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
 {
 
     private ControllerMember c;
-    private final Member m;
+    private final Member m; 
 
     /**
      * Creates new form GUI
@@ -37,7 +37,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
         address.setText(m.getAddress());
         zipcode.setText(m.getZipcode());
         phone.setText(m.getPhone());
-        membership.setText(m.getMembership().name());
+        membership.setText(m.getMembership().name() + " ( Age: " + m.getAge() + " )");
         memberstatus.setText(m.getMemberstatus().name());
         this.sub.setText(m.calculateS() + "kr.");
         int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -187,18 +187,17 @@ public class GUIMemberInformation extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ssn)
-                            .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(FirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                            .addComponent(address))
+                                        .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel11)
                                             .addComponent(jLabel4)))
-                                    .addComponent(membership, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(membership, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(LastName, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +210,8 @@ public class GUIMemberInformation extends javax.swing.JFrame
                                     .addComponent(memberstatus, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
                         .addComponent(paid, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -312,7 +312,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
             address.setText(m.getAddress());
             zipcode.setText(m.getZipcode());
             phone.setText(m.getPhone());
-            membership.setText(m.getMembership().name());
+            membership.setText(m.getMembership().name() + " ( Age: " + m.getAge() + " )");
             memberstatus.setText(m.getMemberstatus().name());
             this.sub.setText(m.calculateS() + "kr.");
             int year = Calendar.getInstance().get(Calendar.YEAR);
