@@ -9,7 +9,6 @@ package delfinen.logic;
  *
  * @author aamandajuhl
  */
-public enum MemberStatus
-{
+public enum MemberStatus {
     ACTIVE, PASSIVE
 }

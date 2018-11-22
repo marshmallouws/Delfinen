@@ -9,7 +9,6 @@ package delfinen.logic;
  *
  * @author aamandajuhl
  */
-public enum Membership
-{
+public enum Membership {
     SENIOR, JUNIOR
 }

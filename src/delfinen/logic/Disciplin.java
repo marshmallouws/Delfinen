@@ -1,8 +1,5 @@
-
 package delfinen.logic;
 
-
-public enum Disciplin
-{
+public enum Disciplin {
     BUTTERFLY, CRAWL, BACKCRAWL, BREASTSTROKE;
 }

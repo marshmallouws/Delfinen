@@ -1,18 +1,14 @@
-
 package delfinen.logic;
 
+public class CompetitionResult {
 
-
-public class CompetitionResult
-{
     private Member m;
     private String competition;
     private int rank;
     private String time;
     private Disciplin disciplin;
 
-    public CompetitionResult(Member m, String competition, int rank, String time, Disciplin disciplin)
-    {
+    public CompetitionResult(Member m, String competition, int rank, String time, Disciplin disciplin) {
         this.m = m;
         this.competition = competition;
         this.rank = rank;
@@ -20,29 +16,24 @@ public class CompetitionResult
         this.disciplin = disciplin;
     }
 
-    public Member getMember()
-    {
+    public Member getMember() {
         return m;
     }
 
-    public String getCompetition()
-    {
+    public String getCompetition() {
         return competition;
     }
 
-    public int getRank()
-    {
+    public int getRank() {
         return rank;
     }
 
-    public String getTime()
-    {
+    public String getTime() {
         return time;
     }
 
-    public Disciplin getDisciplin()
-    {
+    public Disciplin getDisciplin() {
         return disciplin;
     }
-    
+
 }

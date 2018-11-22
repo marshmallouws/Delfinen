@@ -167,7 +167,7 @@ public class Main
             
             System.out.println(dao.getMember("1506952222").getLastPayment());
             
-
+            System.out.println(2018 % 2017);
         } catch (DataException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
