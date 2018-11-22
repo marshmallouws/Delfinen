@@ -154,22 +154,35 @@ public class GUIArrears extends javax.swing.JFrame
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_searchActionPerformed
     {//GEN-HEADEREND:event_searchActionPerformed
-        mA.removeAll();
+        ArrayList<Member> temp = new ArrayList<>();
+        ArrayList<Member> members = new ArrayList<>();
+        
+        temp.removeAll(temp);
+        members.removeAll(members);
+        
+        for (int i = 0; i < mA.getModel().getRowCount(); ++i)
+        {
+            for (int j = 0; j < mA.getColumnCount(); ++j)
+            {
+                mA.getModel().setValueAt("", i, j);
+            }
+
+        }
+
         String _y = (String) year.getSelectedItem();
 
         int y = Integer.parseInt(_y);
 
-        ArrayList<Member> temp = c.seeMembersInArrears(y);
-        ArrayList<Member> members = new ArrayList<>();
+        temp = c.seeMembersInArrears(y);
 
         for (Member m : temp)
         {
-            //if (m.getBirthyear() <= y)
-            //{
+            if (m.getBirthyear() <= y)
+            {
                 members.add(m);
-            //}
+            }
         }
-       
+
         for (int i = 0; i < members.size(); i++)
         {
             mA.getModel().setValueAt(members.get(i).getSsn(), i, 0);
@@ -179,7 +192,6 @@ public class GUIArrears extends javax.swing.JFrame
             mA.getModel().setValueAt(members.get(i).calculateS(), i, 4);
             mA.getModel().setValueAt(members.get(i).getLastPayment(), i, 5);
         }
-
 
     }//GEN-LAST:event_searchActionPerformed
 

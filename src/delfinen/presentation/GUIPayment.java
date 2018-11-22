@@ -54,9 +54,10 @@ public class GUIPayment extends javax.swing.JFrame
         save = new javax.swing.JButton();
         sub = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        search = new javax.swing.JButton();
         year = new javax.swing.JComboBox<>();
         goback = new javax.swing.JButton();
+        newPay = new javax.swing.JButton();
+        saved = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,12 +89,11 @@ public class GUIPayment extends javax.swing.JFrame
 
         jLabel5.setText("Year:");
 
-        search.setText("Search");
-        search.addActionListener(new java.awt.event.ActionListener()
+        year.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                searchActionPerformed(evt);
+                yearActionPerformed(evt);
             }
         });
 
@@ -106,12 +106,23 @@ public class GUIPayment extends javax.swing.JFrame
             }
         });
 
+        newPay.setText("New");
+        newPay.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                newPayActionPerformed(evt);
+            }
+        });
+
+        saved.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,18 +135,17 @@ public class GUIPayment extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sub, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(search))
-                            .addComponent(Tmembers, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(goback))
-                .addContainerGap(85, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(save)
-                .addGap(51, 51, 51))
+                            .addComponent(Tmembers, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(newPay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(goback, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(save, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(saved, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +155,6 @@ public class GUIPayment extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(search)
                     .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -155,11 +164,15 @@ public class GUIPayment extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(sub))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(save)
-                    .addComponent(goback))
-                .addGap(60, 60, 60))
+                    .addComponent(newPay)
+                    .addComponent(save))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(goback)
+                    .addComponent(saved))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,13 +202,18 @@ public class GUIPayment extends javax.swing.JFrame
             c.payForCurrentYear(fm, y);
         }
         
-        this.setVisible(false);
-        new GUICashier().setVisible(true);
+        this.saved.setText("Payment is now registered");
 
     }//GEN-LAST:event_saveActionPerformed
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_searchActionPerformed
-    {//GEN-HEADEREND:event_searchActionPerformed
+    private void gobackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_gobackActionPerformed
+    {//GEN-HEADEREND:event_gobackActionPerformed
+        this.setVisible(false);
+        new GUICashier().setVisible(true);
+    }//GEN-LAST:event_gobackActionPerformed
+
+    private void yearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_yearActionPerformed
+    {//GEN-HEADEREND:event_yearActionPerformed
         Tmembers.removeAllItems();
 
         String _y = (String) year.getSelectedItem();
@@ -211,14 +229,29 @@ public class GUIPayment extends javax.swing.JFrame
             }
             
         }
+    }//GEN-LAST:event_yearActionPerformed
 
-    }//GEN-LAST:event_searchActionPerformed
+    private void newPayActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_newPayActionPerformed
+    {//GEN-HEADEREND:event_newPayActionPerformed
+        this.saved.setText(" ");
+        this.sub.setText("0 kr.");
+        
+        Tmembers.removeAllItems();
 
-    private void gobackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_gobackActionPerformed
-    {//GEN-HEADEREND:event_gobackActionPerformed
-        this.setVisible(false);
-        new GUICashier().setVisible(true);
-    }//GEN-LAST:event_gobackActionPerformed
+        String _y = (String) year.getSelectedItem();
+        y = Integer.parseInt(_y);
+
+        members = c.seeMembersInArrears(y);
+
+        for (Member m : members)
+        {
+            if(m.getBirthyear() <= y){
+                
+                this.Tmembers.addItem(m.getName() + " - " + m.getSsn());
+            }
+            
+        }
+    }//GEN-LAST:event_newPayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,8 +304,9 @@ public class GUIPayment extends javax.swing.JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton newPay;
     private javax.swing.JButton save;
-    private javax.swing.JButton search;
+    private javax.swing.JLabel saved;
     private javax.swing.JLabel sub;
     private javax.swing.JComboBox<String> year;
     // End of variables declaration//GEN-END:variables
