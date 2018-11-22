@@ -5,6 +5,7 @@ import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.ControllerAdmin;
 import delfinen.logic.Member;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 
 public class GUIAllMembersPresident extends javax.swing.JFrame
@@ -18,6 +19,9 @@ public class GUIAllMembersPresident extends javax.swing.JFrame
         
         c = new ControllerAdmin();
         ArrayList<Member> members = c.seeMembers();
+        
+        DefaultTableModel table = (DefaultTableModel) allmembers.getModel();
+        table.setRowCount(members.size());
         
         for (int i = 0; i < members.size(); i++)
         {

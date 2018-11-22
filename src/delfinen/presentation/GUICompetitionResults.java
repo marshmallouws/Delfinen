@@ -9,6 +9,7 @@ import delfinen.logic.CompetitionResult;
 import delfinen.logic.ControllerMember;
 import delfinen.logic.Member;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,13 +27,11 @@ public class GUICompetitionResults extends javax.swing.JFrame
         
         this.s = s;
         c = new ControllerMember();
-
-        Tcompetition.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Competition");
-        Tcompetition.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Disciplin");
-        Tcompetition.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Rank");
-        Tcompetition.getTableHeader().getColumnModel().getColumn(3).setHeaderValue("Time");
-
+        
         ArrayList<CompetitionResult> competition = c.getCompetitionResult(s);
+        
+        DefaultTableModel table = (DefaultTableModel) Tcompetition.getModel();
+        table.setRowCount(competition.size());
 
         for (int i = 0; i < competition.size(); i++)
         {
@@ -75,7 +74,7 @@ public class GUICompetitionResults extends javax.swing.JFrame
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Competition", "Disciplin", "Rank", "Time"
             }
         ));
         jScrollPane1.setViewportView(Tcompetition);
@@ -96,15 +95,15 @@ public class GUICompetitionResults extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel1))
+                        .addGap(22, 22, 22)
+                        .addComponent(back))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(68, 68, 68)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(back)))
-                .addContainerGap(98, Short.MAX_VALUE))
+                        .addGap(105, 105, 105)
+                        .addComponent(jLabel1)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

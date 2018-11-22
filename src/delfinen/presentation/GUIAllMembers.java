@@ -8,6 +8,7 @@ package delfinen.presentation;
 import delfinen.logic.ControllerAdmin;
 import delfinen.logic.Member;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,13 +18,16 @@ public class GUIAllMembers extends javax.swing.JFrame
 {
 
     private ControllerAdmin c;
-    
+
     public GUIAllMembers()
     {
         initComponents();
-        
+
         c = new ControllerAdmin();
         ArrayList<Member> members = c.seeMembers();
+        
+        DefaultTableModel table = (DefaultTableModel) AllM.getModel();
+        table.setRowCount(members.size());
         
         for (int i = 0; i < members.size(); i++)
         {
@@ -36,7 +40,7 @@ public class GUIAllMembers extends javax.swing.JFrame
             AllM.getModel().setValueAt(members.get(i).calculateS(), i, 6);
             AllM.getModel().setValueAt(members.get(i).getLastPayment(), i, 7);
         }
-        
+
     }
 
     /**
@@ -132,8 +136,8 @@ public class GUIAllMembers extends javax.swing.JFrame
 
     private void gobackActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_gobackActionPerformed
     {//GEN-HEADEREND:event_gobackActionPerformed
-       this.setVisible(false);
-       new GUICashier().setVisible(true);
+        this.setVisible(false);
+        new GUICashier().setVisible(true);
     }//GEN-LAST:event_gobackActionPerformed
 
     /**

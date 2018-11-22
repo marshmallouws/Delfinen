@@ -11,6 +11,7 @@ import delfinen.logic.ControllerTrainer;
 import delfinen.logic.Disciplin;
 import delfinen.logic.TrainingResult;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,10 +32,6 @@ public class GUIShowSwimmer extends javax.swing.JFrame
 
         name.setText(s.getName());
         phone.setText("phone number: " + s.getPhone());
-
-        ttraining.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Disciplin");
-        ttraining.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
-        ttraining.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
 
         ArrayList<TrainingResult> result = c.getTrainingResult(s, Disciplin.CRAWL);
         ArrayList<TrainingResult> backcrawl = c.getTrainingResult(s, Disciplin.BACKCRAWL);
@@ -58,6 +55,9 @@ public class GUIShowSwimmer extends javax.swing.JFrame
 
             result.add(breaststroke.get(i));
         }
+        
+        DefaultTableModel table = (DefaultTableModel) ttraining.getModel();
+        table.setRowCount(result.size());
 
         for (int i = 0; i < result.size(); i++)
         {
@@ -67,12 +67,10 @@ public class GUIShowSwimmer extends javax.swing.JFrame
 
         }
 
-        tcomp.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Competition");
-        tcomp.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Disciplin");
-        tcomp.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Rank");
-        tcomp.getTableHeader().getColumnModel().getColumn(3).setHeaderValue("Time");
-
         ArrayList<CompetitionResult> competition = c.getCompetitionResult(s);
+        
+        DefaultTableModel table2 = (DefaultTableModel) tcomp.getModel();
+        table2.setRowCount(competition.size());
 
         for (int i = 0; i < competition.size(); i++)
         {
@@ -130,7 +128,7 @@ public class GUIShowSwimmer extends javax.swing.JFrame
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3"
+                "Disciplin", "Date", "Time"
             }
         ));
         jScrollPane1.setViewportView(ttraining);
@@ -151,7 +149,7 @@ public class GUIShowSwimmer extends javax.swing.JFrame
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Competition", "Disciplin", "Rank", "Time"
             }
         ));
         jScrollPane2.setViewportView(tcomp);

@@ -12,59 +12,66 @@ import delfinen.logic.Disciplin;
 import delfinen.logic.Member;
 import delfinen.logic.TrainingResult;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author aamandajuhl
  */
-public class GUITrainingResults extends javax.swing.JFrame {
+public class GUITrainingResults extends javax.swing.JFrame
+{
 
     private ControllerMember c;
     private final Member s;
 
-    public GUITrainingResults(Member s) {
+    public GUITrainingResults(Member s)
+    {
         initComponents();
 
         this.s = s;
 
         c = new ControllerMember();
 
-        Tcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
-        Tcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
-
         ArrayList<TrainingResult> crawl = c.getTrainingResult(s, Disciplin.CRAWL);
 
-        for (int i = 0; i < crawl.size(); i++) {
+        DefaultTableModel table = (DefaultTableModel) Tcrawl.getModel();
+        table.setRowCount(crawl.size());
+
+        for (int i = 0; i < crawl.size(); i++)
+        {
             Tcrawl.getModel().setValueAt(crawl.get(i).getDate(), i, 0);
             Tcrawl.getModel().setValueAt(crawl.get(i).getTime(), i, 1);
         }
 
-        Tbackcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
-        Tbackcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
-
         ArrayList<TrainingResult> backcrawl = c.getTrainingResult(s, Disciplin.BACKCRAWL);
 
-        for (int i = 0; i < backcrawl.size(); i++) {
+        DefaultTableModel table1 = (DefaultTableModel) Tbackcrawl.getModel();
+        table1.setRowCount(backcrawl.size());
+
+        for (int i = 0; i < backcrawl.size(); i++)
+        {
             Tbackcrawl.getModel().setValueAt(backcrawl.get(i).getDate(), i, 0);
             Tbackcrawl.getModel().setValueAt(backcrawl.get(i).getTime(), i, 1);
         }
 
-        Tbreaststroke.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
-        Tbreaststroke.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
-
         ArrayList<TrainingResult> breaststroke = c.getTrainingResult(s, Disciplin.BREASTSTROKE);
 
-        for (int i = 0; i < breaststroke.size(); i++) {
+        DefaultTableModel table2 = (DefaultTableModel) Tbreaststroke.getModel();
+        table2.setRowCount(breaststroke.size());
+
+        for (int i = 0; i < breaststroke.size(); i++)
+        {
             Tbreaststroke.getModel().setValueAt(breaststroke.get(i).getDate(), i, 0);
             Tbreaststroke.getModel().setValueAt(breaststroke.get(i).getTime(), i, 1);
         }
 
-        Tbutterfly.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Date");
-        Tbutterfly.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Time");
-
         ArrayList<TrainingResult> butterfly = c.getTrainingResult(s, Disciplin.BUTTERFLY);
 
-        for (int i = 0; i < butterfly.size(); i++) {
+        DefaultTableModel table3 = (DefaultTableModel) Tbutterfly.getModel();
+        table3.setRowCount(butterfly.size());
+
+        for (int i = 0; i < butterfly.size(); i++)
+        {
             Tbutterfly.getModel().setValueAt(butterfly.get(i).getDate(), i, 0);
             Tbutterfly.getModel().setValueAt(butterfly.get(i).getTime(), i, 1);
         }
@@ -111,7 +118,7 @@ public class GUITrainingResults extends javax.swing.JFrame {
             },
             new String []
             {
-                "Title 1", "Title 2"
+                "Date ", "Time"
             }
         ));
         jScrollPane1.setViewportView(Tcrawl);
@@ -126,7 +133,7 @@ public class GUITrainingResults extends javax.swing.JFrame {
             },
             new String []
             {
-                "Title 1", "Title 2"
+                "Date", "Time"
             }
         ));
         jScrollPane3.setViewportView(Tbutterfly);
@@ -141,7 +148,7 @@ public class GUITrainingResults extends javax.swing.JFrame {
             },
             new String []
             {
-                "Title 1", "Title 2"
+                "Date", "Time"
             }
         ));
         jScrollPane4.setViewportView(Tbackcrawl);
@@ -156,7 +163,7 @@ public class GUITrainingResults extends javax.swing.JFrame {
             },
             new String []
             {
-                "Title 1", "Title 2"
+                "Date", "Time"
             }
         ));
         jScrollPane5.setViewportView(Tbreaststroke);
@@ -262,33 +269,43 @@ public class GUITrainingResults extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(GUITrainingResults.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
 
             }
         });

@@ -25,10 +25,6 @@ public class GUITop5 extends javax.swing.JFrame
 
         c = new ControllerTrainer();
 
-        tcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
-        tcrawl.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
-
         ArrayList<TrainingResult> crawl = c.top5(team, Disciplin.CRAWL);
 
         for (int i = 0; i < crawl.size(); i++)
@@ -37,10 +33,6 @@ public class GUITop5 extends javax.swing.JFrame
             tcrawl.getModel().setValueAt(crawl.get(i).getDate(), i, 1);
             tcrawl.getModel().setValueAt(crawl.get(i).getTime(), i, 2);
         }
-
-        tbutterfly.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tbutterfly.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
-        tbutterfly.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
 
         ArrayList<TrainingResult> butterfly = c.top5(team, Disciplin.BUTTERFLY);
 
@@ -51,10 +43,6 @@ public class GUITop5 extends javax.swing.JFrame
             tbutterfly.getModel().setValueAt(butterfly.get(i).getTime(), i, 2);
         }
 
-        tbreaststroke.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tbreaststroke.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
-        tbreaststroke.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
-
         ArrayList<TrainingResult> breaststroke = c.top5(team, Disciplin.BREASTSTROKE);
 
         for (int i = 0; i < breaststroke.size(); i++)
@@ -63,10 +51,6 @@ public class GUITop5 extends javax.swing.JFrame
             tbreaststroke.getModel().setValueAt(breaststroke.get(i).getDate(), i, 1);
             tbreaststroke.getModel().setValueAt(breaststroke.get(i).getTime(), i, 2);
         }
-
-        tbackcrawl.getTableHeader().getColumnModel().getColumn(0).setHeaderValue("Swimmer");
-        tbackcrawl.getTableHeader().getColumnModel().getColumn(1).setHeaderValue("Date");
-        tbackcrawl.getTableHeader().getColumnModel().getColumn(2).setHeaderValue("Time");
 
         ArrayList<TrainingResult> backcrawl = c.top5(team, Disciplin.BACKCRAWL);
 
@@ -117,7 +101,7 @@ public class GUITop5 extends javax.swing.JFrame
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3"
+                "Swimmer", "Date", "Time"
             }
         ));
         jScrollPane1.setViewportView(tcrawl);
@@ -136,7 +120,7 @@ public class GUITop5 extends javax.swing.JFrame
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3"
+                "Swimmer", "Date", "Time"
             }
         ));
         jScrollPane3.setViewportView(tbreaststroke);
@@ -152,7 +136,7 @@ public class GUITop5 extends javax.swing.JFrame
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3"
+                "Swimmer", "Date", "Time"
             }
         ));
         jScrollPane4.setViewportView(tbackcrawl);
@@ -185,7 +169,7 @@ public class GUITop5 extends javax.swing.JFrame
             },
             new String []
             {
-                "Title 1", "Title 2", "Title 3"
+                "Swimmer", "Date", "Time"
             }
         ));
         jScrollPane5.setViewportView(tbutterfly);

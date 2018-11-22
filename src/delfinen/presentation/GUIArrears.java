@@ -9,6 +9,7 @@ import delfinen.logic.ControllerAdmin;
 import delfinen.logic.Member;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -182,6 +183,9 @@ public class GUIArrears extends javax.swing.JFrame
                 members.add(m);
             }
         }
+        
+        DefaultTableModel table = (DefaultTableModel) mA.getModel();
+        table.setRowCount(members.size());
 
         for (int i = 0; i < members.size(); i++)
         {
