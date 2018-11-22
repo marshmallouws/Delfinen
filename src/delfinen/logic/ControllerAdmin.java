@@ -81,6 +81,7 @@ public class ControllerAdmin implements Controller
     @Override
     public void updateMember(Member m, String field, String change)
     {
+
         data.updateMember(m.getSsn(), change, field);
     }
 
@@ -148,7 +149,7 @@ public class ControllerAdmin implements Controller
         }
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        
+
         if (birthyear < (year - 100) || birthyear >= year)
         {
             error += " Birthyear must be 4 digits";
@@ -239,6 +240,14 @@ public class ControllerAdmin implements Controller
      */
     public void payForCurrentYear(Member m, int year)
     {
+        try
+        {
+            m.setYearsPaid(year);
+        } catch (IllegalArgumentException ex)
+        {
+            ex.getMessage();
+        }
+
         data.updatePayment(m.getSsn(), year);
     }
 
@@ -256,5 +265,4 @@ public class ControllerAdmin implements Controller
         }
 
     }
-
 }
