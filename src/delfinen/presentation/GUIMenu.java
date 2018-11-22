@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 public class GUIMenu extends javax.swing.JFrame {
 
-    //private Controller c;
     private ControllerMember c;
     private ArrayList<Member> members;
 

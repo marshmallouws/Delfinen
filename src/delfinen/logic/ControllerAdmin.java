@@ -193,5 +193,20 @@ public class ControllerAdmin implements Controller
     {
         data.updatePayment(m.getSsn(), year);
     }
+    
+    public Member getMember(String ssn)
+    {
+        try
+        {
+            Member member = data.getMember(ssn);
+            return member;
+        } catch (Exception ex)
+        {
+            System.out.println("Member not found");
+            return null;
+
+        }
+
+    }
 
 }

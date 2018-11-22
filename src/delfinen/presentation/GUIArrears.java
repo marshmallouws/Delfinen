@@ -8,6 +8,7 @@ package delfinen.presentation;
 import delfinen.logic.ControllerAdmin;
 import delfinen.logic.Member;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -17,24 +18,20 @@ public class GUIArrears extends javax.swing.JFrame
 {
 
     private ControllerAdmin c;
-    
+
     public GUIArrears()
     {
         initComponents();
         c = new ControllerAdmin();
-        
-        ArrayList<Member> members = c.seeMembersInArrears();
-        
-        for (int i = 0; i < members.size(); i++)
+
+        int today = Calendar.getInstance().get(Calendar.YEAR);
+
+        for (int i = today; i > 1989; i--)
         {
-            mA.getModel().setValueAt(members.get(i).getSsn(), i, 0);
-            mA.getModel().setValueAt(members.get(i).getName(), i, 1);
-            mA.getModel().setValueAt(members.get(i).getMembership(), i, 2);
-            mA.getModel().setValueAt(members.get(i).getMemberstatus(), i, 3);
-            mA.getModel().setValueAt(members.get(i).calculateS(), i, 4);
-            mA.getModel().setValueAt(members.get(i).getLastPayment(), i, 5);
+            String _i = Integer.toString(i);
+            this.year.addItem(_i);
         }
-        
+
     }
 
     /**
@@ -51,6 +48,8 @@ public class GUIArrears extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         mA = new javax.swing.JTable();
         goback = new javax.swing.JButton();
+        year = new javax.swing.JComboBox<>();
+        search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +96,15 @@ public class GUIArrears extends javax.swing.JFrame
             }
         });
 
+        search.setText("search");
+        search.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                searchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,17 +120,27 @@ public class GUIArrears extends javax.swing.JFrame
                             .addComponent(goback)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(search)
+                .addGap(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(goback)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -133,6 +151,37 @@ public class GUIArrears extends javax.swing.JFrame
         this.setVisible(false);
         new GUICashier().setVisible(true);
     }//GEN-LAST:event_gobackActionPerformed
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_searchActionPerformed
+    {//GEN-HEADEREND:event_searchActionPerformed
+        mA.removeAll();
+        String _y = (String) year.getSelectedItem();
+
+        int y = Integer.parseInt(_y);
+
+        ArrayList<Member> temp = c.seeMembersInArrears(y);
+        ArrayList<Member> members = new ArrayList<>();
+
+        for (Member m : temp)
+        {
+            //if (m.getBirthyear() <= y)
+            //{
+                members.add(m);
+            //}
+        }
+       
+        for (int i = 0; i < members.size(); i++)
+        {
+            mA.getModel().setValueAt(members.get(i).getSsn(), i, 0);
+            mA.getModel().setValueAt(members.get(i).getName(), i, 1);
+            mA.getModel().setValueAt(members.get(i).getMembership(), i, 2);
+            mA.getModel().setValueAt(members.get(i).getMemberstatus(), i, 3);
+            mA.getModel().setValueAt(members.get(i).calculateS(), i, 4);
+            mA.getModel().setValueAt(members.get(i).getLastPayment(), i, 5);
+        }
+
+
+    }//GEN-LAST:event_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,5 +232,7 @@ public class GUIArrears extends javax.swing.JFrame
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable mA;
+    private javax.swing.JButton search;
+    private javax.swing.JComboBox<String> year;
     // End of variables declaration//GEN-END:variables
 }

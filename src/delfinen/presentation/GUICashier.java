@@ -48,8 +48,22 @@ public class GUICashier extends javax.swing.JFrame
         });
 
         allMembers.setText("All members");
+        allMembers.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                allMembersActionPerformed(evt);
+            }
+        });
 
         rPayment.setText("Register payment");
+        rPayment.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                rPaymentActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Cashier");
@@ -115,6 +129,18 @@ public class GUICashier extends javax.swing.JFrame
         this.setVisible(false);
         new GUIArrears().setVisible(true);
     }//GEN-LAST:event_arrearsActionPerformed
+
+    private void allMembersActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_allMembersActionPerformed
+    {//GEN-HEADEREND:event_allMembersActionPerformed
+        this.setVisible(false);
+        new GUIAllMembers().setVisible(true);
+    }//GEN-LAST:event_allMembersActionPerformed
+
+    private void rPaymentActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_rPaymentActionPerformed
+    {//GEN-HEADEREND:event_rPaymentActionPerformed
+        this.setVisible(false);
+        new GUIPayment().setVisible(true);
+    }//GEN-LAST:event_rPaymentActionPerformed
 
     /**
      * @param args the command line arguments

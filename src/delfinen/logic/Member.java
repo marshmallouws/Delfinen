@@ -55,11 +55,12 @@ public class Member
 
     private void makeYears()
     {
-        for (int i = birthyear; i < lastPayment; i++)
+        for (int i = birthyear; i < lastPayment; ++i)
         {
             yearsPaid.add(i);
         }
         yearsPaid.add(lastPayment);
+
     }
 
     public int getAge()
