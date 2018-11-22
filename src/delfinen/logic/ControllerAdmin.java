@@ -18,17 +18,21 @@ import java.util.logging.Logger;
  *
  * @author Annika Ehlers
  */
-public class ControllerAdmin implements Controller {
+public class ControllerAdmin implements Controller
+{
 
     private DBConnector c;
     private DataAccessorDatabase data;
 
-    public ControllerAdmin() {
-        try {
+    public ControllerAdmin()
+    {
+        try
+        {
             c = new DBConnector();
             data = new DataAccessorDatabase(c);
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             ex.printStackTrace();
         }
     }
@@ -40,10 +44,13 @@ public class ControllerAdmin implements Controller {
      * @return the members trainingsresults for at specific discipline
      */
     @Override
-    public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d) {
-        try {
+    public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d)
+    {
+        try
+        {
             return data.getTrainingResult(s.getSsn(), d);
-        } catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex)
+        {
             System.out.println("SSN or disciplin does not exist");
             return null;
         }
@@ -55,10 +62,13 @@ public class ControllerAdmin implements Controller {
      * @return a members competitionsresults
      */
     @Override
-    public ArrayList<CompetitionResult> getCompetitionResult(Member s) {
-        try {
+    public ArrayList<CompetitionResult> getCompetitionResult(Member s)
+    {
+        try
+        {
             return data.getCompetitionResult(s.getSsn());
-        } catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex)
+        {
             System.out.println("SSN not found");
             return null;
         }
@@ -71,15 +81,19 @@ public class ControllerAdmin implements Controller {
      * @param change used to tell what change there is going to be
      */
     @Override
-    public void updateMember(Member m, String field, String change) {
+    public void updateMember(Member m, String field, String change)
+    {
 
         data.updateMember(m.getSsn(), change, field);
     }
 
-    public ArrayList<Member> seeMembers() {
-        try {
+    public ArrayList<Member> seeMembers()
+    {
+        try
+        {
             return data.getMembers();
-        } catch (DataException ex) {
+        } catch (DataException ex)
+        {
             return null;
         }
     }
@@ -88,7 +102,8 @@ public class ControllerAdmin implements Controller {
      *
      * @param m search for member that is going to be deleted
      */
-    public void deleteMember(Member m) {
+    public void deleteMember(Member m)
+    {
         data.removeMember(m);
     }
 
@@ -104,68 +119,91 @@ public class ControllerAdmin implements Controller {
      * @param memberstatus to create memberstatus
      * @param team_id to create team id
      */
-    public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id) {
-        if (firstname.length() > 40 || firstname.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
+    public String createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id)
+    {
+        String error = "";
 
-        if (lastname.length() > 40 || firstname.isEmpty()) {
-            throw new IllegalArgumentException();
+        if (firstname.length() > 40 || firstname.isEmpty())
+        {
+            error += "Firstname must be between 1 - 40 characters";
+        }
+        if (lastname.length() > 40 || firstname.isEmpty())
+        {
+            error += " Lastname must be between 1 - 40 characters";
         }
 
         String trim = ssn.trim();
 
-        try {
+        try
+        {
             Integer.parseInt(trim);
-        } catch (NumberFormatException e) {
-            e.getMessage();
+        } catch (NumberFormatException e)
+        {
+            error += " ssn must be 10 digits";
         }
 
-        if (String.valueOf(trim).length() == 10) {
+        if (trim.length() == 10)
+        {
             ssn = trim;
-        } else {
-            throw new IllegalArgumentException();
+        } else
+        {
+            error += " ssn must be 10 digits";
         }
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
 
-        if (birthyear < (year - 100) || birthyear >= year) {
-            throw new IllegalArgumentException();
+        if (birthyear < (year - 100) || birthyear >= year)
+        {
+            error += " Birthyear must be 4 digits";
         }
 
-        if (address.length() > 50 || address.isEmpty()) {
-            throw new IllegalArgumentException();
+        if (address.length() > 50 || address.isEmpty())
+        {
+            error += " Address must be between 1 and 50 characters";
         }
 
         String zipTrim = zipcode.trim();
 
-        try {
+        try
+        {
             Integer.parseInt(zipTrim);
-        } catch (NumberFormatException e) {
-            e.getMessage();
+        } catch (NumberFormatException e)
+        {
+            error += " Zipcode must be 4 digits";
         }
 
-        if (String.valueOf(zipTrim).length() == 4) {
+        if (zipTrim.length() == 4)
+        {
             zipcode = zipTrim;
-        } else {
-            throw new IllegalArgumentException();
+        } else
+        {
+            error += " Zipcode must be 4 digits";
         }
 
         String phoneTrim = phone.trim();
 
-        try {
+        try
+        {
             Integer.parseInt(phoneTrim);
-        } catch (NumberFormatException e) {
-            e.getMessage();
+        } catch (NumberFormatException e)
+        {
+            error += " Phone number must be 8 digits";
         }
 
-        if (String.valueOf(phoneTrim).length() == 8) {
+        if (phoneTrim.length() == 8)
+        {
             phone = phoneTrim;
-        } else {
-            throw new IllegalArgumentException();
+        } else
+        {
+            error += " Phone number must be 8 digits";
         }
 
-        data.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
+        if (error.isEmpty())
+        {
+            data.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
+            return error;
+        }
+        return error;
     }
 
     /**
@@ -173,18 +211,23 @@ public class ControllerAdmin implements Controller {
      * @param year used to search for currentyear
      * @return a list of members in arrears
      */
-    public ArrayList<Member> seeMembersInArrears(int year) {
+    public ArrayList<Member> seeMembersInArrears(int year)
+    {
         ArrayList<Member> members = new ArrayList<>();
         ArrayList<Member> arrears = new ArrayList<>();
-        try {
+        try
+        {
             members = data.getMembers();
-        } catch (DataException ex) {
+        } catch (DataException ex)
+        {
             ex.getStackTrace();
         }
 
         //int year = Calendar.getInstance().get(Calendar.YEAR);
-        for (Member m : members) {
-            if (!(m.getYearsPaid().contains(year))) {
+        for (Member m : members)
+        {
+            if (!(m.getYearsPaid().contains(year)))
+            {
                 arrears.add(m);
             }
         }
@@ -197,21 +240,27 @@ public class ControllerAdmin implements Controller {
      * @param m used to search for member
      * @param year used to pay for current year
      */
-    public void payForCurrentYear(Member m, int year) {
-        try{
+    public void payForCurrentYear(Member m, int year)
+    {
+        try
+        {
             m.setYearsPaid(year);
-        } catch (IllegalArgumentException ex) {
+        } catch (IllegalArgumentException ex)
+        {
             ex.getMessage();
         }
-        
+
         data.updatePayment(m.getSsn(), year);
     }
 
-    public Member getMember(String ssn) {
+    public Member getMember(String ssn)
+    {
         Member member = null;
-        try {
+        try
+        {
             member = data.getMember(ssn);
-        } catch (DataException ex) {
+        } catch (DataException ex)
+        {
             Logger.getLogger(ControllerAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return member;
