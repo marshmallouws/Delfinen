@@ -58,6 +58,13 @@ public class GUIPresidentMenu extends javax.swing.JFrame
         jLabel1.setText("President menu");
 
         back.setText("Go back");
+        back.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,6 +122,12 @@ public class GUIPresidentMenu extends javax.swing.JFrame
         this.setVisible(false);
         new GUIAllMembersPresident().setVisible(true);
     }//GEN-LAST:event_AllmemberActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
+    {//GEN-HEADEREND:event_backActionPerformed
+        this.setVisible(false);
+        new GUIAdminMenu().setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
