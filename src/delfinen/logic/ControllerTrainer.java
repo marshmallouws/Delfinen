@@ -25,6 +25,10 @@ public class ControllerTrainer implements Controller
         
     }
     
+    /**
+     * 
+     * @return a list of competitionSwimmers
+     */
     public ArrayList<CompetitionSwimmer> getSwimmers()
     {
         try
@@ -40,6 +44,12 @@ public class ControllerTrainer implements Controller
         }
     }
     
+    /**
+     * 
+     * @param s used to search for member
+     * @param d used to search for specific discipline
+     * @return a list of trainingresult for a member in a specific discipline
+     */
     @Override
     public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d)
     {
@@ -55,12 +65,23 @@ public class ControllerTrainer implements Controller
         }
     }
     
+    /**
+     * 
+     * @param m used to search for member
+     * @param field that is going to be updated
+     * @param change used to tell what change there is going to be
+     */
     @Override
     public void updateMember(Member m, String field, String change)
     {
         data.updateMember(m.getSsn(), change, field);
     }
     
+    /**
+     * 
+     * @param s used to search for member
+     * @return a list of a members competitionsresults
+     */
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Member s)
     {
@@ -76,12 +97,20 @@ public class ControllerTrainer implements Controller
         }
     }
     
+    /**
+     * 
+     * @return a list of teams
+     */
     public ArrayList<Team> getTeams()
     {
         return data.getTeams();
         
     }
     
+    /**
+     * 
+     * @param teams used to put member on team 
+     */
     public void makeTeams(ArrayList<Team> teams)
     {
         
@@ -102,17 +131,38 @@ public class ControllerTrainer implements Controller
         
     }
     
+    /**
+     * 
+     * @param team used to search for team
+     * @param d used to search for specific discpline
+     * @return a top 5 list for a team in a specific discpline
+     */
     public ArrayList<TrainingResult> top5(Team team, Disciplin d)
     {
         
         return data.getTop5(d, team);
     }
     
+    /**
+     * 
+     * @param s used to search for competitionSwimmer
+     * @param date used to tell the date of a training
+     * @param time used to tell time-result from training
+     * @param d used to tell what discpline the result is from
+     */
     public void registerTraining(CompetitionSwimmer s, String date, String time, Disciplin d)
     {
         data.createTrainingResult(s, d, date, time); 
     }
     
+    /**
+     * 
+     * @param s used to search for competitionSwimmer
+     * @param competition used to tell where the competition is located
+     * @param rank used to tell the competitionswimmers rank
+     * @param time used to tell the time-result from competition
+     * @param disciplin used to tell what discipline the result is from
+     */
     public void registerCompetition(CompetitionSwimmer s, String competition, int rank, String time, Disciplin disciplin)
     {
         data.createCompetitionResult(s, competition, rank, time, disciplin);
