@@ -9,7 +9,7 @@ public interface Controller
     
     public ArrayList<CompetitionResult> getCompetitionResult(Member s);
 
-    public void updateMember (Member m, String field, String change);
+    public String updateMember (Member m, String field, String change);
     
     
 }

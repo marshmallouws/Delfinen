@@ -19,7 +19,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
 {
 
     private ControllerMember c;
-    private final Member m; 
+    private final Member m;
 
     /**
      * Creates new form GUI
@@ -85,6 +85,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
         jLabel8 = new javax.swing.JLabel();
         sub = new javax.swing.JLabel();
         paid = new javax.swing.JLabel();
+        fail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,6 +165,8 @@ public class GUIMemberInformation extends javax.swing.JFrame
         paid.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         paid.setText("j");
 
+        fail.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,7 +217,10 @@ public class GUIMemberInformation extends javax.swing.JFrame
                             .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
-                        .addComponent(paid, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(paid, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(fail, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -257,7 +263,9 @@ public class GUIMemberInformation extends javax.swing.JFrame
                     .addComponent(sub))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(paid, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(fail)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(back))
@@ -269,10 +277,10 @@ public class GUIMemberInformation extends javax.swing.JFrame
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
+        String error = "";
 
         if (this.jButton2.getText().equals("Save"))
         {
-
             this.jButton2.setText("Edit");
             this.FirstName.setEditable(false);
             this.LastName.setEditable(false);
@@ -280,12 +288,6 @@ public class GUIMemberInformation extends javax.swing.JFrame
             this.zipcode.setEditable(false);
             this.phone.setEditable(false);
 
-            m.setFirstname(FirstName.getText());
-            m.setLastname(LastName.getText());
-            m.setAddress(address.getText());
-            m.setZipcode(zipcode.getText());
-            m.setPhone(phone.getText());
-            this.status.setVisible(false);
             String _ms = (String) status.getSelectedItem();
             MemberStatus ms = m.getMemberstatus();
             switch (_ms)
@@ -298,13 +300,33 @@ public class GUIMemberInformation extends javax.swing.JFrame
                     break;
             }
             m.setMemberstatus(ms);
-            
-            c.updateMember(m,FirstName.getText(),"firstname");
-            c.updateMember(m,LastName.getText(),"lastname");
-            c.updateMember(m,address.getText(),"address");
-            c.updateMember(m,zipcode.getText(),"zipcode");
-            c.updateMember(m,phone.getText(),"phone");
-            c.updateMember(m,_ms,"memberstatus");
+            error += c.updateMember(m, FirstName.getText(), "firstname");
+            error += c.updateMember(m, LastName.getText(), "lastname");
+            error += c.updateMember(m, address.getText(), "address");
+            error += c.updateMember(m, zipcode.getText(), "zipcode");
+            error += c.updateMember(m, phone.getText(), "phone");
+            error += c.updateMember(m, _ms, "memberstatus");
+
+            if (!error.isEmpty())
+            {
+                this.fail.setText(error);
+                FirstName.setText(m.getFirstname());
+                LastName.setText(m.getLastname());
+                ssn.setText(m.getSsn());
+                address.setText(m.getAddress());
+                zipcode.setText(m.getZipcode());
+                phone.setText(m.getPhone());
+                membership.setText(m.getMembership().name() + " ( Age: " + m.getAge() + " )");
+                memberstatus.setText(m.getMemberstatus().name());
+                return;
+            }
+            this.fail.setText(" ");
+            m.setFirstname(FirstName.getText());
+            m.setLastname(LastName.getText());
+            m.setAddress(address.getText());
+            m.setZipcode(zipcode.getText());
+            m.setPhone(phone.getText());
+            this.status.setVisible(false);
 
             FirstName.setText(m.getFirstname());
             LastName.setText(m.getLastname());
@@ -328,6 +350,15 @@ public class GUIMemberInformation extends javax.swing.JFrame
         {
             this.jButton2.setText("Save");
 
+            FirstName.setText(m.getFirstname());
+            LastName.setText(m.getLastname());
+            ssn.setText(m.getSsn());
+            address.setText(m.getAddress());
+            zipcode.setText(m.getZipcode());
+            phone.setText(m.getPhone());
+            membership.setText(m.getMembership().name() + " ( Age: " + m.getAge() + " )");
+            memberstatus.setText(m.getMemberstatus().name());
+
             this.FirstName.setEditable(true);
             this.LastName.setEditable(true);
             this.address.setEditable(true);
@@ -348,8 +379,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
     private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
     {//GEN-HEADEREND:event_backActionPerformed
         this.setVisible(false);
-       
-        
+
         if (m instanceof CompetitionSwimmer)
         {
             new GUICompetitiveMenu(m).setVisible(true);
@@ -412,6 +442,7 @@ public class GUIMemberInformation extends javax.swing.JFrame
     private javax.swing.JTextField LastName;
     private javax.swing.JTextField address;
     private javax.swing.JButton back;
+    private javax.swing.JLabel fail;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

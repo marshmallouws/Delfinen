@@ -7,22 +7,22 @@ import java.util.ArrayList;
 
 public class ControllerTrainer implements Controller
 {
-    
+
     private DBConnector c;
     private DataAccessorDatabase data;
-    
+
     public ControllerTrainer()
     {
         try
         {
             c = new DBConnector();
             data = new DataAccessorDatabase(c);
-            
+
         } catch (SQLException ex)
         {
             ex.printStackTrace();
         }
-        
+
     }
 
     /**
@@ -35,18 +35,18 @@ public class ControllerTrainer implements Controller
         {
             ArrayList<CompetitionSwimmer> swimmers = data.getComptitionSwimmers();
             return swimmers;
-            
+
         } catch (Exception ex)
         {
             System.out.println("Swimmers not found");
             return null;
-            
+
         }
     }
-    
+
     public void addResults(CompetitionSwimmer s)
     {
-        
+
         s.getTrainingBackCrawl().addAll(getTrainingResult(s, Disciplin.BACKCRAWL));
         s.getTrainingCrawl().addAll(getTrainingResult(s, Disciplin.CRAWL));
         s.getTrainingButterfly().addAll(getTrainingResult(s, Disciplin.BUTTERFLY));
@@ -67,7 +67,7 @@ public class ControllerTrainer implements Controller
         {
             ArrayList<TrainingResult> tr = data.getTrainingResult(s.getSsn(), d);
             return tr;
-            
+
         } catch (Exception ex)
         {
             System.out.println("No training results found");
@@ -82,9 +82,93 @@ public class ControllerTrainer implements Controller
      * @param change used to tell what change there is going to be
      */
     @Override
-    public void updateMember(Member m, String field, String change)
+    public String updateMember(Member m, String field, String change)
     {
-        data.updateMember(m.getSsn(), change, field);
+        String error = "";
+        String zipTrim = "";
+        String phoneTrim = "";
+
+        switch (field)
+        {
+            case "firstname":
+
+                if (change.length() > 40 || change.isEmpty())
+                {
+                    error += "Firstname must be between 1 - 40 characters";
+                }
+                break;
+
+            case "lastname":
+
+                if (change.length() > 40 || change.isEmpty())
+                {
+                    error += " Lastname must be between 1 - 40 characters";
+                }
+                break;
+
+            case "address":
+
+                if (change.length() > 50 || change.isEmpty())
+                {
+                    error += " Address must be between 1 and 50 characters";
+                }
+                break;
+
+            case "zipcode":
+
+                zipTrim = change.trim();
+
+                try
+                {
+                    Integer.parseInt(zipTrim);
+                } catch (NumberFormatException e)
+                {
+                    error += " Zipcode must be 4 digits";
+                }
+
+                if (zipTrim.length() == 4)
+                {
+                    change = zipTrim;
+                } else
+                {
+                    error += " Zipcode must be 4 digits";
+                }
+                break;
+
+            case "phone":
+
+                phoneTrim = change.trim();
+
+                try
+                {
+                    Integer.parseInt(phoneTrim);
+                } catch (NumberFormatException e)
+                {
+                    error += " Phone number must be 8 digits";
+                }
+
+                if (phoneTrim.length() == 8)
+                {
+                    change = phoneTrim;
+                } else
+                {
+                    error += " Phone number must be 8 digits";
+                }
+                break;
+
+            case "memberstatus":
+
+                change = change;
+                break;
+        }
+
+        if (error.isEmpty())
+        {
+            data.updateMember(m.getSsn(), change, field);
+            return error;
+        }
+
+        return error;
     }
 
     /**
@@ -99,7 +183,7 @@ public class ControllerTrainer implements Controller
         {
             ArrayList<CompetitionResult> cr = data.getCompetitionResult(s.getSsn());
             return cr;
-            
+
         } catch (Exception ex)
         {
             System.out.println("No training results found");
@@ -114,7 +198,7 @@ public class ControllerTrainer implements Controller
     public ArrayList<Team> getTeams()
     {
         return data.getTeams();
-        
+
     }
 
     /**
@@ -123,12 +207,12 @@ public class ControllerTrainer implements Controller
      */
     public void makeTeams(ArrayList<Team> teams)
     {
-        
+
         ArrayList<CompetitionSwimmer> swimmers = data.getComptitionSwimmers();
-        
+
         for (CompetitionSwimmer s : swimmers)
         {
-            
+
             if (s.getMembership().equals(Membership.JUNIOR))
             {
                 teams.get(1).addSwimmer(s);
@@ -136,9 +220,9 @@ public class ControllerTrainer implements Controller
             {
                 teams.get(0).addSwimmer(s);
             }
-            
+
         }
-        
+
     }
 
     /**
@@ -149,7 +233,7 @@ public class ControllerTrainer implements Controller
      */
     public ArrayList<TrainingResult> top5(Team team, Disciplin d)
     {
-        
+
         return data.getTop5(d, team);
     }
 
@@ -162,7 +246,7 @@ public class ControllerTrainer implements Controller
      */
     public void registerTraining(CompetitionSwimmer s, String date, String time, Disciplin d)
     {
-        data.createTrainingResult(s, d, date, time);        
+        data.createTrainingResult(s, d, date, time);
     }
 
     /**
@@ -177,5 +261,5 @@ public class ControllerTrainer implements Controller
     {
         data.createCompetitionResult(s, competition, rank, time, disciplin);
     }
-    
+
 }
