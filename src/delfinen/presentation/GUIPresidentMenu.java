@@ -46,6 +46,13 @@ public class GUIPresidentMenu extends javax.swing.JFrame
         });
 
         Allmember.setText("All members");
+        Allmember.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                AllmemberActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("President menu");
@@ -102,6 +109,12 @@ public class GUIPresidentMenu extends javax.swing.JFrame
         this.setVisible(false);
         new GUIRemoveMember().setVisible(true);
     }//GEN-LAST:event_removeActionPerformed
+
+    private void AllmemberActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_AllmemberActionPerformed
+    {//GEN-HEADEREND:event_AllmemberActionPerformed
+        this.setVisible(false);
+        new GUIAllMembersPresident().setVisible(true);
+    }//GEN-LAST:event_AllmemberActionPerformed
 
     /**
      * @param args the command line arguments
