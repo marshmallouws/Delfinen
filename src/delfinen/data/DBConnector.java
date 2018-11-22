@@ -14,7 +14,7 @@ public class DBConnector {
 	private static final String PORT     = "3306";
 	public  static final String DATABASE = "delfinen";
 	private static final String USERNAME = "root"; 
-	private static final String PASSWORD = "Sveske8654";	     	
+	private static final String PASSWORD = "root1234";	     	
 	
 	public DBConnector() throws SQLException {
             try {

@@ -11,6 +11,8 @@ import delfinen.data.DataException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -261,8 +263,6 @@ public class ControllerAdmin implements Controller
         {
             System.out.println("Member not found");
             return null;
-
         }
-
     }
 }
