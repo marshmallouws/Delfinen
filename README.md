@@ -8,8 +8,8 @@ To use the system,  make sure to have following programs installed:
 * JDBC-driver
 * MySQL Workbench
 
-#Installation
+# Installation
 When opening the program, make sure to add the MySQL connector to the project library and change the username and password from your SQLserver in the file: delfinen.data/DBConnector.java. Afterwards, you can download and run the database-file: DelfinSQL and the file with test data: TestDataSQL. 
 
-#Configuration
+# Configuration
 Some functionalities require that you uncheck “Safe Updates” in preferences → SQL Editor.
