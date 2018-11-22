@@ -85,12 +85,12 @@ public class ControllerAdmin implements Controller
 
     public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id)
     {
-        if (firstname.length() < 40 || firstname.isEmpty())
+        if (firstname.length() > 40 || firstname.isEmpty())
         {
             throw new IllegalArgumentException();
         }
 
-        if (lastname.length() < 40 || firstname.isEmpty())
+        if (lastname.length() > 40 || firstname.isEmpty())
         {
             throw new IllegalArgumentException();
         }

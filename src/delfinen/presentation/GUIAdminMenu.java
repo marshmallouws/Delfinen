@@ -31,7 +31,7 @@ public class GUIAdminMenu extends javax.swing.JFrame
     {
 
         jLabel1 = new javax.swing.JLabel();
-        admin = new javax.swing.JButton();
+        president = new javax.swing.JButton();
         cashier = new javax.swing.JButton();
         goback = new javax.swing.JButton();
 
@@ -40,7 +40,14 @@ public class GUIAdminMenu extends javax.swing.JFrame
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setText("Admin Menu");
 
-        admin.setText("Administration");
+        president.setText("President");
+        president.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                presidentActionPerformed(evt);
+            }
+        });
 
         cashier.setText("Cashier");
         cashier.addActionListener(new java.awt.event.ActionListener()
@@ -73,7 +80,7 @@ public class GUIAdminMenu extends javax.swing.JFrame
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(president, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cashier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -86,7 +93,7 @@ public class GUIAdminMenu extends javax.swing.JFrame
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(54, 54, 54)
-                .addComponent(admin)
+                .addComponent(president)
                 .addGap(34, 34, 34)
                 .addComponent(cashier)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
@@ -108,6 +115,12 @@ public class GUIAdminMenu extends javax.swing.JFrame
         this.setVisible(false);
         new GUIMenu().setVisible(true);
     }//GEN-LAST:event_gobackActionPerformed
+
+    private void presidentActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_presidentActionPerformed
+    {//GEN-HEADEREND:event_presidentActionPerformed
+        this.setVisible(false);
+        new GUIPresidentMenu().setVisible(true);
+    }//GEN-LAST:event_presidentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,9 +167,9 @@ public class GUIAdminMenu extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton admin;
     private javax.swing.JButton cashier;
     private javax.swing.JButton goback;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton president;
     // End of variables declaration//GEN-END:variables
 }
