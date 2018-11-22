@@ -1,12 +1,20 @@
-
 package delfinen.presentation;
 
-public class GUIPresidentMenu extends javax.swing.JFrame
+import delfinen.logic.ControllerAdmin;
+import delfinen.logic.Member;
+
+public class GUIRemoveMember extends javax.swing.JFrame
 {
 
-    public GUIPresidentMenu()
+    private ControllerAdmin c;
+    private Member m;
+
+    public GUIRemoveMember()
     {
         initComponents();
+
+        c = new ControllerAdmin();
+
     }
 
     /**
@@ -19,89 +27,90 @@ public class GUIPresidentMenu extends javax.swing.JFrame
     private void initComponents()
     {
 
-        register = new javax.swing.JButton();
-        remove = new javax.swing.JButton();
-        Allmember = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Tssn = new javax.swing.JTextField();
+        Bremove = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        register.setText("Register member");
-        register.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                registerActionPerformed(evt);
-            }
-        });
-
-        remove.setText("Remove member");
-        remove.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                removeActionPerformed(evt);
-            }
-        });
-
-        Allmember.setText("All members");
-
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
-        jLabel1.setText("President menu");
+        jLabel1.setText("Remove member");
+
+        jLabel2.setText("Enter ssn:");
+
+        Bremove.setText("Remove");
+        Bremove.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                BremoveActionPerformed(evt);
+            }
+        });
 
         back.setText("Go back");
+        back.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(Tssn, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Bremove)
+                .addGap(35, 35, 35))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(back))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
+                        .addGap(90, 90, 90)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(Allmember, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(register, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(back)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(Allmember)
-                .addGap(18, 18, 18)
-                .addComponent(register)
-                .addGap(18, 18, 18)
-                .addComponent(remove)
-                .addGap(38, 38, 38)
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Tssn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bremove))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(back)
-                .addGap(23, 23, 23))
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_registerActionPerformed
-    {//GEN-HEADEREND:event_registerActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backActionPerformed
+    {//GEN-HEADEREND:event_backActionPerformed
         this.setVisible(false);
-        new GUIRegisterMember().setVisible(true);
-    }//GEN-LAST:event_registerActionPerformed
+        new GUIPresidentMenu().setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
 
-    private void removeActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_removeActionPerformed
-    {//GEN-HEADEREND:event_removeActionPerformed
+    private void BremoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BremoveActionPerformed
+    {//GEN-HEADEREND:event_BremoveActionPerformed
+        String ssn = this.Tssn.getText();
+        m = c.getMember(ssn);
         this.setVisible(false);
-        new GUIRemoveMember().setVisible(true);
-    }//GEN-LAST:event_removeActionPerformed
+        new GUIAreYouSure(m).setVisible(true);
+    }//GEN-LAST:event_BremoveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,16 +134,16 @@ public class GUIPresidentMenu extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(GUIPresidentMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRemoveMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(GUIPresidentMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRemoveMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(GUIPresidentMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRemoveMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(GUIPresidentMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRemoveMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -143,16 +152,17 @@ public class GUIPresidentMenu extends javax.swing.JFrame
         {
             public void run()
             {
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Allmember;
+    private javax.swing.JButton Bremove;
+    private javax.swing.JTextField Tssn;
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton register;
-    private javax.swing.JButton remove;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
 }
