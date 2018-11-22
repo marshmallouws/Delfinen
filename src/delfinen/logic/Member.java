@@ -72,6 +72,15 @@ public class Member
         int month = Integer.parseInt(ssn.substring(2,4));
         int year = Integer.parseInt(ssn.substring(4,6));*/
     }
+    
+    public void setYearsPaid(int year){
+        int last = yearsPaid.size()-1;
+        if(year % yearsPaid.get(last) != 1){
+            throw new IllegalArgumentException();
+        } else {
+            yearsPaid.add(year);
+        }
+    }
 
     public void setFirstname(String firstname)
     {

@@ -5,7 +5,6 @@
  */
 package delfinen.logic;
 
-import delfinen.data.DataAccessorDatabase;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -16,7 +15,6 @@ import static org.junit.Assert.*;
  */
 public class ControllerAdminTest {
     private ControllerAdmin c;
-    private DataAccessorDatabase a;
     
     public ControllerAdminTest() {
         c = new ControllerAdmin();
@@ -26,7 +24,7 @@ public class ControllerAdminTest {
      * Test of getTrainingResult method, of class ControllerAdmin.
      */
     @Test
-    public void testGetTrainingResult() {
+    public void TestGetTrainingResult() {
         Member m = c.getMember("1506952222");
         ArrayList<TrainingResult> r = c.getTrainingResult(m, Disciplin.CRAWL);
         
@@ -47,20 +45,18 @@ public class ControllerAdminTest {
         assertEquals(r.size(), 2);
         assertEquals(r.get(0).getTime(), time);
     }
-
+    
     /**
      * Test of updateMember method, of class ControllerAdmin.
      */
     @Test
-    public void testUpdateMember() {
+    public void TestUpdateMember() {
         try{
             Member m = c.getMember("1506952222");
-            c.updateMember(m, "zipcode", "abcd");
-            fail(); 
+            c.updateMember(m, "zipcode", "1234");
         } catch (IllegalArgumentException ex){
-             //Expected   
+            
         }
-        
     }
 
     /**
@@ -68,47 +64,61 @@ public class ControllerAdminTest {
      */
     @Test
     public void testSeeMembers() {
-        System.out.println("seeMembers");
-        ControllerAdmin instance = new ControllerAdmin();
-        ArrayList<Member> expResult = null;
-        ArrayList<Member> result = instance.seeMembers();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<Member> members = c.seeMembers();
+        assertNotNull(members);
+        assertEquals(members.size(), 12);
+        assertEquals(members.get(0).getSsn(),"1506952222");
     }
-
-    /**
-     * Test of deleteMember method, of class ControllerAdmin.
-     */
-    @Test
-    public void testDeleteMember() {
-        System.out.println("deleteMember");
-        Member m = null;
-        ControllerAdmin instance = new ControllerAdmin();
-        instance.deleteMember(m);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of createMember method, of class ControllerAdmin.
      */
     @Test
     public void testCreateMember() {
-        System.out.println("createMember");
-        String firstname = "";
-        String lastname = "";
-        String ssn = "";
-        int birthyear = 0;
-        String address = "";
-        String zipcode = "";
-        String phone = "";
-        MemberStatus memberstatus = null;
-        int team_id = 0;
-        ControllerAdmin instance = new ControllerAdmin();
-        instance.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Member m = null;
+        try {
+            String firstname = "Hans";
+            String lastname = "Sørensen";
+            String ssn = "1234567890";
+            int birthyear = 1990;
+            String address = "Hejvej 1";
+            String zip = "1234";
+            String phone = "54455445";
+            int team = 1;
+            MemberStatus a = MemberStatus.ACTIVE;
+            
+            c.createMember(firstname, lastname, ssn, birthyear, address, zip, phone, a, team);
+            m = c.getMember(ssn);
+        } catch (IllegalArgumentException ex) {
+            fail();
+        }
+        
+        c.deleteMember(m);
+    }
+    
+    /**
+     * Test of createMember method, of class ControllerAdmin.
+     */
+    @Test
+    public void NegativeTestCreateMember() {
+        Member m = null;
+        try {
+            String firstname = "Hans";
+            String lastname = "Sørensen";
+            String ssn = "1234567891";
+            int birthyear = 1990;
+            String address = "Hejvej 1";
+            String zip = "22222";
+            String phone = "54455445";
+            int team = 1;
+            MemberStatus a = MemberStatus.ACTIVE;
+            
+            c.createMember(firstname, lastname, ssn, birthyear, address, zip, phone, a, team);
+            fail();
+        } catch (IllegalArgumentException ex) {
+            //Expected
+        }
     }
 
     /**
@@ -116,14 +126,10 @@ public class ControllerAdminTest {
      */
     @Test
     public void testSeeMembersInArrears() {
-        System.out.println("seeMembersInArrears");
-        int year = 0;
-        ControllerAdmin instance = new ControllerAdmin();
-        ArrayList<Member> expResult = null;
-        ArrayList<Member> result = instance.seeMembersInArrears(year);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<Member> m = c.seeMembersInArrears(2018);
+        assertNotNull(m);
+        assertEquals(m.size(), 11);
+        
     }
 
     /**
@@ -131,13 +137,11 @@ public class ControllerAdminTest {
      */
     @Test
     public void testPayForCurrentYear() {
-        System.out.println("payForCurrentYear");
-        Member m = null;
-        int year = 0;
-        ControllerAdmin instance = new ControllerAdmin();
-        instance.payForCurrentYear(m, year);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Member m = c.getMember("1506952222");
+        c.payForCurrentYear(m, 2018);
+        ArrayList<Integer> years = m.getYearsPaid();
+        int last = years.size()-1;
+        assertEquals((int)years.get(last), 2018);
     }
     
 }
