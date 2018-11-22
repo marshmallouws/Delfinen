@@ -2,6 +2,7 @@ package delfinen.presentation;
 
 import delfinen.logic.ControllerAdmin;
 import delfinen.logic.Member;
+import java.sql.SQLException;
 
 public class GUIRemoveMember extends javax.swing.JFrame
 {
@@ -32,6 +33,7 @@ public class GUIRemoveMember extends javax.swing.JFrame
         Tssn = new javax.swing.JTextField();
         Bremove = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        fail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +60,9 @@ public class GUIRemoveMember extends javax.swing.JFrame
             }
         });
 
+        fail.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        fail.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,7 +82,10 @@ public class GUIRemoveMember extends javax.swing.JFrame
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(back)))
+                        .addComponent(back))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(fail, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,7 +98,9 @@ public class GUIRemoveMember extends javax.swing.JFrame
                     .addComponent(jLabel2)
                     .addComponent(Tssn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Bremove))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fail)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(19, 19, 19))
         );
@@ -106,8 +116,14 @@ public class GUIRemoveMember extends javax.swing.JFrame
 
     private void BremoveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_BremoveActionPerformed
     {//GEN-HEADEREND:event_BremoveActionPerformed
-        String ssn = this.Tssn.getText();
-        m = c.getMember(ssn);
+        String ssn = "";
+        ssn = this.Tssn.getText();
+        m = c.getMember(ssn);  
+        if(m == null)
+        {
+            this.fail.setText("Member not found");
+            return;
+        }
         this.setVisible(false);
         new GUIAreYouSure(m).setVisible(true);
     }//GEN-LAST:event_BremoveActionPerformed
@@ -161,6 +177,7 @@ public class GUIRemoveMember extends javax.swing.JFrame
     private javax.swing.JButton Bremove;
     private javax.swing.JTextField Tssn;
     private javax.swing.JButton back;
+    private javax.swing.JLabel fail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

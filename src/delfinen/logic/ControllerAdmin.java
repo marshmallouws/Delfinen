@@ -34,9 +34,9 @@ public class ControllerAdmin implements Controller
             ex.printStackTrace();
         }
     }
-    
+
     /**
-     * 
+     *
      * @param s used to find member
      * @param d used to find specific discipline
      * @return the members trainingsresults for at specific discipline
@@ -55,7 +55,7 @@ public class ControllerAdmin implements Controller
     }
 
     /**
-     * 
+     *
      * @param s used to search for member
      * @return a members competitionsresults
      */
@@ -71,9 +71,9 @@ public class ControllerAdmin implements Controller
             return null;
         }
     }
-    
+
     /**
-     * 
+     *
      * @param m used to to search for member
      * @param field that is going to be updated
      * @param change used to tell what change there is going to be
@@ -94,8 +94,9 @@ public class ControllerAdmin implements Controller
             return null;
         }
     }
+
     /**
-     * 
+     *
      * @param m search for member that is going to be deleted
      */
     public void deleteMember(Member m)
@@ -103,29 +104,29 @@ public class ControllerAdmin implements Controller
         data.removeMember(m);
     }
 
-    
     /**
-     * 
+     *
      * @param firstname to create firstname
      * @param lastname to create lastname
      * @param ssn to create ssn
      * @param birthyear to create birthyear
      * @param address to create address
      * @param zipcode to create zipcode
-     * @param phone to create phone 
+     * @param phone to create phone
      * @param memberstatus to create memberstatus
      * @param team_id to create team id
      */
-    public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id)
+    public String createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id)
     {
+        String error = "";
+
         if (firstname.length() > 40 || firstname.isEmpty())
         {
-            throw new IllegalArgumentException();
+            error += "Firstname must be between 1 - 40 characters";
         }
-
         if (lastname.length() > 40 || firstname.isEmpty())
         {
-            throw new IllegalArgumentException();
+            error += " Lastname must be between 1 - 40 characters";
         }
 
         String trim = ssn.trim();
@@ -135,27 +136,27 @@ public class ControllerAdmin implements Controller
             Integer.parseInt(trim);
         } catch (NumberFormatException e)
         {
-            e.getMessage();
+            error += " ssn must be 10 digits";
         }
 
-        if (String.valueOf(trim).length() == 10)
+        if (trim.length() == 10)
         {
             ssn = trim;
         } else
         {
-            throw new IllegalArgumentException();
+            error += " ssn must be 10 digits";
         }
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-
+        
         if (birthyear < (year - 100) || birthyear >= year)
         {
-            throw new IllegalArgumentException();
+            error += " Birthyear must be 4 digits";
         }
 
         if (address.length() > 50 || address.isEmpty())
         {
-            throw new IllegalArgumentException();
+            error += " Address must be between 1 and 50 characters";
         }
 
         String zipTrim = zipcode.trim();
@@ -165,15 +166,15 @@ public class ControllerAdmin implements Controller
             Integer.parseInt(zipTrim);
         } catch (NumberFormatException e)
         {
-            e.getMessage();
+            error += " Zipcode must be 4 digits";
         }
 
-        if (String.valueOf(zipTrim).length() == 4)
+        if (zipTrim.length() == 4)
         {
             zipcode = zipTrim;
         } else
         {
-            throw new IllegalArgumentException();
+            error += " Zipcode must be 4 digits";
         }
 
         String phoneTrim = phone.trim();
@@ -183,22 +184,27 @@ public class ControllerAdmin implements Controller
             Integer.parseInt(phoneTrim);
         } catch (NumberFormatException e)
         {
-            e.getMessage();
+            error += " Phone number must be 8 digits";
         }
 
-        if (String.valueOf(phoneTrim).length() == 8)
+        if (phoneTrim.length() == 8)
         {
             phone = phoneTrim;
         } else
         {
-            throw new IllegalArgumentException();
+            error += " Phone number must be 8 digits";
         }
 
-        data.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
+        if (error.isEmpty())
+        {
+            data.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
+            return error;
+        }
+        return error;
     }
-    
+
     /**
-     * 
+     *
      * @param year used to search for currentyear
      * @return a list of members in arrears
      */
@@ -215,7 +221,6 @@ public class ControllerAdmin implements Controller
         }
 
         //int year = Calendar.getInstance().get(Calendar.YEAR);
-
         for (Member m : members)
         {
             if (!(m.getYearsPaid().contains(year)))
@@ -227,9 +232,8 @@ public class ControllerAdmin implements Controller
         return arrears;
     }
 
-    
     /**
-     * 
+     *
      * @param m used to search for member
      * @param year used to pay for current year
      */
@@ -237,7 +241,7 @@ public class ControllerAdmin implements Controller
     {
         data.updatePayment(m.getSsn(), year);
     }
-    
+
     public Member getMember(String ssn)
     {
         try

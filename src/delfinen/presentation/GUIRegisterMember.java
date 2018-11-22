@@ -14,7 +14,6 @@ public class GUIRegisterMember extends javax.swing.JFrame
         initComponents();
 
         c = new ControllerAdmin();
-        
 
     }
 
@@ -163,34 +162,33 @@ public class GUIRegisterMember extends javax.swing.JFrame
                                 .addGap(8, 8, 8)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel11)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(Taddress, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                                        .addComponent(Tphone)
+                                        .addComponent(Tssn, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Tfirstname, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Tzipcode))
+                                    .addComponent(Scombo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Tcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(Taddress, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                                            .addComponent(Tphone)
-                                            .addComponent(Tssn, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(Tfirstname, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(Tzipcode))
-                                        .addComponent(Scombo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(Tcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel8)
-                                                .addComponent(jLabel10)
-                                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(Tlastname)
-                                                .addComponent(Tbirthyear)
-                                                .addComponent(Tmembership)
-                                                .addComponent(Tage, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(Tregister, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(141, 141, 141))))))
+                                            .addComponent(Tlastname)
+                                            .addComponent(Tbirthyear)
+                                            .addComponent(Tmembership)
+                                            .addComponent(Tage, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(Tregister, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -243,9 +241,9 @@ public class GUIRegisterMember extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(register)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Tregister)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -261,6 +259,7 @@ public class GUIRegisterMember extends javax.swing.JFrame
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_registerActionPerformed
     {//GEN-HEADEREND:event_registerActionPerformed
+        String error = "";
         String firstname = this.Tfirstname.getText();
         String lastname = this.Tlastname.getText();
         String ssn = this.Tssn.getText();
@@ -268,20 +267,37 @@ public class GUIRegisterMember extends javax.swing.JFrame
         String address = this.Taddress.getText();
         String zipcode = this.Tzipcode.getText();
         String birthyear = this.Tbirthyear.getText();
-        
+
         int teamid = 0;
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-
+        int birth = 0;
+        int age = 0;
         String _birth = (String) this.Tbirthyear.getText();
-        int birth = Integer.parseInt(_birth);
-        int age = year - birth;
+
+        if (_birth.isEmpty() == false)
+        {
+            
+            try
+            {
+                Integer.parseInt(_birth.trim());
+            } catch (NumberFormatException e)
+            {
+               error += "Birthyear must be 4 digits";
+               this.Tregister.setText(error);
+               return;
+               
+            }
+
+            birth = Integer.parseInt(_birth);
+            age = year - birth;
+        }
 
         String _mt = (String) Tcombo.getSelectedItem();
         switch (_mt)
         {
             case "NONCOMPETITIVE":
-                if (birth <= year - 18)
+                if (age >= 18)
                 {
                     this.Tmembership.setText("SENIOR");
                     this.Tage.setText(age + "");
@@ -292,7 +308,7 @@ public class GUIRegisterMember extends javax.swing.JFrame
                 }
                 break;
             case "COMPETITIVE":
-                if (birth <= year - 18)
+                if (age >= 18)
                 {
                     this.Tmembership.setText("SENIOR");
                     teamid = 1;
@@ -317,9 +333,15 @@ public class GUIRegisterMember extends javax.swing.JFrame
                 ms = MemberStatus.PASSIVE;
                 break;
         }
-        
-        c.createMember(firstname, lastname, ssn, birth, address, zipcode, phone, ms, teamid);
-        
+
+        error = c.createMember(firstname, lastname, ssn, birth, address, zipcode, phone, ms, teamid);
+
+        if (!error.isEmpty())
+        {
+            this.Tregister.setText(error);
+            return;
+        }
+
         this.Tfirstname.setEditable(false);
         this.Tlastname.setEditable(false);
         this.Tssn.setEditable(false);
@@ -327,10 +349,9 @@ public class GUIRegisterMember extends javax.swing.JFrame
         this.Taddress.setEditable(false);
         this.Tzipcode.setEditable(false);
         this.Tbirthyear.setEditable(false);
-        
-        
+
         this.Tregister.setText("Member is now registered");
-        
+
 
     }//GEN-LAST:event_registerActionPerformed
 
@@ -349,9 +370,7 @@ public class GUIRegisterMember extends javax.swing.JFrame
         this.Taddress.setEditable(true);
         this.Tzipcode.setEditable(true);
         this.Tbirthyear.setEditable(true);
-        
-        
-        
+
         this.Tfirstname.setText("");
         this.Tfirstname.getText();
         this.Tlastname.setText("");
@@ -368,7 +387,8 @@ public class GUIRegisterMember extends javax.swing.JFrame
         this.Tbirthyear.getText();
         this.Tage.setText("");
         this.Tmembership.setText("");
-        
+        this.Tregister.setText("");
+
     }//GEN-LAST:event_TnewActionPerformed
 
     /**
@@ -411,7 +431,7 @@ public class GUIRegisterMember extends javax.swing.JFrame
         {
             public void run()
             {
-                
+
             }
         });
     }

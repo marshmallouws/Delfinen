@@ -15,18 +15,18 @@ import delfinen.logic.Disciplin;
  */
 public class GUIRegisterCompetition extends javax.swing.JFrame
 {
-    
+
     private ControllerTrainer c;
     private CompetitionSwimmer s;
-    
+
     public GUIRegisterCompetition(CompetitionSwimmer s)
     {
         initComponents();
-        
+
         c = new ControllerTrainer();
         this.s = s;
         this.name.setText(s.getName());
-        
+
     }
 
     /**
@@ -58,6 +58,7 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
         name = new javax.swing.JLabel();
         Rcombo = new javax.swing.JComboBox<>();
         Dcombo = new javax.swing.JComboBox<>();
+        fail = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +112,8 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
 
         Dcombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BUTTERFLY", "BREASTSTROKE", "BACKCRAWL", "CRAWL" }));
 
+        fail.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,24 +135,28 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(name)
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(Dcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Rcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(name)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Dcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(fail, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(34, 34, 34))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +183,7 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(name)
@@ -190,14 +197,15 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
                             .addComponent(jLabel9)
                             .addComponent(sec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(time))
+                            .addComponent(time)
+                            .addComponent(fail))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
-                        .addGap(24, 24, 24)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(Rcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
+                        .addGap(30, 30, 30)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(save))
@@ -211,10 +219,27 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
     {//GEN-HEADEREND:event_saveActionPerformed
         String time = hour.getText() + ":" + min.getText() + ":" + sec.getText();
         String competition = this.cText.getText();
-        
+
+        String thour = hour.getText().trim();
+        String tminut = min.getText().trim();
+        String tsec = sec.getText().trim();
+
+        try
+        {
+            Integer.parseInt(thour);
+            Integer.parseInt(tminut);
+            Integer.parseInt(tsec);
+
+        } catch (NumberFormatException e)
+        {
+            this.fail.setText("Date and time must only be digits");
+            return;
+        }
+        this.fail.setText("");
+
         String _d = (String) Dcombo.getSelectedItem();
         Disciplin d = Disciplin.BUTTERFLY;
-        
+
         switch (_d)
         {
             case "BUTTERFLY":
@@ -229,14 +254,14 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
             case "CRAWL":
                 d = Disciplin.CRAWL;
                 break;
-            
+
         }
-        
+
         String _r = (String) Rcombo.getSelectedItem();
         int r = Integer.parseInt(_r);
-        
+
         c.registerCompetition(s, competition, r, time, d);
-        
+
         this.setVisible(false);
         new GUIShowSwimmer(s).setVisible(true);
 
@@ -288,7 +313,7 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
         {
             public void run()
             {
-                
+
             }
         });
     }
@@ -298,6 +323,7 @@ public class GUIRegisterCompetition extends javax.swing.JFrame
     private javax.swing.JComboBox<String> Rcombo;
     private javax.swing.JButton back;
     private javax.swing.JTextField cText;
+    private javax.swing.JLabel fail;
     private javax.swing.JTextField hour;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
