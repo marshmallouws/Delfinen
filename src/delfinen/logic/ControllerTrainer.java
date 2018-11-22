@@ -24,9 +24,9 @@ public class ControllerTrainer implements Controller
         }
         
     }
-    
+
     /**
-     * 
+     *
      * @return a list of competitionSwimmers
      */
     public ArrayList<CompetitionSwimmer> getSwimmers()
@@ -44,7 +44,8 @@ public class ControllerTrainer implements Controller
         }
     }
     
-    public void addResults(CompetitionSwimmer s){
+    public void addResults(CompetitionSwimmer s)
+    {
         
         s.getTrainingBackCrawl().addAll(getTrainingResult(s, Disciplin.BACKCRAWL));
         s.getTrainingCrawl().addAll(getTrainingResult(s, Disciplin.CRAWL));
@@ -52,8 +53,9 @@ public class ControllerTrainer implements Controller
         s.getTrainingBreastStroke().addAll(getTrainingResult(s, Disciplin.BREASTSTROKE));
         s.getCompetition().addAll(getCompetitionResult(s));
     }
+
     /**
-     * 
+     *
      * @param s used to search for member
      * @param d used to search for specific discipline
      * @return a list of trainingresult for a member in a specific discipline
@@ -72,9 +74,9 @@ public class ControllerTrainer implements Controller
             return null;
         }
     }
-    
+
     /**
-     * 
+     *
      * @param m used to search for member
      * @param field that is going to be updated
      * @param change used to tell what change there is going to be
@@ -84,9 +86,9 @@ public class ControllerTrainer implements Controller
     {
         data.updateMember(m.getSsn(), change, field);
     }
-    
+
     /**
-     * 
+     *
      * @param s used to search for member
      * @return a list of a members competitionsresults
      */
@@ -104,9 +106,9 @@ public class ControllerTrainer implements Controller
             return null;
         }
     }
-    
+
     /**
-     * 
+     *
      * @return a list of teams
      */
     public ArrayList<Team> getTeams()
@@ -114,10 +116,10 @@ public class ControllerTrainer implements Controller
         return data.getTeams();
         
     }
-    
+
     /**
-     * 
-     * @param teams used to put member on team 
+     *
+     * @param teams used to put member on team
      */
     public void makeTeams(ArrayList<Team> teams)
     {
@@ -138,9 +140,9 @@ public class ControllerTrainer implements Controller
         }
         
     }
-    
+
     /**
-     * 
+     *
      * @param team used to search for team
      * @param d used to search for specific discpline
      * @return a top 5 list for a team in a specific discpline
@@ -150,9 +152,9 @@ public class ControllerTrainer implements Controller
         
         return data.getTop5(d, team);
     }
-    
+
     /**
-     * 
+     *
      * @param s used to search for competitionSwimmer
      * @param date used to tell the date of a training
      * @param time used to tell time-result from training
@@ -160,11 +162,11 @@ public class ControllerTrainer implements Controller
      */
     public void registerTraining(CompetitionSwimmer s, String date, String time, Disciplin d)
     {
-        data.createTrainingResult(s, d, date, time); 
+        data.createTrainingResult(s, d, date, time);        
     }
-    
+
     /**
-     * 
+     *
      * @param s used to search for competitionSwimmer
      * @param competition used to tell where the competition is located
      * @param rank used to tell the competitionswimmers rank
