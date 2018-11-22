@@ -29,14 +29,15 @@ public class GUIShowSwimmer extends javax.swing.JFrame
 
         c = new ControllerTrainer();
         this.s = s;
+        c.addResults(s);
 
         name.setText(s.getName());
         phone.setText("phone number: " + s.getPhone());
 
-        ArrayList<TrainingResult> result = c.getTrainingResult(s, Disciplin.CRAWL);
-        ArrayList<TrainingResult> backcrawl = c.getTrainingResult(s, Disciplin.BACKCRAWL);
-        ArrayList<TrainingResult> butterfly = c.getTrainingResult(s, Disciplin.BUTTERFLY);
-        ArrayList<TrainingResult> breaststroke = c.getTrainingResult(s, Disciplin.BREASTSTROKE);
+        ArrayList<TrainingResult> result = s.getTrainingCrawl();
+        ArrayList<TrainingResult> backcrawl = s.getTrainingBackCrawl();
+        ArrayList<TrainingResult> butterfly = s.getTrainingButterfly();
+        ArrayList<TrainingResult> breaststroke = s.getTrainingBreastStroke();
 
         for (int i = 0; i < backcrawl.size(); i++)
         {
@@ -67,7 +68,7 @@ public class GUIShowSwimmer extends javax.swing.JFrame
 
         }
 
-        ArrayList<CompetitionResult> competition = c.getCompetitionResult(s);
+        ArrayList<CompetitionResult> competition = s.getCompetition();
         
         DefaultTableModel table2 = (DefaultTableModel) tcomp.getModel();
         table2.setRowCount(competition.size());

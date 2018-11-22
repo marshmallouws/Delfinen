@@ -17,11 +17,11 @@ public class CompetitionSwimmer extends Member
         super(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, lastPayment);
         
         this.c = c;
-        this.trainingCrawl = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.CRAWL);
-        this.trainingBackCrawl = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.BACKCRAWL);
-        this.trainingButterfly = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.BUTTERFLY);
-        this.trainingBreastStroke = new ArrayList<>(); //c.getTrainingResult(this, Disciplin.BREASTSTROKE);
-        this.competition = new ArrayList<>(); //c.getCompetitionResult(this);
+        this.trainingCrawl = new ArrayList<>(); 
+        this.trainingBackCrawl = new ArrayList<>(); 
+        this.trainingButterfly = new ArrayList<>(); 
+        this.trainingBreastStroke = new ArrayList<>(); 
+        this.competition = new ArrayList<>(); 
     }
 
     public ArrayList<TrainingResult> getTrainingCrawl()

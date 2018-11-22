@@ -5,8 +5,6 @@
  */
 package delfinen.presentation;
 
-import delfinen.data.DBConnector;
-import delfinen.logic.CompetitionSwimmer;
 import delfinen.logic.ControllerMember;
 import delfinen.logic.Disciplin;
 import delfinen.logic.Member;

@@ -44,6 +44,14 @@ public class ControllerTrainer implements Controller
         }
     }
     
+    public void addResults(CompetitionSwimmer s){
+        
+        s.getTrainingBackCrawl().addAll(getTrainingResult(s, Disciplin.BACKCRAWL));
+        s.getTrainingCrawl().addAll(getTrainingResult(s, Disciplin.CRAWL));
+        s.getTrainingButterfly().addAll(getTrainingResult(s, Disciplin.BUTTERFLY));
+        s.getTrainingBreastStroke().addAll(getTrainingResult(s, Disciplin.BREASTSTROKE));
+        s.getCompetition().addAll(getCompetitionResult(s));
+    }
     /**
      * 
      * @param s used to search for member
