@@ -32,3 +32,10 @@ In test packages:
 
 * delfinen.data/DataAccessorTest.java
 * delfinen.logic/ControllerAdmin.java
+
+## Authors
+
+* Sofie Amalie Landt
+* Amanda Juhl Hansen
+* Frederikke Simone Nielsen
+* Annika Bhagya Ehlers
