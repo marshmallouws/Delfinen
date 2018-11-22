@@ -34,7 +34,13 @@ public class ControllerAdmin implements Controller
             ex.printStackTrace();
         }
     }
-
+    
+    /**
+     * 
+     * @param s used to find member
+     * @param d used to find specific discipline
+     * @return the members trainingsresults for at specific discipline
+     */
     @Override
     public ArrayList<TrainingResult> getTrainingResult(Member s, Disciplin d)
     {
@@ -48,6 +54,11 @@ public class ControllerAdmin implements Controller
         }
     }
 
+    /**
+     * 
+     * @param s used to search for member
+     * @return a members competitionsresults
+     */
     @Override
     public ArrayList<CompetitionResult> getCompetitionResult(Member s)
     {
@@ -60,7 +71,13 @@ public class ControllerAdmin implements Controller
             return null;
         }
     }
-
+    
+    /**
+     * 
+     * @param m used to to search for member
+     * @param field that is going to be updated
+     * @param change used to tell what change there is going to be
+     */
     @Override
     public void updateMember(Member m, String field, String change)
     {
@@ -77,20 +94,36 @@ public class ControllerAdmin implements Controller
             return null;
         }
     }
-
+    /**
+     * 
+     * @param m search for member that is going to be deleted
+     */
     public void deleteMember(Member m)
     {
         data.removeMember(m);
     }
 
+    
+    /**
+     * 
+     * @param firstname to create firstname
+     * @param lastname to create lastname
+     * @param ssn to create ssn
+     * @param birthyear to create birthyear
+     * @param address to create address
+     * @param zipcode to create zipcode
+     * @param phone to create phone 
+     * @param memberstatus to create memberstatus
+     * @param team_id to create team id
+     */
     public void createMember(String firstname, String lastname, String ssn, int birthyear, String address, String zipcode, String phone, MemberStatus memberstatus, int team_id)
     {
-        if (firstname.length() < 40 || firstname.isEmpty())
+        if (firstname.length() > 40 || firstname.isEmpty())
         {
             throw new IllegalArgumentException();
         }
 
-        if (lastname.length() < 40 || firstname.isEmpty())
+        if (lastname.length() > 40 || firstname.isEmpty())
         {
             throw new IllegalArgumentException();
         }
@@ -163,7 +196,12 @@ public class ControllerAdmin implements Controller
 
         data.createMember(firstname, lastname, ssn, birthyear, address, zipcode, phone, memberstatus, team_id);
     }
-
+    
+    /**
+     * 
+     * @param year used to search for currentyear
+     * @return a list of members in arrears
+     */
     public ArrayList<Member> seeMembersInArrears(int year)
     {
         ArrayList<Member> members = new ArrayList<>();
@@ -189,6 +227,12 @@ public class ControllerAdmin implements Controller
         return arrears;
     }
 
+    
+    /**
+     * 
+     * @param m used to search for member
+     * @param year used to pay for current year
+     */
     public void payForCurrentYear(Member m, int year)
     {
         data.updatePayment(m.getSsn(), year);
