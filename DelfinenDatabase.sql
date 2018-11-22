@@ -1,0 +1,47 @@
+DROP DATABASE IF EXISTS delfinen;
+CREATE DATABASE IF NOT EXISTS delfinen;
+USE delfinen;
+
+CREATE TABLE IF NOT EXISTS team (
+id INT AUTO_INCREMENT PRIMARY KEY,
+team_name VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS member(
+id INT AUTO_INCREMENT PRIMARY KEY,
+ssn CHAR(10) NOT NULL UNIQUE,
+firstname VARCHAR(40) NOT NULL,
+lastname VARCHAR(40) NOT NULL,
+birthyear INT NOT NULL,
+address VARCHAR(50) NOT NULL,
+zipcode VARCHAR(4) NOT NULL,
+phone VARCHAR(12) NOT NULL,
+memberstatus VARCHAR(10) NOT NULL,
+last_payment INT NOT NULL,
+team_id INT,
+FOREIGN KEY (team_id) REFERENCES team(id)
+)Engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS training_result(
+id INT AUTO_INCREMENT PRIMARY KEY,
+discipline VARCHAR(40) NOT NULL,
+sw_date DATE NOT NULL,
+sw_time TIME NOT NULL,
+member_id INT,
+FOREIGN KEY (member_id) REFERENCES member(id)
+	ON DELETE CASCADE
+)Engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS comp_result(
+id INT AUTO_INCREMENT PRIMARY KEY,
+competition VARCHAR(40) NOT NULL,
+discipline VARCHAR(40) NOT NULL,
+sw_rank INT NOT NULL,
+sw_time TIME NOT NULL,
+member_id INT,
+FOREIGN KEY (member_id) REFERENCES member(id)
+	ON DELETE CASCADE
+)Engine=InnoDB;
+    
+
+                
